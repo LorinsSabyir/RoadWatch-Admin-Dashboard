@@ -139,7 +139,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 4.0),
                                     child: Text(
-                                      'My Profile',
+                                      'Admin Profile',
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
@@ -286,7 +286,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Casper Ghost',
+                                                      'Fate John',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -325,7 +325,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'casper@ghustbusters.com',
+                                                        'fate@yahoo.com',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -452,7 +452,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                                           ),
                                                         ),
                                                         Text(
-                                                          'Orders Placed',
+                                                          'ambut unsa ni',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -568,7 +568,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                                           ),
                                                         ),
                                                         Text(
-                                                          'Money Earned',
+                                                          'kani pud',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme

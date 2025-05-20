@@ -348,7 +348,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Andrew D.',
+                                                  'Admin name',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyLarge
@@ -496,7 +496,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Income this Month',
+                                                'Paid fees this month',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -540,7 +540,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                                   4.0,
                                                                   0.0),
                                                       child: Text(
-                                                        '\$567k',
+                                                        '100,500',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -616,7 +616,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Income YTD',
+                                                'Issued citations this month',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -656,7 +656,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                             .fromSTEB(0.0, 8.0,
                                                                 4.0, 0.0),
                                                     child: Text(
-                                                      '5.7m',
+                                                      '5,600',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -732,7 +732,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'New Customers',
+                                                'Issued citations today',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -772,7 +772,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                             .fromSTEB(0.0, 8.0,
                                                                 4.0, 0.0),
                                                     child: Text(
-                                                      '2.5k',
+                                                      '2,500',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -848,7 +848,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Total Orders',
+                                                'Total citation',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -888,7 +888,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                             .fromSTEB(0.0, 4.0,
                                                                 4.0, 0.0),
                                                     child: Text(
-                                                      '6.4k',
+                                                      '6,400',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -986,7 +986,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Outstanding Balance',
+                                                    'Citation balance this year',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelMedium
@@ -1030,7 +1030,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                                     4.0,
                                                                     0.0),
                                                         child: Text(
-                                                          '\$529,204',
+                                                          '29,204',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .displaySmall
@@ -1146,7 +1146,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Outstanding Balance',
+                                                    'ambut unsay ibutang dre',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelMedium
@@ -1190,7 +1190,7 @@ class _MainDashboardWidgetState extends State<MainDashboardWidget>
                                                                     4.0,
                                                                     0.0),
                                                         child: Text(
-                                                          '\$529,204',
+                                                          '123,456',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .displaySmall
