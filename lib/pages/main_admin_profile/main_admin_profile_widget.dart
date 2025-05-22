@@ -452,7 +452,7 @@ class _MainAdminProfileWidgetState extends State<MainAdminProfileWidget>
                                                           ),
                                                         ),
                                                         Text(
-                                                          'ambut unsa ni',
+                                                          'Issued Violations Today',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme

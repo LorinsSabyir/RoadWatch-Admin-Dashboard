@@ -10,3 +10,6 @@ export '/pages/main_enforcers/main_enforcers_widget.dart'
 export '/pages/main_reports/main_reports_widget.dart' show MainReportsWidget;
 export '/pages/main_analytics/main_analytics_widget.dart'
     show MainAnalyticsWidget;
+export '/pages/main_analytics_copy/main_analytics_copy_widget.dart'
+    show MainAnalyticsCopyWidget;
+export '/kj/kj_widget.dart' show KjWidget;

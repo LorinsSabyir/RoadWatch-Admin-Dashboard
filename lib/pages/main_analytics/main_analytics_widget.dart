@@ -1,3 +1,4 @@
+import '/components/graph_widget.dart';
 import '/components/side_nav_main_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -331,6 +332,35 @@ class _MainAnalyticsWidgetState extends State<MainAnalyticsWidget> {
                                           TextCapitalization.words),
                                     );
                                   }),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: wrapWithModel(
+                                    model: _model.graphModel1,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: GraphWidget(),
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: wrapWithModel(
+                                    model: _model.graphModel2,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: GraphWidget(),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

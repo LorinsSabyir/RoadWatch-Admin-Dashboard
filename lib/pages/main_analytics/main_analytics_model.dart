@@ -1,3 +1,4 @@
+import '/components/graph_widget.dart';
 import '/components/side_nav_main_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,10 +25,16 @@ class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Model for graph component.
+  late GraphModel graphModel1;
+  // Model for graph component.
+  late GraphModel graphModel2;
 
   @override
   void initState(BuildContext context) {
     sideNavMainModel = createModel(context, () => SideNavMainModel());
+    graphModel1 = createModel(context, () => GraphModel());
+    graphModel2 = createModel(context, () => GraphModel());
   }
 
   @override
@@ -35,5 +42,8 @@ class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
     sideNavMainModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    graphModel1.dispose();
+    graphModel2.dispose();
   }
 }

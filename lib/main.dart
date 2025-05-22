@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'auth/firebase_auth/firebase_user_provider.dart';
+import 'auth/firebase_auth/auth_util.dart';
+
 import 'backend/firebase/firebase_config.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -66,7 +70,9 @@ class _MyAppState extends State<MyApp> {
           .map((e) => getRoute(e))
           .toList();
 
-  bool displaySplashImage = true;
+  late Stream<BaseAuthUser> userStream;
+
+  final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
@@ -74,9 +80,22 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
+    userStream = roadWatchAdminDashboardFirebaseUserStream()
+      ..listen((user) {
+        _appStateNotifier.update(user);
+      });
+    jwtTokenStream.listen((_) {});
+    Future.delayed(
+      Duration(milliseconds: 1000),
+      () => _appStateNotifier.stopShowingSplashImage(),
+    );
+  }
 
-    Future.delayed(Duration(milliseconds: 1000),
-        () => safeSetState(() => _appStateNotifier.stopShowingSplashImage()));
+  @override
+  void dispose() {
+    authUserSub.cancel();
+
+    super.dispose();
   }
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
@@ -156,7 +175,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'main_Dashboard';
+  String _currentPageName = 'main_Violations';
   late Widget? _currentPage;
 
   @override
@@ -174,6 +193,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'main_Enforcers': MainEnforcersWidget(),
       'main_Reports': MainReportsWidget(),
       'main_Analytics': MainAnalyticsWidget(),
+      'main_AnalyticsCopy': MainAnalyticsCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -226,6 +246,14 @@ class _NavBarPageState extends State<NavBarPage> {
               icon: FaIcon(
                 FontAwesomeIcons.newspaper,
                 size: 20.0,
+              ),
+              label: '__',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add_chart,
+                size: 24.0,
               ),
               label: '__',
               tooltip: '',
