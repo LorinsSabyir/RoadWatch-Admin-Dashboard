@@ -1,25 +1,29 @@
 import '/components/side_nav_main_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'dart:ui';
 import '/index.dart';
-import 'main_dashboard_widget.dart' show MainDashboardWidget;
+import 'main_analytics_widget.dart' show MainAnalyticsWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-class MainDashboardModel extends FlutterFlowModel<MainDashboardWidget> {
+class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
+  ///  Local state fields for this page.
+
+  int selectedPage = 2;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for sideNav_Main component.
   late SideNavMainModel sideNavMainModel;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -29,5 +33,7 @@ class MainDashboardModel extends FlutterFlowModel<MainDashboardWidget> {
   @override
   void dispose() {
     sideNavMainModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 }

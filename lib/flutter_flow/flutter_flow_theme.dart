@@ -56,7 +56,6 @@ abstract class FlutterFlowTheme {
   late Color error;
   late Color info;
 
-  late Color background;
   late Color accent5;
 
   @Deprecated('Use displaySmallFamily instead')
@@ -89,34 +88,49 @@ abstract class FlutterFlowTheme {
   TextStyle get bodyText2 => typography.bodySmall;
 
   String get displayLargeFamily => typography.displayLargeFamily;
+  bool get displayLargeIsCustom => typography.displayLargeIsCustom;
   TextStyle get displayLarge => typography.displayLarge;
   String get displayMediumFamily => typography.displayMediumFamily;
+  bool get displayMediumIsCustom => typography.displayMediumIsCustom;
   TextStyle get displayMedium => typography.displayMedium;
   String get displaySmallFamily => typography.displaySmallFamily;
+  bool get displaySmallIsCustom => typography.displaySmallIsCustom;
   TextStyle get displaySmall => typography.displaySmall;
   String get headlineLargeFamily => typography.headlineLargeFamily;
+  bool get headlineLargeIsCustom => typography.headlineLargeIsCustom;
   TextStyle get headlineLarge => typography.headlineLarge;
   String get headlineMediumFamily => typography.headlineMediumFamily;
+  bool get headlineMediumIsCustom => typography.headlineMediumIsCustom;
   TextStyle get headlineMedium => typography.headlineMedium;
   String get headlineSmallFamily => typography.headlineSmallFamily;
+  bool get headlineSmallIsCustom => typography.headlineSmallIsCustom;
   TextStyle get headlineSmall => typography.headlineSmall;
   String get titleLargeFamily => typography.titleLargeFamily;
+  bool get titleLargeIsCustom => typography.titleLargeIsCustom;
   TextStyle get titleLarge => typography.titleLarge;
   String get titleMediumFamily => typography.titleMediumFamily;
+  bool get titleMediumIsCustom => typography.titleMediumIsCustom;
   TextStyle get titleMedium => typography.titleMedium;
   String get titleSmallFamily => typography.titleSmallFamily;
+  bool get titleSmallIsCustom => typography.titleSmallIsCustom;
   TextStyle get titleSmall => typography.titleSmall;
   String get labelLargeFamily => typography.labelLargeFamily;
+  bool get labelLargeIsCustom => typography.labelLargeIsCustom;
   TextStyle get labelLarge => typography.labelLarge;
   String get labelMediumFamily => typography.labelMediumFamily;
+  bool get labelMediumIsCustom => typography.labelMediumIsCustom;
   TextStyle get labelMedium => typography.labelMedium;
   String get labelSmallFamily => typography.labelSmallFamily;
+  bool get labelSmallIsCustom => typography.labelSmallIsCustom;
   TextStyle get labelSmall => typography.labelSmall;
   String get bodyLargeFamily => typography.bodyLargeFamily;
+  bool get bodyLargeIsCustom => typography.bodyLargeIsCustom;
   TextStyle get bodyLarge => typography.bodyLarge;
   String get bodyMediumFamily => typography.bodyMediumFamily;
+  bool get bodyMediumIsCustom => typography.bodyMediumIsCustom;
   TextStyle get bodyMedium => typography.bodyMedium;
   String get bodySmallFamily => typography.bodySmallFamily;
+  bool get bodySmallIsCustom => typography.bodySmallIsCustom;
   TextStyle get bodySmall => typography.bodySmall;
 
   Typography get typography => ThemeTypography(this);
@@ -130,57 +144,71 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF6F61EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
+  late Color primary = const Color(0xFFFFD61F);
+  late Color secondary = const Color(0xFF8CD1E8);
+  late Color tertiary = const Color(0xFF5955DD);
   late Color alternate = const Color(0xFFE5E7EB);
-  late Color primaryText = const Color(0xFF15161E);
+  late Color primaryText = const Color(0xFF0D0B02);
   late Color secondaryText = const Color(0xFF606A85);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color primaryBackground = const Color(0xFFFDFCF7);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
-  late Color accent1 = const Color(0x4D9489F5);
-  late Color accent2 = const Color(0x4C39D2C0);
-  late Color accent3 = const Color(0x4CEE8B60);
-  late Color accent4 = const Color(0x98FFFFFF);
+  late Color accent1 = const Color(0xFFFDF5CC);
+  late Color accent2 = const Color(0xFFFDFAEC);
+  late Color accent3 = const Color(0xFFE6F4F4);
+  late Color accent4 = const Color(0xFFF1F7F5);
   late Color success = const Color(0xFF048178);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFFF5963);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color background = Color(0xFF1B1D27);
   late Color accent5 = Color(0x4CFF5963);
 }
 
 abstract class Typography {
   String get displayLargeFamily;
+  bool get displayLargeIsCustom;
   TextStyle get displayLarge;
   String get displayMediumFamily;
+  bool get displayMediumIsCustom;
   TextStyle get displayMedium;
   String get displaySmallFamily;
+  bool get displaySmallIsCustom;
   TextStyle get displaySmall;
   String get headlineLargeFamily;
+  bool get headlineLargeIsCustom;
   TextStyle get headlineLarge;
   String get headlineMediumFamily;
+  bool get headlineMediumIsCustom;
   TextStyle get headlineMedium;
   String get headlineSmallFamily;
+  bool get headlineSmallIsCustom;
   TextStyle get headlineSmall;
   String get titleLargeFamily;
+  bool get titleLargeIsCustom;
   TextStyle get titleLarge;
   String get titleMediumFamily;
+  bool get titleMediumIsCustom;
   TextStyle get titleMedium;
   String get titleSmallFamily;
+  bool get titleSmallIsCustom;
   TextStyle get titleSmall;
   String get labelLargeFamily;
+  bool get labelLargeIsCustom;
   TextStyle get labelLarge;
   String get labelMediumFamily;
+  bool get labelMediumIsCustom;
   TextStyle get labelMedium;
   String get labelSmallFamily;
+  bool get labelSmallIsCustom;
   TextStyle get labelSmall;
   String get bodyLargeFamily;
+  bool get bodyLargeIsCustom;
   TextStyle get bodyLarge;
   String get bodyMediumFamily;
+  bool get bodyMediumIsCustom;
   TextStyle get bodyMedium;
   String get bodySmallFamily;
+  bool get bodySmallIsCustom;
   TextStyle get bodySmall;
 }
 
@@ -190,90 +218,105 @@ class ThemeTypography extends Typography {
   final FlutterFlowTheme theme;
 
   String get displayLargeFamily => 'Outfit';
+  bool get displayLargeIsCustom => false;
   TextStyle get displayLarge => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 48.0,
       );
   String get displayMediumFamily => 'Outfit';
+  bool get displayMediumIsCustom => false;
   TextStyle get displayMedium => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
   String get displaySmallFamily => 'Outfit';
+  bool get displaySmallIsCustom => false;
   TextStyle get displaySmall => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
   String get headlineLargeFamily => 'Outfit';
+  bool get headlineLargeIsCustom => false;
   TextStyle get headlineLarge => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
   String get headlineMediumFamily => 'Outfit';
+  bool get headlineMediumIsCustom => false;
   TextStyle get headlineMedium => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
   String get headlineSmallFamily => 'Outfit';
+  bool get headlineSmallIsCustom => false;
   TextStyle get headlineSmall => GoogleFonts.outfit(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
   String get titleLargeFamily => 'Plus Jakarta Sans';
+  bool get titleLargeIsCustom => false;
   TextStyle get titleLarge => GoogleFonts.plusJakartaSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
   String get titleMediumFamily => 'Plus Jakarta Sans';
+  bool get titleMediumIsCustom => false;
   TextStyle get titleMedium => GoogleFonts.plusJakartaSans(
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
   String get titleSmallFamily => 'Plus Jakarta Sans';
+  bool get titleSmallIsCustom => false;
   TextStyle get titleSmall => GoogleFonts.plusJakartaSans(
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get labelLargeFamily => 'Plus Jakarta Sans';
+  bool get labelLargeIsCustom => false;
   TextStyle get labelLarge => GoogleFonts.plusJakartaSans(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get labelMediumFamily => 'Plus Jakarta Sans';
+  bool get labelMediumIsCustom => false;
   TextStyle get labelMedium => GoogleFonts.plusJakartaSans(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
   String get labelSmallFamily => 'Plus Jakarta Sans';
+  bool get labelSmallIsCustom => false;
   TextStyle get labelSmall => GoogleFonts.plusJakartaSans(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
   String get bodyLargeFamily => 'Plus Jakarta Sans';
+  bool get bodyLargeIsCustom => false;
   TextStyle get bodyLarge => GoogleFonts.plusJakartaSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Plus Jakarta Sans';
+  bool get bodyMediumIsCustom => false;
   TextStyle get bodyMedium => GoogleFonts.plusJakartaSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
   String get bodySmallFamily => 'Plus Jakarta Sans';
+  bool get bodySmallIsCustom => false;
   TextStyle get bodySmall => GoogleFonts.plusJakartaSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
@@ -289,24 +332,23 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF6F61EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
+  late Color primary = const Color(0xFFE0B700);
+  late Color secondary = const Color(0xFF175C73);
+  late Color tertiary = const Color(0xFF2622AA);
   late Color alternate = const Color(0xFF313442);
-  late Color primaryText = const Color(0xFFFFFFFF);
+  late Color primaryText = const Color(0xFFFDFBF2);
   late Color secondaryText = const Color(0xFFA9ADC6);
-  late Color primaryBackground = const Color(0xFF15161E);
+  late Color primaryBackground = const Color(0xFF080702);
   late Color secondaryBackground = const Color(0xFF1B1D27);
-  late Color accent1 = const Color(0x4D9489F5);
-  late Color accent2 = const Color(0x4C39D2C0);
-  late Color accent3 = const Color(0x4CEE8B60);
-  late Color accent4 = const Color(0x981D2428);
+  late Color accent1 = const Color(0xFF332B02);
+  late Color accent2 = const Color(0xFF131002);
+  late Color accent3 = const Color(0xFF0B1819);
+  late Color accent4 = const Color(0xFF090F0D);
   late Color success = const Color(0xFF048178);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFFF5963);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color background = Color(0xFF1B1D27);
   late Color accent5 = Color(0xFF7FD341);
 }
 

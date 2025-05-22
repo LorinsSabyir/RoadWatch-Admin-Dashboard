@@ -7,6 +7,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'backend/firebase/firebase_config.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
@@ -65,12 +66,17 @@ class _MyAppState extends State<MyApp> {
           .map((e) => getRoute(e))
           .toList();
 
+  bool displaySplashImage = true;
+
   @override
   void initState() {
     super.initState();
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
+
+    Future.delayed(Duration(milliseconds: 1000),
+        () => safeSetState(() => _appStateNotifier.stopShowingSplashImage()));
   }
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
@@ -100,10 +106,10 @@ class _MyAppState extends State<MyApp> {
           radius: Radius.circular(4.0),
           thumbColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.dragged)) {
-              return Color(4285489647);
+              return Color(4294956575);
             }
             if (states.contains(MaterialState.hovered)) {
-              return Color(1301580277);
+              return Color(4294833612);
             }
             return Color(4293257195);
           }),
@@ -121,10 +127,10 @@ class _MyAppState extends State<MyApp> {
           radius: Radius.circular(4.0),
           thumbColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.dragged)) {
-              return Color(4285489647);
+              return Color(4292916992);
             }
             if (states.contains(MaterialState.hovered)) {
-              return Color(1301580277);
+              return Color(4281543426);
             }
             return Color(4281414722);
           }),
@@ -166,7 +172,8 @@ class _NavBarPageState extends State<NavBarPage> {
       'main_Dashboard': MainDashboardWidget(),
       'main_Violations': MainViolationsWidget(),
       'main_Enforcers': MainEnforcersWidget(),
-      'main_AdminProfile': MainAdminProfileWidget(),
+      'main_Reports': MainReportsWidget(),
+      'main_Analytics': MainAnalyticsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -216,8 +223,16 @@ class _NavBarPageState extends State<NavBarPage> {
               tooltip: '',
             ),
             BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.newspaper,
+                size: 20.0,
+              ),
+              label: '__',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(
-                Icons.person,
+                Icons.add_chart,
                 size: 24.0,
               ),
               label: '__',

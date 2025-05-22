@@ -1,4 +1,3 @@
-import '/components/account_user_dropdown_widget.dart';
 import '/components/side_nav_main_widget.dart';
 import '/components/status_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -8,8 +7,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'main_violations_widget.dart' show MainViolationsWidget;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

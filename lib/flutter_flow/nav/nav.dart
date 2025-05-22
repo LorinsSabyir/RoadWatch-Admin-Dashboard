@@ -40,12 +40,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => NavBarPage(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/spash_admin.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          : NavBarPage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => NavBarPage(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/spash_admin.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : NavBarPage(),
         ),
         FFRoute(
           name: MainViolationsWidget.routeName,
@@ -57,9 +77,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MainAdminProfileWidget.routeName,
           path: MainAdminProfileWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_AdminProfile')
-              : MainAdminProfileWidget(),
+          builder: (context, params) => MainAdminProfileWidget(),
         ),
         FFRoute(
           name: MainDashboardWidget.routeName,
@@ -74,6 +92,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'main_Enforcers')
               : MainEnforcersWidget(),
+        ),
+        FFRoute(
+          name: MainReportsWidget.routeName,
+          path: MainReportsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'main_Reports')
+              : MainReportsWidget(),
+        ),
+        FFRoute(
+          name: MainAnalyticsWidget.routeName,
+          path: MainAnalyticsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'main_Analytics')
+              : MainAnalyticsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
