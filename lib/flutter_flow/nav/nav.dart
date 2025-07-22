@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -76,41 +75,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+          appStateNotifier.loggedIn ? MainDashboardWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+              appStateNotifier.loggedIn ? MainDashboardWidget() : LoginWidget(),
         ),
         FFRoute(
-          name: MainViolationsWidget.routeName,
-          path: MainViolationsWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_Violations')
-              : MainViolationsWidget(),
+          name: MainViolatorsWidget.routeName,
+          path: MainViolatorsWidget.routePath,
+          builder: (context, params) => MainViolatorsWidget(),
         ),
         FFRoute(
           name: MainDashboardWidget.routeName,
           path: MainDashboardWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_Dashboard')
-              : MainDashboardWidget(),
+          builder: (context, params) => MainDashboardWidget(),
         ),
         FFRoute(
           name: MainEnforcersWidget.routeName,
           path: MainEnforcersWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_Enforcers')
-              : MainEnforcersWidget(),
-        ),
-        FFRoute(
-          name: MainAnalyticsWidget.routeName,
-          path: MainAnalyticsWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_Analytics')
-              : MainAnalyticsWidget(),
+          builder: (context, params) => MainEnforcersWidget(),
         ),
         FFRoute(
           name: LoginWidget.routeName,
@@ -120,9 +106,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MainReportsWidget.routeName,
           path: MainReportsWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'main_Reports')
-              : MainReportsWidget(),
+          builder: (context, params) => MainReportsWidget(),
+        ),
+        FFRoute(
+          name: MainFinesWidget.routeName,
+          path: MainFinesWidget.routePath,
+          builder: (context, params) => MainFinesWidget(),
+        ),
+        FFRoute(
+          name: MainAnalyticsWidget.routeName,
+          path: MainAnalyticsWidget.routePath,
+          builder: (context, params) => MainAnalyticsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

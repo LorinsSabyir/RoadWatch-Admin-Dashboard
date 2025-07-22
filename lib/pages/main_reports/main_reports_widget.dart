@@ -50,30 +50,30 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
   @override
   Widget build(BuildContext context) {
     final chartPieChartColorsList5 = [
-      Color(0xFF8F47E9),
-      Color(0xFF7029CC),
-      Color(0xFF2636A5),
-      Color(0xFF4A57C2),
-      Color(0xFF4A57C2),
-      Color(0xFF3E8DD0),
-      Color(0xFF2F2087),
-      Color(0xFF343EBB),
-      Color(0xFF5D6CF4),
-      Color(0xFF905DB6),
-      Color(0xFFA487EE)
+      Color(0xFF4F46E5),
+      Color(0xFF22D3EE),
+      Color(0xFF10B981),
+      Color(0xD6F59E0B),
+      Color(0xD0EF4444),
+      Color(0xFF6366F1),
+      Color(0xFF8B5CF6),
+      Color(0xFFF472B6),
+      Color(0xFF0EA5E9),
+      Color(0xFF14B8A6),
+      Color(0xFFA855F7)
     ];
     final chartPieChartColorsList6 = [
-      Color(0xFF8F47E9),
-      Color(0xFF7029CC),
-      Color(0xFF2636A5),
-      Color(0xFF4A57C2),
-      Color(0xFF4A57C2),
-      Color(0xFF3E8DD0),
-      Color(0xFF2F2087),
-      Color(0xFF343EBB),
-      Color(0xFF5D6CF4),
-      Color(0xFF905DB6),
-      Color(0xFFA487EE)
+      Color(0xFF3B82F6),
+      Color(0xD1F43F5E),
+      Color(0xFFFB923C),
+      Color(0xFF34D399),
+      Color(0xFFFACC15),
+      Color(0xFFA78BFA),
+      Color(0xFF06B6D4),
+      Color(0xFF10B981),
+      Color(0xFFE879F9),
+      Color(0xFFF87171),
+      Color(0xD44ADE80)
     ];
     return GestureDetector(
       onTap: () {
@@ -111,8 +111,7 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,25 +120,12 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 0.0, 4.0),
-                                      child: Text(
-                                        'Reports',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineMedium
-                                            .override(
-                                              font: GoogleFonts.outfit(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMedium
-                                                        .fontStyle,
-                                              ),
-                                              letterSpacing: 0.0,
+                                    Text(
+                                      'Reports',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            font: GoogleFonts.outfit(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .headlineMedium
@@ -149,34 +135,27 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                       .headlineMedium
                                                       .fontStyle,
                                             ),
-                                      ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontStyle,
+                                          ),
                                     ),
                                     if (responsiveVisibility(
                                       context: context,
                                       phone: false,
                                     ))
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'The following is a list of reports regarding citations and violations.',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
+                                      Text(
+                                        'The following is a list of reports regarding citations and violations.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -186,7 +165,16 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                         .labelMedium
                                                         .fontStyle,
                                               ),
-                                        ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
                                   ],
                                 ),
@@ -1048,140 +1036,145 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                                   ),
                                                                 ],
                                                               ),
-                                                              StreamBuilder<
-                                                                  List<
-                                                                      AnnualViolationsRecord>>(
-                                                                stream:
-                                                                    queryAnnualViolationsRecord(
-                                                                  queryBuilder: (annualViolationsRecord) =>
-                                                                      annualViolationsRecord.orderBy(
-                                                                          'month',
-                                                                          descending:
-                                                                              true),
-                                                                ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: StreamBuilder<
+                                                                    List<
+                                                                        AnnualViolationsRecord>>(
+                                                                  stream:
+                                                                      queryAnnualViolationsRecord(
+                                                                    queryBuilder: (annualViolationsRecord) => annualViolationsRecord.orderBy(
+                                                                        'month',
+                                                                        descending:
+                                                                            true),
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          valueColor:
-                                                                              AlwaysStoppedAnimation<Color>(
-                                                                            FlutterFlowTheme.of(context).primary,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
                                                                           ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    List<AnnualViolationsRecord>
+                                                                        chartAnnualViolationsRecordList =
+                                                                        snapshot
+                                                                            .data!;
+
+                                                                    return Container(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height:
+                                                                          300.0,
+                                                                      child:
+                                                                          FlutterFlowBarChart(
+                                                                        barData: [
+                                                                          FFBarChartData(
+                                                                            yData:
+                                                                                chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                          )
+                                                                        ],
+                                                                        xLabels: chartAnnualViolationsRecordList
+                                                                            .map((d) =>
+                                                                                d.monthName)
+                                                                            .toList(),
+                                                                        barWidth:
+                                                                            32.0,
+                                                                        barBorderRadius:
+                                                                            BorderRadius.only(
+                                                                          bottomLeft:
+                                                                              Radius.circular(0.0),
+                                                                          bottomRight:
+                                                                              Radius.circular(0.0),
+                                                                          topLeft:
+                                                                              Radius.circular(0.0),
+                                                                          topRight:
+                                                                              Radius.circular(0.0),
+                                                                        ),
+                                                                        groupSpace:
+                                                                            8.0,
+                                                                        alignment:
+                                                                            BarChartAlignment.spaceEvenly,
+                                                                        chartStylingInfo:
+                                                                            ChartStylingInfo(
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          showGrid:
+                                                                              true,
+                                                                          borderColor:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                        ),
+                                                                        axisBounds:
+                                                                            AxisBounds(),
+                                                                        xAxisLabelInfo:
+                                                                            AxisLabelInfo(
+                                                                          showLabels:
+                                                                              true,
+                                                                          labelTextStyle: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                          labelInterval:
+                                                                              10.0,
+                                                                          reservedSize:
+                                                                              28.0,
+                                                                        ),
+                                                                        yAxisLabelInfo:
+                                                                            AxisLabelInfo(
+                                                                          showLabels:
+                                                                              true,
+                                                                          labelTextStyle: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                          labelInterval:
+                                                                              100.0,
+                                                                          reservedSize:
+                                                                              100.0,
                                                                         ),
                                                                       ),
                                                                     );
-                                                                  }
-                                                                  List<AnnualViolationsRecord>
-                                                                      chartAnnualViolationsRecordList =
-                                                                      snapshot
-                                                                          .data!;
-
-                                                                  return Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    height:
-                                                                        300.0,
-                                                                    child:
-                                                                        FlutterFlowBarChart(
-                                                                      barData: [
-                                                                        FFBarChartData(
-                                                                          yData: chartAnnualViolationsRecordList
-                                                                              .map((d) => d.amount)
-                                                                              .toList(),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                        )
-                                                                      ],
-                                                                      xLabels: chartAnnualViolationsRecordList
-                                                                          .map((d) =>
-                                                                              d.monthName)
-                                                                          .toList(),
-                                                                      barWidth:
-                                                                          32.0,
-                                                                      barBorderRadius:
-                                                                          BorderRadius
-                                                                              .only(
-                                                                        bottomLeft:
-                                                                            Radius.circular(0.0),
-                                                                        bottomRight:
-                                                                            Radius.circular(0.0),
-                                                                        topLeft:
-                                                                            Radius.circular(0.0),
-                                                                        topRight:
-                                                                            Radius.circular(0.0),
-                                                                      ),
-                                                                      groupSpace:
-                                                                          8.0,
-                                                                      alignment:
-                                                                          BarChartAlignment
-                                                                              .spaceEvenly,
-                                                                      chartStylingInfo:
-                                                                          ChartStylingInfo(
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        showGrid:
-                                                                            true,
-                                                                        borderColor:
-                                                                            FlutterFlowTheme.of(context).alternate,
-                                                                        borderWidth:
-                                                                            1.0,
-                                                                      ),
-                                                                      axisBounds:
-                                                                          AxisBounds(),
-                                                                      xAxisLabelInfo:
-                                                                          AxisLabelInfo(
-                                                                        showLabels:
-                                                                            true,
-                                                                        labelTextStyle: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                        labelInterval:
-                                                                            10.0,
-                                                                        reservedSize:
-                                                                            28.0,
-                                                                      ),
-                                                                      yAxisLabelInfo:
-                                                                          AxisLabelInfo(
-                                                                        showLabels:
-                                                                            true,
-                                                                        labelTextStyle: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                        labelInterval:
-                                                                            100.0,
-                                                                        reservedSize:
-                                                                            100.0,
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
+                                                                  },
+                                                                ),
                                                               ),
                                                             ].divide(SizedBox(
                                                                 height: 16.0)),
@@ -1298,140 +1291,145 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                                   ),
                                                                 ],
                                                               ),
-                                                              StreamBuilder<
-                                                                  List<
-                                                                      AnnualViolationsRecord>>(
-                                                                stream:
-                                                                    queryAnnualViolationsRecord(
-                                                                  queryBuilder: (annualViolationsRecord) =>
-                                                                      annualViolationsRecord.orderBy(
-                                                                          'month',
-                                                                          descending:
-                                                                              true),
-                                                                ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: StreamBuilder<
+                                                                    List<
+                                                                        AnnualViolationsRecord>>(
+                                                                  stream:
+                                                                      queryAnnualViolationsRecord(
+                                                                    queryBuilder: (annualViolationsRecord) => annualViolationsRecord.orderBy(
+                                                                        'month',
+                                                                        descending:
+                                                                            true),
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          valueColor:
-                                                                              AlwaysStoppedAnimation<Color>(
-                                                                            FlutterFlowTheme.of(context).primary,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
                                                                           ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    List<AnnualViolationsRecord>
+                                                                        chartAnnualViolationsRecordList =
+                                                                        snapshot
+                                                                            .data!;
+
+                                                                    return Container(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height:
+                                                                          300.0,
+                                                                      child:
+                                                                          FlutterFlowBarChart(
+                                                                        barData: [
+                                                                          FFBarChartData(
+                                                                            yData:
+                                                                                chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
+                                                                            color:
+                                                                                Color(0xFFA9F4D0),
+                                                                          )
+                                                                        ],
+                                                                        xLabels: chartAnnualViolationsRecordList
+                                                                            .map((d) =>
+                                                                                d.monthName)
+                                                                            .toList(),
+                                                                        barWidth:
+                                                                            32.0,
+                                                                        barBorderRadius:
+                                                                            BorderRadius.only(
+                                                                          bottomLeft:
+                                                                              Radius.circular(0.0),
+                                                                          bottomRight:
+                                                                              Radius.circular(0.0),
+                                                                          topLeft:
+                                                                              Radius.circular(0.0),
+                                                                          topRight:
+                                                                              Radius.circular(0.0),
+                                                                        ),
+                                                                        groupSpace:
+                                                                            8.0,
+                                                                        alignment:
+                                                                            BarChartAlignment.spaceEvenly,
+                                                                        chartStylingInfo:
+                                                                            ChartStylingInfo(
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          showGrid:
+                                                                              true,
+                                                                          borderColor:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                        ),
+                                                                        axisBounds:
+                                                                            AxisBounds(),
+                                                                        xAxisLabelInfo:
+                                                                            AxisLabelInfo(
+                                                                          showLabels:
+                                                                              true,
+                                                                          labelTextStyle: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                          labelInterval:
+                                                                              10.0,
+                                                                          reservedSize:
+                                                                              28.0,
+                                                                        ),
+                                                                        yAxisLabelInfo:
+                                                                            AxisLabelInfo(
+                                                                          showLabels:
+                                                                              true,
+                                                                          labelTextStyle: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                          labelInterval:
+                                                                              100.0,
+                                                                          reservedSize:
+                                                                              100.0,
                                                                         ),
                                                                       ),
                                                                     );
-                                                                  }
-                                                                  List<AnnualViolationsRecord>
-                                                                      chartAnnualViolationsRecordList =
-                                                                      snapshot
-                                                                          .data!;
-
-                                                                  return Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    height:
-                                                                        300.0,
-                                                                    child:
-                                                                        FlutterFlowBarChart(
-                                                                      barData: [
-                                                                        FFBarChartData(
-                                                                          yData: chartAnnualViolationsRecordList
-                                                                              .map((d) => d.amount)
-                                                                              .toList(),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        )
-                                                                      ],
-                                                                      xLabels: chartAnnualViolationsRecordList
-                                                                          .map((d) =>
-                                                                              d.monthName)
-                                                                          .toList(),
-                                                                      barWidth:
-                                                                          32.0,
-                                                                      barBorderRadius:
-                                                                          BorderRadius
-                                                                              .only(
-                                                                        bottomLeft:
-                                                                            Radius.circular(0.0),
-                                                                        bottomRight:
-                                                                            Radius.circular(0.0),
-                                                                        topLeft:
-                                                                            Radius.circular(0.0),
-                                                                        topRight:
-                                                                            Radius.circular(0.0),
-                                                                      ),
-                                                                      groupSpace:
-                                                                          8.0,
-                                                                      alignment:
-                                                                          BarChartAlignment
-                                                                              .spaceEvenly,
-                                                                      chartStylingInfo:
-                                                                          ChartStylingInfo(
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        showGrid:
-                                                                            true,
-                                                                        borderColor:
-                                                                            FlutterFlowTheme.of(context).alternate,
-                                                                        borderWidth:
-                                                                            1.0,
-                                                                      ),
-                                                                      axisBounds:
-                                                                          AxisBounds(),
-                                                                      xAxisLabelInfo:
-                                                                          AxisLabelInfo(
-                                                                        showLabels:
-                                                                            true,
-                                                                        labelTextStyle: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                        labelInterval:
-                                                                            10.0,
-                                                                        reservedSize:
-                                                                            28.0,
-                                                                      ),
-                                                                      yAxisLabelInfo:
-                                                                          AxisLabelInfo(
-                                                                        showLabels:
-                                                                            true,
-                                                                        labelTextStyle: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                        labelInterval:
-                                                                            100.0,
-                                                                        reservedSize:
-                                                                            100.0,
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
+                                                                  },
+                                                                ),
                                                               ),
                                                             ].divide(SizedBox(
                                                                 height: 16.0)),
@@ -1550,122 +1548,131 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                                 ],
                                                               ),
                                                               Expanded(
-                                                                child: StreamBuilder<
-                                                                    List<
-                                                                        AnnualViolationsRecord>>(
-                                                                  stream:
-                                                                      queryAnnualViolationsRecord(
-                                                                    queryBuilder: (annualViolationsRecord) => annualViolationsRecord.orderBy(
-                                                                        'month',
-                                                                        descending:
-                                                                            true),
-                                                                  ),
-                                                                  builder: (context,
-                                                                      snapshot) {
-                                                                    // Customize what your widget looks like when it's loading.
-                                                                    if (!snapshot
-                                                                        .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              50.0,
-                                                                          height:
-                                                                              50.0,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: StreamBuilder<
+                                                                      List<
+                                                                          AnnualViolationsRecord>>(
+                                                                    stream:
+                                                                        queryAnnualViolationsRecord(
+                                                                      queryBuilder: (annualViolationsRecord) => annualViolationsRecord.orderBy(
+                                                                          'month',
+                                                                          descending:
+                                                                              true),
+                                                                    ),
+                                                                    builder:
+                                                                        (context,
+                                                                            snapshot) {
+                                                                      // Customize what your widget looks like when it's loading.
+                                                                      if (!snapshot
+                                                                          .hasData) {
+                                                                        return Center(
                                                                           child:
-                                                                              CircularProgressIndicator(
-                                                                            valueColor:
-                                                                                AlwaysStoppedAnimation<Color>(
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    List<AnnualViolationsRecord>
-                                                                        chartAnnualViolationsRecordList =
-                                                                        snapshot
-                                                                            .data!;
-
-                                                                    return Container(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          1.0,
-                                                                      height:
-                                                                          300.0,
-                                                                      child:
-                                                                          Stack(
-                                                                        children: [
-                                                                          FlutterFlowPieChart(
-                                                                            data:
-                                                                                FFPieChartData(
-                                                                              values: chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
-                                                                              colors: chartPieChartColorsList5,
-                                                                              radius: [
-                                                                                200.0
-                                                                              ],
-                                                                            ),
-                                                                            donutHoleRadius:
-                                                                                0.0,
-                                                                            donutHoleColor:
-                                                                                Colors.transparent,
-                                                                            sectionLabelType:
-                                                                                PieChartSectionLabelType.percent,
-                                                                            sectionLabelStyle:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                              font: GoogleFonts.outfit(
-                                                                                fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                              shadows: [
-                                                                                Shadow(
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  offset: Offset(2.0, 2.0),
-                                                                                  blurRadius: 2.0,
-                                                                                )
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                              SizedBox(
+                                                                            width:
+                                                                                50.0,
+                                                                            height:
+                                                                                50.0,
                                                                             child:
-                                                                                FlutterFlowChartLegendWidget(
-                                                                              entries: chartAnnualViolationsRecordList
-                                                                                  .map((d) => d.violationName)
-                                                                                  .toList()
-                                                                                  .asMap()
-                                                                                  .entries
-                                                                                  .map(
-                                                                                    (label) => LegendEntry(
-                                                                                      chartPieChartColorsList5[label.key % chartPieChartColorsList5.length],
-                                                                                      label.value,
-                                                                                    ),
+                                                                                CircularProgressIndicator(
+                                                                              valueColor: AlwaysStoppedAnimation<Color>(
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }
+                                                                      List<AnnualViolationsRecord>
+                                                                          chartAnnualViolationsRecordList =
+                                                                          snapshot
+                                                                              .data!;
+
+                                                                      return Container(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height:
+                                                                            300.0,
+                                                                        child:
+                                                                            Stack(
+                                                                          children: [
+                                                                            FlutterFlowPieChart(
+                                                                              data: FFPieChartData(
+                                                                                values: chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
+                                                                                colors: chartPieChartColorsList5,
+                                                                                radius: [
+                                                                                  200.0
+                                                                                ],
+                                                                                borderWidth: [
+                                                                                  1.0
+                                                                                ],
+                                                                                borderColor: [
+                                                                                  FlutterFlowTheme.of(context).alternate
+                                                                                ],
+                                                                              ),
+                                                                              donutHoleRadius: 0.0,
+                                                                              donutHoleColor: Colors.transparent,
+                                                                              sectionLabelType: PieChartSectionLabelType.percent,
+                                                                              sectionLabelStyle: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                font: GoogleFonts.outfit(
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                ),
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 12.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                shadows: [
+                                                                                  Shadow(
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    offset: Offset(2.0, 2.0),
+                                                                                    blurRadius: 2.0,
                                                                                   )
-                                                                                  .toList(),
-                                                                              width: 100.0,
-                                                                              height: 50.0,
-                                                                              textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                              child: FlutterFlowChartLegendWidget(
+                                                                                entries: chartAnnualViolationsRecordList
+                                                                                    .map((d) => d.violationName)
+                                                                                    .toList()
+                                                                                    .asMap()
+                                                                                    .entries
+                                                                                    .map(
+                                                                                      (label) => LegendEntry(
+                                                                                        chartPieChartColorsList5[label.key % chartPieChartColorsList5.length],
+                                                                                        label.value,
+                                                                                      ),
+                                                                                    )
+                                                                                    .toList(),
+                                                                                width: 310.0,
+                                                                                height: 300.0,
+                                                                                textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                              textPadding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                                                              indicatorSize: 10.0,
+                                                                                textPadding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                                                                borderWidth: 0.0,
+                                                                                indicatorSize: 10.0,
+                                                                              ),
                                                                             ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  },
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ].divide(SizedBox(
@@ -1785,124 +1792,127 @@ class _MainReportsWidgetState extends State<MainReportsWidget>
                                                                 ],
                                                               ),
                                                               Expanded(
-                                                                child: StreamBuilder<
-                                                                    List<
-                                                                        AnnualViolationsRecord>>(
-                                                                  stream:
-                                                                      queryAnnualViolationsRecord(
-                                                                    queryBuilder:
-                                                                        (annualViolationsRecord) =>
-                                                                            annualViolationsRecord.orderBy('month'),
-                                                                  ),
-                                                                  builder: (context,
-                                                                      snapshot) {
-                                                                    // Customize what your widget looks like when it's loading.
-                                                                    if (!snapshot
-                                                                        .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              50.0,
-                                                                          height:
-                                                                              50.0,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: StreamBuilder<
+                                                                      List<
+                                                                          AnnualViolationsRecord>>(
+                                                                    stream:
+                                                                        queryAnnualViolationsRecord(
+                                                                      queryBuilder:
+                                                                          (annualViolationsRecord) =>
+                                                                              annualViolationsRecord.orderBy('month'),
+                                                                    ),
+                                                                    builder:
+                                                                        (context,
+                                                                            snapshot) {
+                                                                      // Customize what your widget looks like when it's loading.
+                                                                      if (!snapshot
+                                                                          .hasData) {
+                                                                        return Center(
                                                                           child:
-                                                                              CircularProgressIndicator(
-                                                                            valueColor:
-                                                                                AlwaysStoppedAnimation<Color>(
-                                                                              FlutterFlowTheme.of(context).primary,
+                                                                              SizedBox(
+                                                                            width:
+                                                                                50.0,
+                                                                            height:
+                                                                                50.0,
+                                                                            child:
+                                                                                CircularProgressIndicator(
+                                                                              valueColor: AlwaysStoppedAnimation<Color>(
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                              ),
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    List<AnnualViolationsRecord>
-                                                                        chartAnnualViolationsRecordList =
-                                                                        snapshot
-                                                                            .data!;
+                                                                        );
+                                                                      }
+                                                                      List<AnnualViolationsRecord>
+                                                                          chartAnnualViolationsRecordList =
+                                                                          snapshot
+                                                                              .data!;
 
-                                                                    return Container(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          1.0,
-                                                                      height:
-                                                                          300.0,
-                                                                      child:
-                                                                          Stack(
-                                                                        children: [
-                                                                          FlutterFlowPieChart(
-                                                                            data:
-                                                                                FFPieChartData(
-                                                                              values: chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
-                                                                              colors: chartPieChartColorsList6,
-                                                                              radius: [
-                                                                                200.0
-                                                                              ],
-                                                                              borderColor: [
-                                                                                Color(0x00000000)
-                                                                              ],
-                                                                            ),
-                                                                            donutHoleRadius:
-                                                                                0.0,
-                                                                            donutHoleColor:
-                                                                                Colors.transparent,
-                                                                            sectionLabelType:
-                                                                                PieChartSectionLabelType.percent,
-                                                                            sectionLabelStyle:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                              font: GoogleFonts.outfit(
+                                                                      return Container(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height:
+                                                                            300.0,
+                                                                        child:
+                                                                            Stack(
+                                                                          children: [
+                                                                            FlutterFlowPieChart(
+                                                                              data: FFPieChartData(
+                                                                                values: chartAnnualViolationsRecordList.map((d) => d.amount).toList(),
+                                                                                colors: chartPieChartColorsList6,
+                                                                                radius: [
+                                                                                  200.0
+                                                                                ],
+                                                                                borderWidth: [
+                                                                                  1.0
+                                                                                ],
+                                                                                borderColor: [
+                                                                                  FlutterFlowTheme.of(context).secondaryBackground
+                                                                                ],
+                                                                              ),
+                                                                              donutHoleRadius: 0.0,
+                                                                              donutHoleColor: Colors.transparent,
+                                                                              sectionLabelType: PieChartSectionLabelType.percent,
+                                                                              sectionLabelStyle: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                font: GoogleFonts.outfit(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                ),
+                                                                                fontSize: 12.0,
+                                                                                letterSpacing: 0.0,
                                                                                 fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                              shadows: [
-                                                                                Shadow(
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  offset: Offset(2.0, 2.0),
-                                                                                  blurRadius: 2.0,
-                                                                                )
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
-                                                                            child:
-                                                                                FlutterFlowChartLegendWidget(
-                                                                              entries: chartAnnualViolationsRecordList
-                                                                                  .map((d) => d.apprePlace)
-                                                                                  .toList()
-                                                                                  .asMap()
-                                                                                  .entries
-                                                                                  .map(
-                                                                                    (label) => LegendEntry(
-                                                                                      chartPieChartColorsList6[label.key % chartPieChartColorsList6.length],
-                                                                                      label.value,
-                                                                                    ),
+                                                                                shadows: [
+                                                                                  Shadow(
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    offset: Offset(2.0, 2.0),
+                                                                                    blurRadius: 2.0,
                                                                                   )
-                                                                                  .toList(),
-                                                                              width: 100.0,
-                                                                              height: 50.0,
-                                                                              textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                              child: FlutterFlowChartLegendWidget(
+                                                                                entries: chartAnnualViolationsRecordList
+                                                                                    .map((d) => d.apprePlace)
+                                                                                    .toList()
+                                                                                    .asMap()
+                                                                                    .entries
+                                                                                    .map(
+                                                                                      (label) => LegendEntry(
+                                                                                        chartPieChartColorsList6[label.key % chartPieChartColorsList6.length],
+                                                                                        label.value,
+                                                                                      ),
+                                                                                    )
+                                                                                    .toList(),
+                                                                                width: 315.0,
+                                                                                height: 300.0,
+                                                                                textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                              textPadding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                                                              indicatorSize: 10.0,
+                                                                                textPadding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                                indicatorSize: 10.0,
+                                                                              ),
                                                                             ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  },
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ].divide(SizedBox(

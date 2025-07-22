@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'card1_widget.dart' show Card1Widget;
+import 'analytics_card_widget.dart' show AnalyticsCardWidget;
 import 'package:flutter/material.dart';
 
-class Card1Model extends FlutterFlowModel<Card1Widget> {
+class AnalyticsCardModel extends FlutterFlowModel<AnalyticsCardWidget> {
   @override
   void initState(BuildContext context) {}
 

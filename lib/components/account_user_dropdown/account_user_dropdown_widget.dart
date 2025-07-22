@@ -696,8 +696,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.login_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: FlutterFlowTheme.of(context).error,
                                     size: 20.0,
                                   ),
                                 ),
@@ -720,6 +719,8 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)

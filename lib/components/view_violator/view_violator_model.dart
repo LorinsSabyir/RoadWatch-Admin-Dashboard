@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'graph_widget.dart' show GraphWidget;
+import 'view_violator_widget.dart' show ViewViolatorWidget;
 import 'package:flutter/material.dart';
 
-class GraphModel extends FlutterFlowModel<GraphWidget> {
+class ViewViolatorModel extends FlutterFlowModel<ViewViolatorWidget> {
   @override
   void initState(BuildContext context) {}
 

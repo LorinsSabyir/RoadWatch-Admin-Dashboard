@@ -1,13 +1,13 @@
-import '/components/analytics_card/analytics_card_widget.dart';
 import '/components/side_nav_main/side_nav_main_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'main_analytics_widget.dart' show MainAnalyticsWidget;
+import '/flutter_flow/form_field_controller.dart';
+import 'main_fines_widget.dart' show MainFinesWidget;
 import 'package:flutter/material.dart';
 
-class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
+class MainFinesModel extends FlutterFlowModel<MainFinesWidget> {
   ///  Local state fields for this page.
 
-  int selectedPage = 2;
+  int selectedPage = 3;
 
   ///  State fields for stateful widgets in this page.
 
@@ -17,13 +17,15 @@ class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Model for AnalyticsCard component.
-  late AnalyticsCardModel analyticsCardModel;
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController;
+  List<String>? get choiceChipsValues => choiceChipsValueController?.value;
+  set choiceChipsValues(List<String>? val) =>
+      choiceChipsValueController?.value = val;
 
   @override
   void initState(BuildContext context) {
     sideNavMainModel = createModel(context, () => SideNavMainModel());
-    analyticsCardModel = createModel(context, () => AnalyticsCardModel());
   }
 
   @override
@@ -31,7 +33,5 @@ class MainAnalyticsModel extends FlutterFlowModel<MainAnalyticsWidget> {
     sideNavMainModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
-
-    analyticsCardModel.dispose();
   }
 }

@@ -12,7 +12,7 @@ class MainEnforcersModel extends FlutterFlowModel<MainEnforcersWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for sideNav_Main component.
+  // Model for SideNav_Main component.
   late SideNavMainModel sideNavMainModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
