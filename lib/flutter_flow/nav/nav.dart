@@ -104,11 +104,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: MainReportsWidget.routeName,
-          path: MainReportsWidget.routePath,
-          builder: (context, params) => MainReportsWidget(),
-        ),
-        FFRoute(
           name: MainFinesWidget.routeName,
           path: MainFinesWidget.routePath,
           builder: (context, params) => MainFinesWidget(),
@@ -117,6 +112,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: MainAnalyticsWidget.routeName,
           path: MainAnalyticsWidget.routePath,
           builder: (context, params) => MainAnalyticsWidget(),
+        ),
+        FFRoute(
+          name: MainAnalyticsCopyWidget.routeName,
+          path: MainAnalyticsCopyWidget.routePath,
+          builder: (context, params) => MainAnalyticsCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
