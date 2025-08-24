@@ -44,6 +44,12 @@ class FFAppState extends ChangeNotifier {
     _navTestOpen = value;
     prefs.setBool('ff_navTestOpen', value);
   }
+
+  bool _searchIsActive = false;
+  bool get searchIsActive => _searchIsActive;
+  set searchIsActive(bool value) {
+    _searchIsActive = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

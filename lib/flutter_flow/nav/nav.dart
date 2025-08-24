@@ -75,28 +75,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? MainDashboardWidget() : LoginWidget(),
+          appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? MainDashboardWidget() : LoginWidget(),
+              appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
         ),
         FFRoute(
-          name: MainViolatorsWidget.routeName,
-          path: MainViolatorsWidget.routePath,
-          builder: (context, params) => MainViolatorsWidget(),
+          name: ViolatorsWidget.routeName,
+          path: ViolatorsWidget.routePath,
+          builder: (context, params) => ViolatorsWidget(),
         ),
         FFRoute(
-          name: MainDashboardWidget.routeName,
-          path: MainDashboardWidget.routePath,
-          builder: (context, params) => MainDashboardWidget(),
+          name: DashboardWidget.routeName,
+          path: DashboardWidget.routePath,
+          builder: (context, params) => DashboardWidget(),
         ),
         FFRoute(
-          name: MainEnforcersWidget.routeName,
-          path: MainEnforcersWidget.routePath,
-          builder: (context, params) => MainEnforcersWidget(),
+          name: EnforcersWidget.routeName,
+          path: EnforcersWidget.routePath,
+          builder: (context, params) => EnforcersWidget(),
         ),
         FFRoute(
           name: LoginWidget.routeName,
@@ -104,19 +104,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: MainFinesWidget.routeName,
-          path: MainFinesWidget.routePath,
-          builder: (context, params) => MainFinesWidget(),
+          name: FinesWidget.routeName,
+          path: FinesWidget.routePath,
+          builder: (context, params) => FinesWidget(),
         ),
         FFRoute(
-          name: MainAnalyticsWidget.routeName,
-          path: MainAnalyticsWidget.routePath,
-          builder: (context, params) => MainAnalyticsWidget(),
+          name: AnalyticsWidget.routeName,
+          path: AnalyticsWidget.routePath,
+          builder: (context, params) => AnalyticsWidget(),
         ),
         FFRoute(
-          name: MainAnalyticsCopyWidget.routeName,
-          path: MainAnalyticsCopyWidget.routePath,
-          builder: (context, params) => MainAnalyticsCopyWidget(),
+          name: AnalyticsCopyWidget.routeName,
+          path: AnalyticsCopyWidget.routePath,
+          builder: (context, params) => AnalyticsCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

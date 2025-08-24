@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore_web: 4.4.9
   collection: 1.19.1
   dropdown_button2: 2.3.9
+  easy_debounce: 2.0.1
   firebase_auth: 5.6.0
   firebase_auth_platform_interface: 7.7.0
   firebase_auth_web: 5.15.0
@@ -84,6 +85,7 @@ dependencies:
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
+  text_search: 1.0.1
   timeago: 3.7.1
   url_launcher: 6.3.1
   url_launcher_android: 6.3.16

@@ -8,7 +8,6 @@ import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
 import 'backend/firebase/firebase_config.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 void main() async {
@@ -17,8 +16,6 @@ void main() async {
   usePathUrlStrategy();
 
   await initFirebase();
-
-  await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
@@ -47,7 +44,7 @@ class MyAppScrollBehavior extends MaterialScrollBehavior {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -94,7 +91,6 @@ class _MyAppState extends State<MyApp> {
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -119,33 +115,12 @@ class _MyAppState extends State<MyApp> {
           radius: Radius.circular(4.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return Color(4294956575);
+              return Color(4294427136);
             }
             if (states.contains(WidgetState.hovered)) {
-              return Color(4294833612);
+              return Color(4294767046);
             }
-            return Color(4293257195);
-          }),
-          minThumbLength: 20.0,
-        ),
-        useMaterial3: false,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
-          interactive: true,
-          thickness: WidgetStateProperty.all(8.0),
-          radius: Radius.circular(4.0),
-          thumbColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.dragged)) {
-              return Color(4292916992);
-            }
-            if (states.contains(WidgetState.hovered)) {
-              return Color(4281543426);
-            }
-            return Color(4281414722);
+            return Color(4292928487);
           }),
           minThumbLength: 20.0,
         ),
