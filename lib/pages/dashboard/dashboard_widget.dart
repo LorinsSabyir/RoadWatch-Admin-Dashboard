@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
 import '/components/dashboard_card/dashboard_card_widget.dart';
-import '/components/side_nav_main/side_nav_main_widget.dart';
+import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -126,9 +126,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   wrapWithModel(
-                    model: _model.sideNavMainModel,
+                    model: _model.sideNavModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: SideNavMainWidget(
+                    child: SideNavWidget(
                       selectedNav: 1,
                     ),
                   ),

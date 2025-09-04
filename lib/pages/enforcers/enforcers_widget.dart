@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
 import '/components/enforcer_action/enforcer_action_widget.dart';
-import '/components/side_nav_main/side_nav_main_widget.dart';
+import '/components/side_nav/side_nav_widget.dart';
 import '/components/status/status_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -97,10 +97,10 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   wrapWithModel(
-                    model: _model.sideNavMainModel,
+                    model: _model.sideNavModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: SideNavMainWidget(
-                      selectedNav: 3,
+                    child: SideNavWidget(
+                      selectedNav: 5,
                     ),
                   ),
                   Expanded(
@@ -412,24 +412,27 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                             ],
                                           ),
                                         ),
-                                        FlutterFlowIconButton(
-                                          borderRadius: 8.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.close,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            size: 24.0,
+                                        if (FFAppState().searchIsActive)
+                                          FlutterFlowIconButton(
+                                            borderRadius: 8.0,
+                                            buttonSize: 40.0,
+                                            icon: Icon(
+                                              Icons.close,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () async {
+                                              safeSetState(() {
+                                                _model.searchBoxTextController
+                                                    ?.clear();
+                                              });
+                                              FFAppState().searchIsActive =
+                                                  false;
+                                              safeSetState(() {});
+                                            },
                                           ),
-                                          onPressed: () async {
-                                            safeSetState(() {
-                                              _model.searchBoxTextController
-                                                  ?.clear();
-                                            });
-                                            FFAppState().searchIsActive = false;
-                                            safeSetState(() {});
-                                          },
-                                        ),
                                       ].divide(SizedBox(width: 4.0)),
                                     ),
                                   ),

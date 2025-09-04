@@ -41,12 +41,24 @@ class AnnualViolationsRecord extends FirestoreRecord {
   String get apprePlace => _apprePlace ?? '';
   bool hasApprePlace() => _apprePlace != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
   void _initializeFields() {
     _month = castToType<int>(snapshotData['month']);
     _amount = castToType<int>(snapshotData['amount']);
     _monthName = snapshotData['month_name'] as String?;
     _violationName = snapshotData['violation_name'] as String?;
     _apprePlace = snapshotData['appre_place'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -90,6 +102,8 @@ Map<String, dynamic> createAnnualViolationsRecordData({
   String? monthName,
   String? violationName,
   String? apprePlace,
+  DateTime? createdTime,
+  DateTime? editedTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -98,6 +112,8 @@ Map<String, dynamic> createAnnualViolationsRecordData({
       'month_name': monthName,
       'violation_name': violationName,
       'appre_place': apprePlace,
+      'created_time': createdTime,
+      'edited_time': editedTime,
     }.withoutNulls,
   );
 
@@ -114,12 +130,21 @@ class AnnualViolationsRecordDocumentEquality
         e1?.amount == e2?.amount &&
         e1?.monthName == e2?.monthName &&
         e1?.violationName == e2?.violationName &&
-        e1?.apprePlace == e2?.apprePlace;
+        e1?.apprePlace == e2?.apprePlace &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.editedTime == e2?.editedTime;
   }
 
   @override
-  int hash(AnnualViolationsRecord? e) => const ListEquality().hash(
-      [e?.month, e?.amount, e?.monthName, e?.violationName, e?.apprePlace]);
+  int hash(AnnualViolationsRecord? e) => const ListEquality().hash([
+        e?.month,
+        e?.amount,
+        e?.monthName,
+        e?.violationName,
+        e?.apprePlace,
+        e?.createdTime,
+        e?.editedTime
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is AnnualViolationsRecord;

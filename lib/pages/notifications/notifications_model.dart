@@ -1,10 +1,10 @@
 import '/backend/backend.dart';
 import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'fines_widget.dart' show FinesWidget;
+import 'notifications_widget.dart' show NotificationsWidget;
 import 'package:flutter/material.dart';
 
-class FinesModel extends FlutterFlowModel<FinesWidget> {
+class NotificationsModel extends FlutterFlowModel<NotificationsWidget> {
   ///  Local state fields for this page.
 
   int selectedPage = 3;

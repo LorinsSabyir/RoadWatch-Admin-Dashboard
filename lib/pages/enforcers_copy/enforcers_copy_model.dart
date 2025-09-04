@@ -2,13 +2,13 @@ import '/backend/backend.dart';
 import '/components/side_nav/side_nav_widget.dart';
 import '/components/status/status_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'violators_widget.dart' show ViolatorsWidget;
+import 'enforcers_copy_widget.dart' show EnforcersCopyWidget;
 import 'package:flutter/material.dart';
 
-class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
+class EnforcersCopyModel extends FlutterFlowModel<EnforcersCopyWidget> {
   ///  Local state fields for this page.
 
-  int selectedPage = 2;
+  int selectedPage = 3;
 
   ///  State fields for stateful widgets in this page.
 
@@ -18,7 +18,7 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
   String? Function(BuildContext, String?)? searchBoxTextControllerValidator;
-  List<CitationRecord> simpleSearchResults = [];
+  List<UsersRecord> simpleSearchResults = [];
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels1;
   // Models for Status dynamic component.

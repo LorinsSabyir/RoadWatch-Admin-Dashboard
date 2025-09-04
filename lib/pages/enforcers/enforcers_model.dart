@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/side_nav_main/side_nav_main_widget.dart';
+import '/components/side_nav/side_nav_widget.dart';
 import '/components/status/status_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'enforcers_widget.dart' show EnforcersWidget;
@@ -12,8 +12,8 @@ class EnforcersModel extends FlutterFlowModel<EnforcersWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for SideNav_Main component.
-  late SideNavMainModel sideNavMainModel;
+  // Model for SideNav component.
+  late SideNavModel sideNavModel;
   // State field(s) for searchBox widget.
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
@@ -30,7 +30,7 @@ class EnforcersModel extends FlutterFlowModel<EnforcersWidget> {
 
   @override
   void initState(BuildContext context) {
-    sideNavMainModel = createModel(context, () => SideNavMainModel());
+    sideNavModel = createModel(context, () => SideNavModel());
     statusModels1 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels2 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels3 = FlutterFlowDynamicModels(() => StatusModel());
@@ -39,7 +39,7 @@ class EnforcersModel extends FlutterFlowModel<EnforcersWidget> {
 
   @override
   void dispose() {
-    sideNavMainModel.dispose();
+    sideNavModel.dispose();
     searchBoxFocusNode?.dispose();
     searchBoxTextController?.dispose();
 

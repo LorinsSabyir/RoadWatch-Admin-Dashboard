@@ -141,6 +141,16 @@ class CitationRecord extends FirestoreRecord {
   String get violatorPhoneNum => _violatorPhoneNum ?? '';
   bool hasViolatorPhoneNum() => _violatorPhoneNum != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
   void _initializeFields() {
     _citationNumber = snapshotData['citation_number'] as String?;
     _confUnitSerialNum = snapshotData['conf_unit_serial_num'] as String?;
@@ -169,6 +179,8 @@ class CitationRecord extends FirestoreRecord {
         snapshotData['violator_address_province'] as String?;
     _violatorLicenseNum = snapshotData['violator_license_num'] as String?;
     _violatorPhoneNum = snapshotData['violator_phone_num'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -229,6 +241,8 @@ Map<String, dynamic> createCitationRecordData({
   String? violatorAddressProvince,
   String? violatorLicenseNum,
   String? violatorPhoneNum,
+  DateTime? createdTime,
+  DateTime? editedTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -255,6 +269,8 @@ Map<String, dynamic> createCitationRecordData({
       'violator_address_province': violatorAddressProvince,
       'violator_license_num': violatorLicenseNum,
       'violator_phone_num': violatorPhoneNum,
+      'created_time': createdTime,
+      'edited_time': editedTime,
     }.withoutNulls,
   );
 
@@ -291,7 +307,9 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e1?.violatorAddressPrk == e2?.violatorAddressPrk &&
         e1?.violatorAddressProvince == e2?.violatorAddressProvince &&
         e1?.violatorLicenseNum == e2?.violatorLicenseNum &&
-        e1?.violatorPhoneNum == e2?.violatorPhoneNum;
+        e1?.violatorPhoneNum == e2?.violatorPhoneNum &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.editedTime == e2?.editedTime;
   }
 
   @override
@@ -320,7 +338,9 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.violatorAddressPrk,
         e?.violatorAddressProvince,
         e?.violatorLicenseNum,
-        e?.violatorPhoneNum
+        e?.violatorPhoneNum,
+        e?.createdTime,
+        e?.editedTime
       ]);
 
   @override

@@ -11,28 +11,28 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
-import 'fines_model.dart';
-export 'fines_model.dart';
+import 'notifications_model.dart';
+export 'notifications_model.dart';
 
-class FinesWidget extends StatefulWidget {
-  const FinesWidget({super.key});
+class NotificationsWidget extends StatefulWidget {
+  const NotificationsWidget({super.key});
 
-  static String routeName = 'Fines';
-  static String routePath = '/fines';
+  static String routeName = 'Notifications';
+  static String routePath = '/notification';
 
   @override
-  State<FinesWidget> createState() => _FinesWidgetState();
+  State<NotificationsWidget> createState() => _NotificationsWidgetState();
 }
 
-class _FinesWidgetState extends State<FinesWidget> {
-  late FinesModel _model;
+class _NotificationsWidgetState extends State<NotificationsWidget> {
+  late NotificationsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FinesModel());
+    _model = createModel(context, () => NotificationsModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -77,7 +77,7 @@ class _FinesWidgetState extends State<FinesWidget> {
             ),
           );
         }
-        List<ViolationRecord> finesViolationRecordList = snapshot.data!;
+        List<ViolationRecord> notificationsViolationRecordList = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -96,7 +96,7 @@ class _FinesWidgetState extends State<FinesWidget> {
                     model: _model.sideNavModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideNavWidget(
-                      selectedNav: 4,
+                      selectedNav: 8,
                     ),
                   ),
                   Expanded(
@@ -221,7 +221,7 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                 safeSetState(() {
                                                   _model.simpleSearchResults =
                                                       TextSearch(
-                                                    finesViolationRecordList
+                                                    notificationsViolationRecordList
                                                         .map(
                                                           (record) =>
                                                               TextSearchItem
@@ -790,7 +790,7 @@ class _FinesWidgetState extends State<FinesWidget> {
                                           Builder(
                                             builder: (context) {
                                               final noSearch =
-                                                  finesViolationRecordList
+                                                  notificationsViolationRecordList
                                                       .toList();
 
                                               return ListView.builder(

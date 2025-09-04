@@ -11,6 +11,8 @@ import 'schema/users_record.dart';
 import 'schema/admin_record.dart';
 import 'schema/enforcers_record.dart';
 import 'schema/annual_violations_record.dart';
+import 'schema/appre_places_record.dart';
+import 'schema/enforcer_assignment_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -25,6 +27,8 @@ export 'schema/users_record.dart';
 export 'schema/admin_record.dart';
 export 'schema/enforcers_record.dart';
 export 'schema/annual_violations_record.dart';
+export 'schema/appre_places_record.dart';
+export 'schema/enforcer_assignment_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -243,6 +247,80 @@ Future<List<AnnualViolationsRecord>> queryAnnualViolationsRecordOnce({
     queryCollectionOnce(
       AnnualViolationsRecord.collection,
       AnnualViolationsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ApprePlacesRecords (as a Stream and as a Future).
+Future<int> queryApprePlacesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ApprePlacesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ApprePlacesRecord>> queryApprePlacesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ApprePlacesRecord.collection,
+      ApprePlacesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ApprePlacesRecord>> queryApprePlacesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ApprePlacesRecord.collection,
+      ApprePlacesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query EnforcerAssignmentRecords (as a Stream and as a Future).
+Future<int> queryEnforcerAssignmentRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      EnforcerAssignmentRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<EnforcerAssignmentRecord>> queryEnforcerAssignmentRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      EnforcerAssignmentRecord.collection,
+      EnforcerAssignmentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<EnforcerAssignmentRecord>> queryEnforcerAssignmentRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      EnforcerAssignmentRecord.collection,
+      EnforcerAssignmentRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

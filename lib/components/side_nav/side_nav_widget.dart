@@ -5,11 +5,11 @@ import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'side_nav_main_model.dart';
-export 'side_nav_main_model.dart';
+import 'side_nav_model.dart';
+export 'side_nav_model.dart';
 
-class SideNavMainWidget extends StatefulWidget {
-  const SideNavMainWidget({
+class SideNavWidget extends StatefulWidget {
+  const SideNavWidget({
     super.key,
     required this.selectedNav,
   });
@@ -17,11 +17,11 @@ class SideNavMainWidget extends StatefulWidget {
   final int? selectedNav;
 
   @override
-  State<SideNavMainWidget> createState() => _SideNavMainWidgetState();
+  State<SideNavWidget> createState() => _SideNavWidgetState();
 }
 
-class _SideNavMainWidgetState extends State<SideNavMainWidget> {
-  late SideNavMainModel _model;
+class _SideNavWidgetState extends State<SideNavWidget> {
+  late SideNavModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -32,7 +32,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SideNavMainModel());
+    _model = createModel(context, () => SideNavModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -288,14 +288,14 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                   width: double.infinity,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: widget.selectedNav == 6
+                                    color: widget.selectedNav == 2
                                         ? FlutterFlowTheme.of(context).accent1
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                     shape: BoxShape.rectangle,
                                     border: Border.all(
-                                      color: widget.selectedNav == 6
+                                      color: widget.selectedNav == 2
                                           ? FlutterFlowTheme.of(context).accent1
                                           : FlutterFlowTheme.of(context)
                                               .primaryBackground,
@@ -315,7 +315,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                             width: 4.0,
                                             height: 100.0,
                                             decoration: BoxDecoration(
-                                              color: widget.selectedNav == 6
+                                              color: widget.selectedNav == 2
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -396,14 +396,14 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                   width: double.infinity,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: widget.selectedNav == 2
+                                    color: widget.selectedNav == 3
                                         ? FlutterFlowTheme.of(context).accent1
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                     shape: BoxShape.rectangle,
                                     border: Border.all(
-                                      color: widget.selectedNav == 2
+                                      color: widget.selectedNav == 3
                                           ? FlutterFlowTheme.of(context).accent1
                                           : FlutterFlowTheme.of(context)
                                               .primaryBackground,
@@ -423,7 +423,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                             width: 4.0,
                                             height: 100.0,
                                             decoration: BoxDecoration(
-                                              color: widget.selectedNav == 2
+                                              color: widget.selectedNav == 3
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -504,14 +504,14 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                   width: double.infinity,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: widget.selectedNav == 7
+                                    color: widget.selectedNav == 4
                                         ? FlutterFlowTheme.of(context).accent1
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                     shape: BoxShape.rectangle,
                                     border: Border.all(
-                                      color: widget.selectedNav == 7
+                                      color: widget.selectedNav == 4
                                           ? FlutterFlowTheme.of(context).accent1
                                           : FlutterFlowTheme.of(context)
                                               .primaryBackground,
@@ -531,7 +531,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                             width: 4.0,
                                             height: 100.0,
                                             decoration: BoxDecoration(
-                                              color: widget.selectedNav == 7
+                                              color: widget.selectedNav == 4
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -612,14 +612,14 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                   width: double.infinity,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: widget.selectedNav == 3
+                                    color: widget.selectedNav == 5
                                         ? FlutterFlowTheme.of(context).accent1
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                     shape: BoxShape.rectangle,
                                     border: Border.all(
-                                      color: widget.selectedNav == 3
+                                      color: widget.selectedNav == 5
                                           ? FlutterFlowTheme.of(context).accent1
                                           : FlutterFlowTheme.of(context)
                                               .primaryBackground,
@@ -639,7 +639,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                             width: 4.0,
                                             height: 100.0,
                                             decoration: BoxDecoration(
-                                              color: widget.selectedNav == 3
+                                              color: widget.selectedNav == 5
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -711,60 +711,91 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            color: widget.selectedNav == 4
-                                ? FlutterFlowTheme.of(context).accent1
-                                : FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            shape: BoxShape.rectangle,
-                            border: Border.all(
-                              color: widget.selectedNav == 4
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              NotificationsWidget.routeName,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              color: widget.selectedNav == 8
                                   ? FlutterFlowTheme.of(context).accent1
                                   : FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                              width: 1.0,
+                              borderRadius: BorderRadius.circular(12.0),
+                              shape: BoxShape.rectangle,
+                              border: Border.all(
+                                color: widget.selectedNav == 8
+                                    ? FlutterFlowTheme.of(context).accent1
+                                    : FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                width: 1.0,
+                              ),
                             ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 12.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 12.0, 12.0),
-                                  child: Container(
-                                    width: 4.0,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: widget.selectedNav == 4
-                                          ? FlutterFlowTheme.of(context).primary
-                                          : FlutterFlowTheme.of(context)
-                                              .accent1,
-                                      borderRadius: BorderRadius.circular(12.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 12.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 12.0, 12.0),
+                                    child: Container(
+                                      width: 4.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: widget.selectedNav == 8
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .accent1,
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Icon(
-                                  Icons.notifications_sharp,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 28.0,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Notifications',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          font: GoogleFonts.plusJakartaSans(
+                                  Icon(
+                                    Icons.notifications_sharp,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 28.0,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Notifications',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            font: GoogleFonts.plusJakartaSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
@@ -774,21 +805,10 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                                     .titleSmall
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontStyle,
-                                        ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -828,14 +848,14 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                               width: double.infinity,
                               height: 50.0,
                               decoration: BoxDecoration(
-                                color: widget.selectedNav == 4
+                                color: widget.selectedNav == 9
                                     ? FlutterFlowTheme.of(context).accent1
                                     : FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                 borderRadius: BorderRadius.circular(12.0),
                                 shape: BoxShape.rectangle,
                                 border: Border.all(
-                                  color: widget.selectedNav == 4
+                                  color: widget.selectedNav == 9
                                       ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -855,7 +875,7 @@ class _SideNavMainWidgetState extends State<SideNavMainWidget> {
                                         width: 4.0,
                                         height: 100.0,
                                         decoration: BoxDecoration(
-                                          color: widget.selectedNav == 4
+                                          color: widget.selectedNav == 9
                                               ? FlutterFlowTheme.of(context)
                                                   .primary
                                               : FlutterFlowTheme.of(context)

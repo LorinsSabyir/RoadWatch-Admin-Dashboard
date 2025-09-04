@@ -5,5 +5,7 @@ export '/pages/enforcers/enforcers_widget.dart' show EnforcersWidget;
 export '/pages/login/login_widget.dart' show LoginWidget;
 export '/pages/fines/fines_widget.dart' show FinesWidget;
 export '/pages/analytics/analytics_widget.dart' show AnalyticsWidget;
-export '/pages/analytics_copy/analytics_copy_widget.dart'
-    show AnalyticsCopyWidget;
+export '/pages/enforcers_copy/enforcers_copy_widget.dart'
+    show EnforcersCopyWidget;
+export '/pages/notifications/notifications_widget.dart'
+    show NotificationsWidget;
