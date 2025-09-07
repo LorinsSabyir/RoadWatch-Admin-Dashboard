@@ -17,7 +17,7 @@ class NotificationsModel extends FlutterFlowModel<NotificationsWidget> {
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
   String? Function(BuildContext, String?)? searchBoxTextControllerValidator;
-  List<ViolationRecord> simpleSearchResults = [];
+  List<AdminNotifRecord> simpleSearchResults = [];
 
   @override
   void initState(BuildContext context) {

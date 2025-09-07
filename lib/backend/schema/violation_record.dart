@@ -45,6 +45,16 @@ class ViolationRecord extends FirestoreRecord {
   String get violationTitle => _violationTitle ?? '';
   bool hasViolationTitle() => _violationTitle != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
   void _initializeFields() {
     _code = snapshotData['code'] as String?;
     _violationName = snapshotData['violation_name'] as String?;
@@ -52,6 +62,8 @@ class ViolationRecord extends FirestoreRecord {
     _penalty = snapshotData['penalty'] as String?;
     _id = snapshotData['id'] as String?;
     _violationTitle = snapshotData['violation_title'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +107,8 @@ Map<String, dynamic> createViolationRecordData({
   String? penalty,
   String? id,
   String? violationTitle,
+  DateTime? createdTime,
+  DateTime? editedTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +118,8 @@ Map<String, dynamic> createViolationRecordData({
       'penalty': penalty,
       'id': id,
       'violation_title': violationTitle,
+      'created_time': createdTime,
+      'edited_time': editedTime,
     }.withoutNulls,
   );
 
@@ -120,7 +136,9 @@ class ViolationRecordDocumentEquality implements Equality<ViolationRecord> {
         e1?.fines == e2?.fines &&
         e1?.penalty == e2?.penalty &&
         e1?.id == e2?.id &&
-        e1?.violationTitle == e2?.violationTitle;
+        e1?.violationTitle == e2?.violationTitle &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.editedTime == e2?.editedTime;
   }
 
   @override
@@ -130,7 +148,9 @@ class ViolationRecordDocumentEquality implements Equality<ViolationRecord> {
         e?.fines,
         e?.penalty,
         e?.id,
-        e?.violationTitle
+        e?.violationTitle,
+        e?.createdTime,
+        e?.editedTime
       ]);
 
   @override

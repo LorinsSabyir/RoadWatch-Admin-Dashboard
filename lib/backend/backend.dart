@@ -8,11 +8,10 @@ import 'schema/util/firestore_util.dart';
 import 'schema/violation_record.dart';
 import 'schema/citation_record.dart';
 import 'schema/users_record.dart';
-import 'schema/admin_record.dart';
-import 'schema/enforcers_record.dart';
 import 'schema/annual_violations_record.dart';
 import 'schema/appre_places_record.dart';
 import 'schema/enforcer_assignment_record.dart';
+import 'schema/admin_notif_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -24,11 +23,10 @@ export 'schema/util/schema_util.dart';
 export 'schema/violation_record.dart';
 export 'schema/citation_record.dart';
 export 'schema/users_record.dart';
-export 'schema/admin_record.dart';
-export 'schema/enforcers_record.dart';
 export 'schema/annual_violations_record.dart';
 export 'schema/appre_places_record.dart';
 export 'schema/enforcer_assignment_record.dart';
+export 'schema/admin_notif_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -141,80 +139,6 @@ Future<List<UsersRecord>> queryUsersRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query AdminRecords (as a Stream and as a Future).
-Future<int> queryAdminRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      AdminRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<AdminRecord>> queryAdminRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      AdminRecord.collection,
-      AdminRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<AdminRecord>> queryAdminRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      AdminRecord.collection,
-      AdminRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query EnforcersRecords (as a Stream and as a Future).
-Future<int> queryEnforcersRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      EnforcersRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<EnforcersRecord>> queryEnforcersRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      EnforcersRecord.collection,
-      EnforcersRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<EnforcersRecord>> queryEnforcersRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      EnforcersRecord.collection,
-      EnforcersRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query AnnualViolationsRecords (as a Stream and as a Future).
 Future<int> queryAnnualViolationsRecordCount({
   Query Function(Query)? queryBuilder,
@@ -321,6 +245,43 @@ Future<List<EnforcerAssignmentRecord>> queryEnforcerAssignmentRecordOnce({
     queryCollectionOnce(
       EnforcerAssignmentRecord.collection,
       EnforcerAssignmentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AdminNotifRecords (as a Stream and as a Future).
+Future<int> queryAdminNotifRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AdminNotifRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AdminNotifRecord>> queryAdminNotifRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AdminNotifRecord.collection,
+      AdminNotifRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AdminNotifRecord>> queryAdminNotifRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AdminNotifRecord.collection,
+      AdminNotifRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

@@ -61,7 +61,12 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
 
     return StreamBuilder<List<UsersRecord>>(
       stream: queryUsersRecord(
-        queryBuilder: (usersRecord) => usersRecord.orderBy('display_name'),
+        queryBuilder: (usersRecord) => usersRecord
+            .where(
+              'accStatus',
+              isEqualTo: 'active',
+            )
+            .orderBy('display_name'),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
