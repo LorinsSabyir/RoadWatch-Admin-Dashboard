@@ -1,13 +1,18 @@
 import '/backend/backend.dart';
+import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'enforcer_assignment_modal_widget.dart'
-    show EnforcerAssignmentModalWidget;
+import 'appre_place_widget.dart' show ApprePlaceWidget;
 import 'package:flutter/material.dart';
 
-class EnforcerAssignmentModalModel
-    extends FlutterFlowModel<EnforcerAssignmentModalWidget> {
-  ///  State fields for stateful widgets in this component.
+class ApprePlaceModel extends FlutterFlowModel<ApprePlaceWidget> {
+  ///  Local state fields for this page.
 
+  int selectedPage = 3;
+
+  ///  State fields for stateful widgets in this page.
+
+  // Model for SideNav component.
+  late SideNavModel sideNavModel;
   // State field(s) for searchBox widget.
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
@@ -15,10 +20,13 @@ class EnforcerAssignmentModalModel
   List<ApprePlacesRecord> simpleSearchResults = [];
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    sideNavModel = createModel(context, () => SideNavModel());
+  }
 
   @override
   void dispose() {
+    sideNavModel.dispose();
     searchBoxFocusNode?.dispose();
     searchBoxTextController?.dispose();
   }

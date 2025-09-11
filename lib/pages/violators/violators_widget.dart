@@ -500,76 +500,37 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 16.0, 0.0, 0.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(0.0),
-                                                bottomRight:
-                                                    Radius.circular(0.0),
-                                                topLeft: Radius.circular(8.0),
-                                                topRight: Radius.circular(8.0),
-                                              ),
+                                        Container(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent1,
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(0.0),
+                                              bottomRight: Radius.circular(0.0),
+                                              topLeft: Radius.circular(8.0),
+                                              topRight: Radius.circular(8.0),
                                             ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                    tablet: false,
-                                                  ))
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Text(
-                                                        '#',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                      ),
-                                                    ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 8.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                  tablet: false,
+                                                ))
                                                   Expanded(
-                                                    flex: 3,
+                                                    flex: 1,
                                                     child: Text(
-                                                      'Violator Name',
+                                                      '#',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -599,15 +560,93 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                               ),
                                                     ),
                                                   ),
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                    tablet: false,
-                                                  ))
-                                                    Expanded(
-                                                      flex: 2,
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Text(
+                                                    'Violator Name',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .plusJakartaSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                  tablet: false,
+                                                ))
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Text(
+                                                      'Violation Name',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                ))
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 0.0),
                                                       child: Text(
-                                                        'Violation Name',
+                                                        'Place of Apprehension',
+                                                        textAlign:
+                                                            TextAlign.start,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -637,22 +676,18 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                 ),
                                                       ),
                                                     ),
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                  ))
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Text(
-                                                          'Place of Apprehension',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
+                                                  ),
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                ))
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Text(
+                                                      'Apprehension Date',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .labelSmall
                                                               .override(
                                                                 font: GoogleFonts
@@ -677,95 +712,20 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                     .labelSmall
                                                                     .fontStyle,
                                                               ),
-                                                        ),
-                                                      ),
                                                     ),
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                  ))
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Text(
-                                                        'Apprehension Date',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                  ))
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Text(
-                                                          'Total Fine',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelSmall
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .plusJakartaSans(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
+                                                  ),
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                ))
                                                   Expanded(
                                                     flex: 1,
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              0.0, 0.0),
+                                                              -1.0, 0.0),
                                                       child: Text(
-                                                        'Status',
+                                                        'Total Fine',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -796,11 +756,14 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Expanded(
-                                                    flex: 1,
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
                                                     child: Text(
-                                                      'Actions',
-                                                      textAlign: TextAlign.end,
+                                                      'Status',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -830,8 +793,44 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                               ),
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 4.0)),
-                                              ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    'Actions',
+                                                    textAlign: TextAlign.end,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .plusJakartaSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(width: 4.0)),
                                             ),
                                           ),
                                         ),
@@ -971,7 +970,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                               .violationTotalFine,
                                                                       violationName:
                                                                           noSearchItem
-                                                                              .violation,
+                                                                              .violationName,
                                                                       violationSection:
                                                                           noSearchItem
                                                                               .violationSection,
@@ -1133,7 +1132,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                     builder:
                                                                         (context) {
                                                                       final violation = noSearchItem
-                                                                          .violation
+                                                                          .violationName
                                                                           .toList()
                                                                           .take(
                                                                               2)
@@ -1620,7 +1619,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                               .violationTotalFine,
                                                                       violationName:
                                                                           resultItem
-                                                                              .violation,
+                                                                              .violationName,
                                                                       violationSection:
                                                                           resultItem
                                                                               .violationSection,
@@ -1782,7 +1781,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                     builder:
                                                                         (context) {
                                                                       final violation = resultItem
-                                                                          .violation
+                                                                          .violationName
                                                                           .toList()
                                                                           .take(
                                                                               2)

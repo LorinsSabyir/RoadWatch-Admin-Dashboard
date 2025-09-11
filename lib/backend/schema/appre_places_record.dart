@@ -35,11 +35,6 @@ class ApprePlacesRecord extends FirestoreRecord {
   String get landmark => _landmark ?? '';
   bool hasLandmark() => _landmark != null;
 
-  // "activeCount" field.
-  int? _activeCount;
-  int get activeCount => _activeCount ?? 0;
-  bool hasActiveCount() => _activeCount != null;
-
   // "created_time" field.
   DateTime? _createdTime;
   DateTime? get createdTime => _createdTime;
@@ -50,14 +45,25 @@ class ApprePlacesRecord extends FirestoreRecord {
   DateTime? get editedTime => _editedTime;
   bool hasEditedTime() => _editedTime != null;
 
+  // "active_count" field.
+  int? _activeCount;
+  int get activeCount => _activeCount ?? 0;
+  bool hasActiveCount() => _activeCount != null;
+
+  // "id" field.
+  String? _id;
+  String get id => _id ?? '';
+  bool hasId() => _id != null;
+
   void _initializeFields() {
     _barangay = snapshotData['barangay'] as String?;
     _purok = snapshotData['purok'] as String?;
     _street = snapshotData['street'] as String?;
     _landmark = snapshotData['landmark'] as String?;
-    _activeCount = castToType<int>(snapshotData['activeCount']);
     _createdTime = snapshotData['created_time'] as DateTime?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
+    _activeCount = castToType<int>(snapshotData['active_count']);
+    _id = snapshotData['id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -99,9 +105,10 @@ Map<String, dynamic> createApprePlacesRecordData({
   String? purok,
   String? street,
   String? landmark,
-  int? activeCount,
   DateTime? createdTime,
   DateTime? editedTime,
+  int? activeCount,
+  String? id,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -109,9 +116,10 @@ Map<String, dynamic> createApprePlacesRecordData({
       'purok': purok,
       'street': street,
       'landmark': landmark,
-      'activeCount': activeCount,
       'created_time': createdTime,
       'edited_time': editedTime,
+      'active_count': activeCount,
+      'id': id,
     }.withoutNulls,
   );
 
@@ -127,9 +135,10 @@ class ApprePlacesRecordDocumentEquality implements Equality<ApprePlacesRecord> {
         e1?.purok == e2?.purok &&
         e1?.street == e2?.street &&
         e1?.landmark == e2?.landmark &&
-        e1?.activeCount == e2?.activeCount &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.editedTime == e2?.editedTime;
+        e1?.editedTime == e2?.editedTime &&
+        e1?.activeCount == e2?.activeCount &&
+        e1?.id == e2?.id;
   }
 
   @override
@@ -138,9 +147,10 @@ class ApprePlacesRecordDocumentEquality implements Equality<ApprePlacesRecord> {
         e?.purok,
         e?.street,
         e?.landmark,
-        e?.activeCount,
         e?.createdTime,
-        e?.editedTime
+        e?.editedTime,
+        e?.activeCount,
+        e?.id
       ]);
 
   @override

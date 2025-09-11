@@ -2,7 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +12,12 @@ import 'enforcer_assignment_modal_model.dart';
 export 'enforcer_assignment_modal_model.dart';
 
 class EnforcerAssignmentModalWidget extends StatefulWidget {
-  const EnforcerAssignmentModalWidget({super.key});
+  const EnforcerAssignmentModalWidget({
+    super.key,
+    required this.enforcerId,
+  });
+
+  final DocumentReference? enforcerId;
 
   @override
   State<EnforcerAssignmentModalWidget> createState() =>
@@ -85,6 +89,7 @@ class _EnforcerAssignmentModalWidgetState
             },
             child: Container(
               width: 400.0,
+              height: 600.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).primaryBackground,
                 boxShadow: [
@@ -663,9 +668,52 @@ class _EnforcerAssignmentModalWidgetState
                                                                 .primary,
                                                             size: 24.0,
                                                           ),
-                                                          onPressed: () {
-                                                            print(
-                                                                'IconButton pressed ...');
+                                                          onPressed: () async {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Are you sure?'),
+                                                                          content:
+                                                                              Text('Assign this place to the selected enforcer?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              await widget
+                                                                  .enforcerId!
+                                                                  .update(
+                                                                      createUsersRecordData(
+                                                                assignmentPrk:
+                                                                    noSearchItem
+                                                                        .purok,
+                                                                assignmentBrgy:
+                                                                    noSearchItem
+                                                                        .barangay,
+                                                                assignmentStreet:
+                                                                    noSearchItem
+                                                                        .street,
+                                                                assignmentLandmark:
+                                                                    noSearchItem
+                                                                        .landmark,
+                                                              ));
+                                                            }
                                                           },
                                                         ),
                                                       ],
@@ -961,9 +1009,52 @@ class _EnforcerAssignmentModalWidgetState
                                                                 .primary,
                                                             size: 24.0,
                                                           ),
-                                                          onPressed: () {
-                                                            print(
-                                                                'IconButton pressed ...');
+                                                          onPressed: () async {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Are you sure?'),
+                                                                          content:
+                                                                              Text('Assign this place to the selected enforcer?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              await widget
+                                                                  .enforcerId!
+                                                                  .update(
+                                                                      createUsersRecordData(
+                                                                assignmentPrk:
+                                                                    resultItem
+                                                                        .purok,
+                                                                assignmentBrgy:
+                                                                    resultItem
+                                                                        .barangay,
+                                                                assignmentStreet:
+                                                                    resultItem
+                                                                        .street,
+                                                                assignmentLandmark:
+                                                                    resultItem
+                                                                        .landmark,
+                                                              ));
+                                                            }
                                                           },
                                                         ),
                                                       ],
@@ -987,81 +1078,6 @@ class _EnforcerAssignmentModalWidgetState
                             ),
                           ),
                         ].divide(SizedBox(height: 16.0)),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Divider(
-                            thickness: 1.0,
-                            color: FlutterFlowTheme.of(context).alternate,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor:
-                                  SystemMouseCursors.click ?? MouseCursor.defer,
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 150),
-                                curve: Curves.easeInOut,
-                                width: double.infinity,
-                                decoration: BoxDecoration(),
-                                child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('addAssignButton pressed ...');
-                                  },
-                                  text: 'Assign Enforcer',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          font: GoogleFonts.plusJakartaSans(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .fontStyle,
-                                        ),
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
-                              onEnter: ((event) async {
-                                safeSetState(
-                                    () => _model.mouseRegionHovered = true);
-                              }),
-                              onExit: ((event) async {
-                                safeSetState(
-                                    () => _model.mouseRegionHovered = false);
-                              }),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ],

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -15,21 +14,6 @@ class EnforcerAssignmentRecord extends FirestoreRecord {
   ) : super(reference, data) {
     _initializeFields();
   }
-
-  // "enforcerName" field.
-  DocumentReference? _enforcerName;
-  DocumentReference? get enforcerName => _enforcerName;
-  bool hasEnforcerName() => _enforcerName != null;
-
-  // "apprePlace" field.
-  List<DocumentReference>? _apprePlace;
-  List<DocumentReference> get apprePlace => _apprePlace ?? const [];
-  bool hasApprePlace() => _apprePlace != null;
-
-  // "shiftStart" field.
-  DateTime? _shiftStart;
-  DateTime? get shiftStart => _shiftStart;
-  bool hasShiftStart() => _shiftStart != null;
 
   // "shiftEnd" field.
   DateTime? _shiftEnd;
@@ -56,15 +40,30 @@ class EnforcerAssignmentRecord extends FirestoreRecord {
   String get note => _note ?? '';
   bool hasNote() => _note != null;
 
+  // "enforcer_name" field.
+  DocumentReference? _enforcerName;
+  DocumentReference? get enforcerName => _enforcerName;
+  bool hasEnforcerName() => _enforcerName != null;
+
+  // "shift_start" field.
+  DateTime? _shiftStart;
+  DateTime? get shiftStart => _shiftStart;
+  bool hasShiftStart() => _shiftStart != null;
+
+  // "appre_place" field.
+  DocumentReference? _apprePlace;
+  DocumentReference? get apprePlace => _apprePlace;
+  bool hasApprePlace() => _apprePlace != null;
+
   void _initializeFields() {
-    _enforcerName = snapshotData['enforcerName'] as DocumentReference?;
-    _apprePlace = getDataList(snapshotData['apprePlace']);
-    _shiftStart = snapshotData['shiftStart'] as DateTime?;
     _shiftEnd = snapshotData['shiftEnd'] as DateTime?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _status = snapshotData['status'] as String?;
     _note = snapshotData['note'] as String?;
+    _enforcerName = snapshotData['enforcer_name'] as DocumentReference?;
+    _shiftStart = snapshotData['shift_start'] as DateTime?;
+    _apprePlace = snapshotData['appre_place'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -103,23 +102,25 @@ class EnforcerAssignmentRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createEnforcerAssignmentRecordData({
-  DocumentReference? enforcerName,
-  DateTime? shiftStart,
   DateTime? shiftEnd,
   DateTime? createdTime,
   DateTime? editedTime,
   String? status,
   String? note,
+  DocumentReference? enforcerName,
+  DateTime? shiftStart,
+  DocumentReference? apprePlace,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'enforcerName': enforcerName,
-      'shiftStart': shiftStart,
       'shiftEnd': shiftEnd,
       'created_time': createdTime,
       'edited_time': editedTime,
       'status': status,
       'note': note,
+      'enforcer_name': enforcerName,
+      'shift_start': shiftStart,
+      'appre_place': apprePlace,
     }.withoutNulls,
   );
 
@@ -132,27 +133,26 @@ class EnforcerAssignmentRecordDocumentEquality
 
   @override
   bool equals(EnforcerAssignmentRecord? e1, EnforcerAssignmentRecord? e2) {
-    const listEquality = ListEquality();
-    return e1?.enforcerName == e2?.enforcerName &&
-        listEquality.equals(e1?.apprePlace, e2?.apprePlace) &&
-        e1?.shiftStart == e2?.shiftStart &&
-        e1?.shiftEnd == e2?.shiftEnd &&
+    return e1?.shiftEnd == e2?.shiftEnd &&
         e1?.createdTime == e2?.createdTime &&
         e1?.editedTime == e2?.editedTime &&
         e1?.status == e2?.status &&
-        e1?.note == e2?.note;
+        e1?.note == e2?.note &&
+        e1?.enforcerName == e2?.enforcerName &&
+        e1?.shiftStart == e2?.shiftStart &&
+        e1?.apprePlace == e2?.apprePlace;
   }
 
   @override
   int hash(EnforcerAssignmentRecord? e) => const ListEquality().hash([
-        e?.enforcerName,
-        e?.apprePlace,
-        e?.shiftStart,
         e?.shiftEnd,
         e?.createdTime,
         e?.editedTime,
         e?.status,
-        e?.note
+        e?.note,
+        e?.enforcerName,
+        e?.shiftStart,
+        e?.apprePlace
       ]);
 
   @override

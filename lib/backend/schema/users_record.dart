@@ -60,20 +60,40 @@ class UsersRecord extends FirestoreRecord {
   bool get status => _status ?? false;
   bool hasStatus() => _status != null;
 
-  // "assignment" field.
-  String? _assignment;
-  String get assignment => _assignment ?? '';
-  bool hasAssignment() => _assignment != null;
-
   // "edited_time" field.
   DateTime? _editedTime;
   DateTime? get editedTime => _editedTime;
   bool hasEditedTime() => _editedTime != null;
 
-  // "accStatus" field.
+  // "acc_status" field.
   String? _accStatus;
   String get accStatus => _accStatus ?? '';
   bool hasAccStatus() => _accStatus != null;
+
+  // "last_active" field.
+  DateTime? _lastActive;
+  DateTime? get lastActive => _lastActive;
+  bool hasLastActive() => _lastActive != null;
+
+  // "assignment_prk" field.
+  String? _assignmentPrk;
+  String get assignmentPrk => _assignmentPrk ?? '';
+  bool hasAssignmentPrk() => _assignmentPrk != null;
+
+  // "assignment_brgy" field.
+  String? _assignmentBrgy;
+  String get assignmentBrgy => _assignmentBrgy ?? '';
+  bool hasAssignmentBrgy() => _assignmentBrgy != null;
+
+  // "assignment_landmark" field.
+  String? _assignmentLandmark;
+  String get assignmentLandmark => _assignmentLandmark ?? '';
+  bool hasAssignmentLandmark() => _assignmentLandmark != null;
+
+  // "assignment_street" field.
+  String? _assignmentStreet;
+  String get assignmentStreet => _assignmentStreet ?? '';
+  bool hasAssignmentStreet() => _assignmentStreet != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -85,9 +105,13 @@ class UsersRecord extends FirestoreRecord {
     _password = snapshotData['password'] as String?;
     _badgeNumber = snapshotData['badge_number'] as String?;
     _status = snapshotData['status'] as bool?;
-    _assignment = snapshotData['assignment'] as String?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
-    _accStatus = snapshotData['accStatus'] as String?;
+    _accStatus = snapshotData['acc_status'] as String?;
+    _lastActive = snapshotData['last_active'] as DateTime?;
+    _assignmentPrk = snapshotData['assignment_prk'] as String?;
+    _assignmentBrgy = snapshotData['assignment_brgy'] as String?;
+    _assignmentLandmark = snapshotData['assignment_landmark'] as String?;
+    _assignmentStreet = snapshotData['assignment_street'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -133,9 +157,13 @@ Map<String, dynamic> createUsersRecordData({
   String? password,
   String? badgeNumber,
   bool? status,
-  String? assignment,
   DateTime? editedTime,
   String? accStatus,
+  DateTime? lastActive,
+  String? assignmentPrk,
+  String? assignmentBrgy,
+  String? assignmentLandmark,
+  String? assignmentStreet,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -148,9 +176,13 @@ Map<String, dynamic> createUsersRecordData({
       'password': password,
       'badge_number': badgeNumber,
       'status': status,
-      'assignment': assignment,
       'edited_time': editedTime,
-      'accStatus': accStatus,
+      'acc_status': accStatus,
+      'last_active': lastActive,
+      'assignment_prk': assignmentPrk,
+      'assignment_brgy': assignmentBrgy,
+      'assignment_landmark': assignmentLandmark,
+      'assignment_street': assignmentStreet,
     }.withoutNulls,
   );
 
@@ -171,9 +203,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.password == e2?.password &&
         e1?.badgeNumber == e2?.badgeNumber &&
         e1?.status == e2?.status &&
-        e1?.assignment == e2?.assignment &&
         e1?.editedTime == e2?.editedTime &&
-        e1?.accStatus == e2?.accStatus;
+        e1?.accStatus == e2?.accStatus &&
+        e1?.lastActive == e2?.lastActive &&
+        e1?.assignmentPrk == e2?.assignmentPrk &&
+        e1?.assignmentBrgy == e2?.assignmentBrgy &&
+        e1?.assignmentLandmark == e2?.assignmentLandmark &&
+        e1?.assignmentStreet == e2?.assignmentStreet;
   }
 
   @override
@@ -187,9 +223,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.password,
         e?.badgeNumber,
         e?.status,
-        e?.assignment,
         e?.editedTime,
-        e?.accStatus
+        e?.accStatus,
+        e?.lastActive,
+        e?.assignmentPrk,
+        e?.assignmentBrgy,
+        e?.assignmentLandmark,
+        e?.assignmentStreet
       ]);
 
   @override

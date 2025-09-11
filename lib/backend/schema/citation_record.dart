@@ -71,16 +71,6 @@ class CitationRecord extends FirestoreRecord {
   String get appreEnforcer => _appreEnforcer ?? '';
   bool hasAppreEnforcer() => _appreEnforcer != null;
 
-  // "violation" field.
-  List<String>? _violation;
-  List<String> get violation => _violation ?? const [];
-  bool hasViolation() => _violation != null;
-
-  // "violationTotalFine" field.
-  double? _violationTotalFine;
-  double get violationTotalFine => _violationTotalFine ?? 0.0;
-  bool hasViolationTotalFine() => _violationTotalFine != null;
-
   // "id" field.
   String? _id;
   String get id => _id ?? '';
@@ -151,6 +141,21 @@ class CitationRecord extends FirestoreRecord {
   DateTime? get editedTime => _editedTime;
   bool hasEditedTime() => _editedTime != null;
 
+  // "violation_fine" field.
+  List<int>? _violationFine;
+  List<int> get violationFine => _violationFine ?? const [];
+  bool hasViolationFine() => _violationFine != null;
+
+  // "violation_name" field.
+  List<String>? _violationName;
+  List<String> get violationName => _violationName ?? const [];
+  bool hasViolationName() => _violationName != null;
+
+  // "violation_total_fine" field.
+  double? _violationTotalFine;
+  double get violationTotalFine => _violationTotalFine ?? 0.0;
+  bool hasViolationTotalFine() => _violationTotalFine != null;
+
   void _initializeFields() {
     _citationNumber = snapshotData['citation_number'] as String?;
     _confUnitSerialNum = snapshotData['conf_unit_serial_num'] as String?;
@@ -163,9 +168,6 @@ class CitationRecord extends FirestoreRecord {
     _violatorName = snapshotData['violator_name'] as String?;
     _recieptNum = snapshotData['reciept_num'] as String?;
     _appreEnforcer = snapshotData['appre_enforcer'] as String?;
-    _violation = getDataList(snapshotData['violation']);
-    _violationTotalFine =
-        castToType<double>(snapshotData['violationTotalFine']);
     _id = snapshotData['id'] as String?;
     _violationSection = getDataList(snapshotData['violation_section']);
     _receiptStatus = snapshotData['receipt_status'] as bool?;
@@ -181,6 +183,10 @@ class CitationRecord extends FirestoreRecord {
     _violatorPhoneNum = snapshotData['violator_phone_num'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
+    _violationFine = getDataList(snapshotData['violation_fine']);
+    _violationName = getDataList(snapshotData['violation_name']);
+    _violationTotalFine =
+        castToType<double>(snapshotData['violation_total_fine']);
   }
 
   static CollectionReference get collection =>
@@ -229,7 +235,6 @@ Map<String, dynamic> createCitationRecordData({
   String? violatorName,
   String? recieptNum,
   String? appreEnforcer,
-  double? violationTotalFine,
   String? id,
   bool? receiptStatus,
   String? appreDateMonth,
@@ -243,6 +248,7 @@ Map<String, dynamic> createCitationRecordData({
   String? violatorPhoneNum,
   DateTime? createdTime,
   DateTime? editedTime,
+  double? violationTotalFine,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -257,7 +263,6 @@ Map<String, dynamic> createCitationRecordData({
       'violator_name': violatorName,
       'reciept_num': recieptNum,
       'appre_enforcer': appreEnforcer,
-      'violationTotalFine': violationTotalFine,
       'id': id,
       'receipt_status': receiptStatus,
       'appre_date_month': appreDateMonth,
@@ -271,6 +276,7 @@ Map<String, dynamic> createCitationRecordData({
       'violator_phone_num': violatorPhoneNum,
       'created_time': createdTime,
       'edited_time': editedTime,
+      'violation_total_fine': violationTotalFine,
     }.withoutNulls,
   );
 
@@ -294,8 +300,6 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e1?.violatorName == e2?.violatorName &&
         e1?.recieptNum == e2?.recieptNum &&
         e1?.appreEnforcer == e2?.appreEnforcer &&
-        listEquality.equals(e1?.violation, e2?.violation) &&
-        e1?.violationTotalFine == e2?.violationTotalFine &&
         e1?.id == e2?.id &&
         listEquality.equals(e1?.violationSection, e2?.violationSection) &&
         e1?.receiptStatus == e2?.receiptStatus &&
@@ -309,7 +313,10 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e1?.violatorLicenseNum == e2?.violatorLicenseNum &&
         e1?.violatorPhoneNum == e2?.violatorPhoneNum &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.editedTime == e2?.editedTime;
+        e1?.editedTime == e2?.editedTime &&
+        listEquality.equals(e1?.violationFine, e2?.violationFine) &&
+        listEquality.equals(e1?.violationName, e2?.violationName) &&
+        e1?.violationTotalFine == e2?.violationTotalFine;
   }
 
   @override
@@ -325,8 +332,6 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.violatorName,
         e?.recieptNum,
         e?.appreEnforcer,
-        e?.violation,
-        e?.violationTotalFine,
         e?.id,
         e?.violationSection,
         e?.receiptStatus,
@@ -340,7 +345,10 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.violatorLicenseNum,
         e?.violatorPhoneNum,
         e?.createdTime,
-        e?.editedTime
+        e?.editedTime,
+        e?.violationFine,
+        e?.violationName,
+        e?.violationTotalFine
       ]);
 
   @override

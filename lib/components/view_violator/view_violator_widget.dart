@@ -29,6 +29,7 @@ class ViewViolatorWidget extends StatefulWidget {
     this.totalFine,
     this.violationName,
     this.violationSection,
+    this.violationFine,
   });
 
   final DocumentReference? violatorRef;
@@ -52,6 +53,7 @@ class ViewViolatorWidget extends StatefulWidget {
   final double? totalFine;
   final List<String>? violationName;
   final List<String>? violationSection;
+  final List<double>? violationFine;
 
   @override
   State<ViewViolatorWidget> createState() => _ViewViolatorWidgetState();
@@ -942,7 +944,7 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final violationFine =
-                                      widget.violationName?.toList() ?? [];
+                                      widget.violationFine?.toList() ?? [];
 
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
@@ -959,7 +961,11 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                         alignment:
                                             AlignmentDirectional(1.0, 0.0),
                                         child: Text(
-                                          '#',
+                                          valueOrDefault<String>(
+                                            widget.violationFine?.firstOrNull
+                                                ?.toString(),
+                                            '#',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

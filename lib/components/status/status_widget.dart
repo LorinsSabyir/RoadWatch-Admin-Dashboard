@@ -68,25 +68,21 @@ class _StatusWidgetState extends State<StatusWidget> {
         ),
       ),
       alignment: AlignmentDirectional(0.0, 0.0),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-        child: Text(
-          valueOrDefault<String>(
-            widget.text,
-            'Status',
-          ),
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                font: GoogleFonts.plusJakartaSans(
-                  fontWeight:
-                      FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                ),
-                color: widget.textColor,
-                letterSpacing: 0.0,
+      child: Text(
+        valueOrDefault<String>(
+          widget.text,
+          'Status',
+        ),
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              font: GoogleFonts.plusJakartaSans(
                 fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
               ),
-        ),
+              color: widget.textColor,
+              letterSpacing: 0.0,
+              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+            ),
       ),
     );
   }
