@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'enforcer_action_widget.dart' show EnforcerActionWidget;
+import 'confirm_modal_widget.dart' show ConfirmModalWidget;
 import 'package:flutter/material.dart';
 
-class EnforcerActionModel extends FlutterFlowModel<EnforcerActionWidget> {
+class ConfirmModalModel extends FlutterFlowModel<ConfirmModalWidget> {
   @override
   void initState(BuildContext context) {}
 

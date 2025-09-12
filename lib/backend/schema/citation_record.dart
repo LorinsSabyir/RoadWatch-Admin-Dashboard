@@ -156,6 +156,11 @@ class CitationRecord extends FirestoreRecord {
   double get violationTotalFine => _violationTotalFine ?? 0.0;
   bool hasViolationTotalFine() => _violationTotalFine != null;
 
+  // "violator_gender" field.
+  String? _violatorGender;
+  String get violatorGender => _violatorGender ?? '';
+  bool hasViolatorGender() => _violatorGender != null;
+
   void _initializeFields() {
     _citationNumber = snapshotData['citation_number'] as String?;
     _confUnitSerialNum = snapshotData['conf_unit_serial_num'] as String?;
@@ -187,6 +192,7 @@ class CitationRecord extends FirestoreRecord {
     _violationName = getDataList(snapshotData['violation_name']);
     _violationTotalFine =
         castToType<double>(snapshotData['violation_total_fine']);
+    _violatorGender = snapshotData['violator_gender'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -249,6 +255,7 @@ Map<String, dynamic> createCitationRecordData({
   DateTime? createdTime,
   DateTime? editedTime,
   double? violationTotalFine,
+  String? violatorGender,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -277,6 +284,7 @@ Map<String, dynamic> createCitationRecordData({
       'created_time': createdTime,
       'edited_time': editedTime,
       'violation_total_fine': violationTotalFine,
+      'violator_gender': violatorGender,
     }.withoutNulls,
   );
 
@@ -316,7 +324,8 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e1?.editedTime == e2?.editedTime &&
         listEquality.equals(e1?.violationFine, e2?.violationFine) &&
         listEquality.equals(e1?.violationName, e2?.violationName) &&
-        e1?.violationTotalFine == e2?.violationTotalFine;
+        e1?.violationTotalFine == e2?.violationTotalFine &&
+        e1?.violatorGender == e2?.violatorGender;
   }
 
   @override
@@ -348,7 +357,8 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.editedTime,
         e?.violationFine,
         e?.violationName,
-        e?.violationTotalFine
+        e?.violationTotalFine,
+        e?.violatorGender
       ]);
 
   @override

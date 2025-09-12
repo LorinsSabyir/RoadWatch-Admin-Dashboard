@@ -941,8 +941,8 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                       phoneNum:
                                                                           noSearchItem
                                                                               .violatorPhoneNum,
-                                                                      gender:
-                                                                          'butanganan',
+                                                                      gender: noSearchItem
+                                                                          .violatorGender,
                                                                       name: noSearchItem
                                                                           .violatorName,
                                                                       confUnitBrand:
@@ -1590,8 +1590,8 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                                       phoneNum:
                                                                           resultItem
                                                                               .violatorPhoneNum,
-                                                                      gender:
-                                                                          'butanganan',
+                                                                      gender: resultItem
+                                                                          .violatorGender,
                                                                       name: resultItem
                                                                           .violatorName,
                                                                       confUnitBrand:

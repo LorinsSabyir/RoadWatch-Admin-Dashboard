@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/confirm_modal/confirm_modal_widget.dart';
 import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -1033,13 +1034,9 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                               child: Text(
                                                                 valueOrDefault<
                                                                     String>(
-                                                                  formatNumber(
-                                                                    noSearchItem
-                                                                        .activeCount,
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                  ),
+                                                                  noSearchItem
+                                                                      .activeCount
+                                                                      .toString(),
                                                                   '0',
                                                                 ).maybeHandleOverflow(
                                                                   maxChars: 15,
@@ -1104,51 +1101,60 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                                           'confirmButton pressed ...');
                                                                     },
                                                                   ),
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .delete_forever,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .delete_forever,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: ConfirmModalWidget(
+                                                                                  icon: Icon(
+                                                                                    Icons.delete_forever,
+                                                                                    color: FlutterFlowTheme.of(context).error,
+                                                                                    size: 50.0,
+                                                                                  ),
+                                                                                  title: 'Confirm Deletion',
+                                                                                  subtitle: 'Are you sure you want to delete this place of apprehension? This action cannot be undone.',
+                                                                                  button: 'Delete',
+                                                                                  buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                  primaryButtonAction: () async {
+                                                                                    await noSearchItem.reference.delete();
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      var confirmDialogResponse = await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Are you sure?'),
-                                                                                content: Text('Are you sure you want to delete this? This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Confirm'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                      if (confirmDialogResponse) {
-                                                                        await noSearchItem
-                                                                            .reference
-                                                                            .delete();
-                                                                      }
-                                                                    },
                                                                   ),
                                                                 ].divide(SizedBox(
                                                                     width:
@@ -1476,13 +1482,9 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                               child: Text(
                                                                 valueOrDefault<
                                                                     String>(
-                                                                  formatNumber(
-                                                                    resultItem
-                                                                        .activeCount,
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                  ),
+                                                                  resultItem
+                                                                      .activeCount
+                                                                      .toString(),
                                                                   '0',
                                                                 ).maybeHandleOverflow(
                                                                   maxChars: 15,
@@ -1547,51 +1549,60 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                                           'confirmButton pressed ...');
                                                                     },
                                                                   ),
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .delete_forever,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .delete_forever,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: ConfirmModalWidget(
+                                                                                  icon: Icon(
+                                                                                    Icons.delete_forever,
+                                                                                    color: FlutterFlowTheme.of(context).error,
+                                                                                    size: 50.0,
+                                                                                  ),
+                                                                                  title: 'Confirm Deletion',
+                                                                                  subtitle: 'Are you sure you want to delete this place of apprehension? This action cannot be undone.',
+                                                                                  button: 'Delete',
+                                                                                  buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                  primaryButtonAction: () async {
+                                                                                    await resultItem.reference.delete();
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      var confirmDialogResponse = await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Are you sure?'),
-                                                                                content: Text('Are you sure you want to delete this? This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Confirm'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                      if (confirmDialogResponse) {
-                                                                        await resultItem
-                                                                            .reference
-                                                                            .delete();
-                                                                      }
-                                                                    },
                                                                   ),
                                                                 ].divide(SizedBox(
                                                                     width:

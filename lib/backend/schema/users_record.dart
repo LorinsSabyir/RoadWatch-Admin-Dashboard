@@ -95,6 +95,21 @@ class UsersRecord extends FirestoreRecord {
   String get assignmentStreet => _assignmentStreet ?? '';
   bool hasAssignmentStreet() => _assignmentStreet != null;
 
+  // "gender" field.
+  String? _gender;
+  String get gender => _gender ?? '';
+  bool hasGender() => _gender != null;
+
+  // "assignment_time" field.
+  DateTime? _assignmentTime;
+  DateTime? get assignmentTime => _assignmentTime;
+  bool hasAssignmentTime() => _assignmentTime != null;
+
+  // "last_name" field.
+  String? _lastName;
+  String get lastName => _lastName ?? '';
+  bool hasLastName() => _lastName != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -112,6 +127,9 @@ class UsersRecord extends FirestoreRecord {
     _assignmentBrgy = snapshotData['assignment_brgy'] as String?;
     _assignmentLandmark = snapshotData['assignment_landmark'] as String?;
     _assignmentStreet = snapshotData['assignment_street'] as String?;
+    _gender = snapshotData['gender'] as String?;
+    _assignmentTime = snapshotData['assignment_time'] as DateTime?;
+    _lastName = snapshotData['last_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -164,6 +182,9 @@ Map<String, dynamic> createUsersRecordData({
   String? assignmentBrgy,
   String? assignmentLandmark,
   String? assignmentStreet,
+  String? gender,
+  DateTime? assignmentTime,
+  String? lastName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -183,6 +204,9 @@ Map<String, dynamic> createUsersRecordData({
       'assignment_brgy': assignmentBrgy,
       'assignment_landmark': assignmentLandmark,
       'assignment_street': assignmentStreet,
+      'gender': gender,
+      'assignment_time': assignmentTime,
+      'last_name': lastName,
     }.withoutNulls,
   );
 
@@ -209,7 +233,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.assignmentPrk == e2?.assignmentPrk &&
         e1?.assignmentBrgy == e2?.assignmentBrgy &&
         e1?.assignmentLandmark == e2?.assignmentLandmark &&
-        e1?.assignmentStreet == e2?.assignmentStreet;
+        e1?.assignmentStreet == e2?.assignmentStreet &&
+        e1?.gender == e2?.gender &&
+        e1?.assignmentTime == e2?.assignmentTime &&
+        e1?.lastName == e2?.lastName;
   }
 
   @override
@@ -229,7 +256,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.assignmentPrk,
         e?.assignmentBrgy,
         e?.assignmentLandmark,
-        e?.assignmentStreet
+        e?.assignmentStreet,
+        e?.gender,
+        e?.assignmentTime,
+        e?.lastName
       ]);
 
   @override

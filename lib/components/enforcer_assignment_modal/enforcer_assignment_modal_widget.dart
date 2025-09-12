@@ -712,6 +712,9 @@ class _EnforcerAssignmentModalWidgetState
                                                                 assignmentLandmark:
                                                                     noSearchItem
                                                                         .landmark,
+                                                                email: '',
+                                                                assignmentTime:
+                                                                    getCurrentTimestamp,
                                                               ));
                                                             }
                                                           },
