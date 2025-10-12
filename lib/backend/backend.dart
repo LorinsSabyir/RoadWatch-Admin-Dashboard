@@ -12,6 +12,9 @@ import 'schema/annual_violations_record.dart';
 import 'schema/appre_places_record.dart';
 import 'schema/enforcer_assignment_record.dart';
 import 'schema/admin_notif_record.dart';
+import 'schema/address_brgy_record.dart';
+import 'schema/address_city_record.dart';
+import 'schema/address_province_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -27,6 +30,9 @@ export 'schema/annual_violations_record.dart';
 export 'schema/appre_places_record.dart';
 export 'schema/enforcer_assignment_record.dart';
 export 'schema/admin_notif_record.dart';
+export 'schema/address_brgy_record.dart';
+export 'schema/address_city_record.dart';
+export 'schema/address_province_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -282,6 +288,117 @@ Future<List<AdminNotifRecord>> queryAdminNotifRecordOnce({
     queryCollectionOnce(
       AdminNotifRecord.collection,
       AdminNotifRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AddressBrgyRecords (as a Stream and as a Future).
+Future<int> queryAddressBrgyRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AddressBrgyRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AddressBrgyRecord>> queryAddressBrgyRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AddressBrgyRecord.collection,
+      AddressBrgyRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AddressBrgyRecord>> queryAddressBrgyRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AddressBrgyRecord.collection,
+      AddressBrgyRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AddressCityRecords (as a Stream and as a Future).
+Future<int> queryAddressCityRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AddressCityRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AddressCityRecord>> queryAddressCityRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AddressCityRecord.collection,
+      AddressCityRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AddressCityRecord>> queryAddressCityRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AddressCityRecord.collection,
+      AddressCityRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AddressProvinceRecords (as a Stream and as a Future).
+Future<int> queryAddressProvinceRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AddressProvinceRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AddressProvinceRecord>> queryAddressProvinceRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AddressProvinceRecord.collection,
+      AddressProvinceRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AddressProvinceRecord>> queryAddressProvinceRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AddressProvinceRecord.collection,
+      AddressProvinceRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

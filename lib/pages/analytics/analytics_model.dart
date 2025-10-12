@@ -14,6 +14,8 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
 
   // Model for SideNav component.
   late SideNavModel sideNavModel;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
@@ -32,6 +34,7 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
+    columnController = ScrollController();
     statusModel1 = createModel(context, () => StatusModel());
     statusModel2 = createModel(context, () => StatusModel());
   }
@@ -39,6 +42,7 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   @override
   void dispose() {
     sideNavModel.dispose();
+    columnController?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 

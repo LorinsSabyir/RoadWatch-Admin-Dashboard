@@ -104,6 +104,7 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
+            controller: _model.columnController,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,

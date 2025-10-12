@@ -14,6 +14,8 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
 
   // Model for SideNav component.
   late SideNavModel sideNavModel;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // State field(s) for searchBox widget.
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
@@ -31,6 +33,7 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
+    columnController = ScrollController();
     statusModels1 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels2 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels3 = FlutterFlowDynamicModels(() => StatusModel());
@@ -40,6 +43,7 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   @override
   void dispose() {
     sideNavModel.dispose();
+    columnController?.dispose();
     searchBoxFocusNode?.dispose();
     searchBoxTextController?.dispose();
 

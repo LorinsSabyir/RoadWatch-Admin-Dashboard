@@ -143,6 +143,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         child: Padding(
                           padding: EdgeInsets.all(16.0),
                           child: SingleChildScrollView(
+                            controller: _model.columnController,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,

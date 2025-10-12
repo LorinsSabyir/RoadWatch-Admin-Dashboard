@@ -13,6 +13,8 @@ class NotificationsModel extends FlutterFlowModel<NotificationsWidget> {
 
   // Model for SideNav component.
   late SideNavModel sideNavModel;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // State field(s) for searchBox widget.
   FocusNode? searchBoxFocusNode;
   TextEditingController? searchBoxTextController;
@@ -22,11 +24,13 @@ class NotificationsModel extends FlutterFlowModel<NotificationsWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
+    columnController = ScrollController();
   }
 
   @override
   void dispose() {
     sideNavModel.dispose();
+    columnController?.dispose();
     searchBoxFocusNode?.dispose();
     searchBoxTextController?.dispose();
   }

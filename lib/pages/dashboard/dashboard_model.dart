@@ -9,6 +9,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   // Model for SideNav component.
   late SideNavModel sideNavModel;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // Model for TotalCitation.
   late DashboardCardModel totalCitationModel;
   // Model for CitationsToday.
@@ -17,6 +19,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
+    columnController = ScrollController();
     totalCitationModel = createModel(context, () => DashboardCardModel());
     citationsTodayModel = createModel(context, () => DashboardCardModel());
   }
@@ -24,6 +27,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     sideNavModel.dispose();
+    columnController?.dispose();
     totalCitationModel.dispose();
     citationsTodayModel.dispose();
   }

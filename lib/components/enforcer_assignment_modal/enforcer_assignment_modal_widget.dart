@@ -716,6 +716,28 @@ class _EnforcerAssignmentModalWidgetState
                                                                 assignmentTime:
                                                                     getCurrentTimestamp,
                                                               ));
+
+                                                              await AdminNotifRecord
+                                                                  .collection
+                                                                  .doc()
+                                                                  .set(
+                                                                      createAdminNotifRecordData(
+                                                                    title: noSearchItem
+                                                                        .landmark,
+                                                                    subtitle:
+                                                                        'You’ve been assigned to a new case.',
+                                                                    type:
+                                                                        'Dakop',
+                                                                    status:
+                                                                        'unread',
+                                                                    createdTime:
+                                                                        getCurrentTimestamp,
+                                                                    enforcerId:
+                                                                        widget
+                                                                            .enforcerId,
+                                                                    notifType:
+                                                                        'assignment',
+                                                                  ));
                                                             }
                                                           },
                                                         ),
@@ -1057,6 +1079,28 @@ class _EnforcerAssignmentModalWidgetState
                                                                     resultItem
                                                                         .landmark,
                                                               ));
+
+                                                              await AdminNotifRecord
+                                                                  .collection
+                                                                  .doc()
+                                                                  .set(
+                                                                      createAdminNotifRecordData(
+                                                                    title: resultItem
+                                                                        .landmark,
+                                                                    subtitle:
+                                                                        'You’ve been assigned to a new case.',
+                                                                    type:
+                                                                        'Dakop',
+                                                                    status:
+                                                                        'unread',
+                                                                    createdTime:
+                                                                        getCurrentTimestamp,
+                                                                    enforcerId:
+                                                                        widget
+                                                                            .enforcerId,
+                                                                    notifType:
+                                                                        'assignment',
+                                                                  ));
                                                             }
                                                           },
                                                         ),

@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -210,8 +211,8 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                     0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    currentUserUid,
-                                    'Admin Email',
+                                    currentUserEmail,
+                                    'Email',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodySmall
@@ -260,7 +261,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: _model.mouseRegionHovered1
-                              ? FlutterFlowTheme.of(context).secondaryBackground
+                              ? FlutterFlowTheme.of(context).accent4
                               : FlutterFlowTheme.of(context).primaryBackground,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
@@ -340,6 +341,11 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            status: false,
+                            lastActive: getCurrentTimestamp,
+                          ));
                           GoRouter.of(context).prepareAuthEvent();
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
@@ -353,8 +359,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: _model.mouseRegionHovered2
-                                ? FlutterFlowTheme.of(context)
-                                    .secondaryBackground
+                                ? FlutterFlowTheme.of(context).accent4
                                 : FlutterFlowTheme.of(context)
                                     .primaryBackground,
                             borderRadius: BorderRadius.circular(8.0),

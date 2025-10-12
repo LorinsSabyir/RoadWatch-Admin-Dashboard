@@ -118,6 +118,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                         ),
                         decoration: BoxDecoration(),
                         child: SingleChildScrollView(
+                          controller: _model.columnController,
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -995,6 +996,15 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                                   button: 'Confirm',
                                                                                   buttonColor: FlutterFlowTheme.of(context).success,
                                                                                   primaryButtonAction: () async {
+                                                                                    await noSearchItem.reference.update(createAdminNotifRecordData(
+                                                                                      title: 'Account Confirmed!',
+                                                                                      subtitle: 'You can log in and start using the app.',
+                                                                                      status: 'static',
+                                                                                      editedTime: getCurrentTimestamp,
+                                                                                      enforcerId: noSearchItem.enforcerId,
+                                                                                      notifType: 'Confirmation',
+                                                                                    ));
+
                                                                                     await noSearchItem.enforcerId!.update(createUsersRecordData(
                                                                                       accStatus: 'active',
                                                                                     ));
@@ -1386,6 +1396,15 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                                   button: 'Confirm',
                                                                                   buttonColor: FlutterFlowTheme.of(context).success,
                                                                                   primaryButtonAction: () async {
+                                                                                    await resultItem.reference.update(createAdminNotifRecordData(
+                                                                                      title: 'Account Confirmed!',
+                                                                                      subtitle: 'You can log in and start using the app.',
+                                                                                      status: 'static',
+                                                                                      editedTime: getCurrentTimestamp,
+                                                                                      enforcerId: resultItem.enforcerId,
+                                                                                      notifType: 'Confirmation',
+                                                                                    ));
+
                                                                                     await resultItem.enforcerId!.update(createUsersRecordData(
                                                                                       accStatus: 'active',
                                                                                     ));

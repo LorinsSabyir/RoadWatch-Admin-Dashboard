@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -431,9 +432,45 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         return;
                                       }
 
-                                      context.goNamedAuth(
-                                          DashboardWidget.routeName,
-                                          context.mounted);
+                                      if (valueOrDefault(
+                                              currentUserDocument?.role, '') ==
+                                          'admin') {
+                                        await currentUserReference!
+                                            .update(createUsersRecordData(
+                                          lastActive: getCurrentTimestamp,
+                                          accStatus: 'active',
+                                          status: true,
+                                        ));
+
+                                        context.goNamedAuth(
+                                            DashboardWidget.routeName,
+                                            context.mounted);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Admin does not exist!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 1000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                          ),
+                                        );
+                                        safeSetState(() {
+                                          _model.passwordTextController
+                                              ?.clear();
+                                          _model.emailAddressTextController
+                                              ?.clear();
+                                        });
+                                      }
                                     },
                                     text: 'Sign In',
                                     options: FFButtonOptions(
