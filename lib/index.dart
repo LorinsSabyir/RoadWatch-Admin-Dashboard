@@ -5,6 +5,4 @@ export '/pages/login/login_widget.dart' show LoginWidget;
 export '/pages/fines/fines_widget.dart' show FinesWidget;
 export '/pages/analytics/analytics_widget.dart' show AnalyticsWidget;
 export '/pages/enforcers/enforcers_widget.dart' show EnforcersWidget;
-export '/pages/notifications/notifications_widget.dart'
-    show NotificationsWidget;
 export '/pages/appre_place/appre_place_widget.dart' show ApprePlaceWidget;

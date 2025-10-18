@@ -114,11 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EnforcersWidget(),
         ),
         FFRoute(
-          name: NotificationsWidget.routeName,
-          path: NotificationsWidget.routePath,
-          builder: (context, params) => NotificationsWidget(),
-        ),
-        FFRoute(
           name: ApprePlaceWidget.routeName,
           path: ApprePlaceWidget.routePath,
           builder: (context, params) => ApprePlaceWidget(),

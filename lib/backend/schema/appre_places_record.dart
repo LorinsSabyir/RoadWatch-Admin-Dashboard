@@ -50,10 +50,10 @@ class ApprePlacesRecord extends FirestoreRecord {
   int get activeCount => _activeCount ?? 0;
   bool hasActiveCount() => _activeCount != null;
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
   void _initializeFields() {
     _barangay = snapshotData['barangay'] as String?;
@@ -63,7 +63,7 @@ class ApprePlacesRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _activeCount = castToType<int>(snapshotData['active_count']);
-    _id = snapshotData['id'] as String?;
+    _uid = snapshotData['uid'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -108,7 +108,7 @@ Map<String, dynamic> createApprePlacesRecordData({
   DateTime? createdTime,
   DateTime? editedTime,
   int? activeCount,
-  String? id,
+  String? uid,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,7 +119,7 @@ Map<String, dynamic> createApprePlacesRecordData({
       'created_time': createdTime,
       'edited_time': editedTime,
       'active_count': activeCount,
-      'id': id,
+      'uid': uid,
     }.withoutNulls,
   );
 
@@ -138,7 +138,7 @@ class ApprePlacesRecordDocumentEquality implements Equality<ApprePlacesRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.editedTime == e2?.editedTime &&
         e1?.activeCount == e2?.activeCount &&
-        e1?.id == e2?.id;
+        e1?.uid == e2?.uid;
   }
 
   @override
@@ -150,7 +150,7 @@ class ApprePlacesRecordDocumentEquality implements Equality<ApprePlacesRecord> {
         e?.createdTime,
         e?.editedTime,
         e?.activeCount,
-        e?.id
+        e?.uid
       ]);
 
   @override

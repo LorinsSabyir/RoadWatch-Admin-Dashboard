@@ -1,9 +1,15 @@
 import '/backend/backend.dart';
+import '/components/add_fines/add_fines_widget.dart';
+import '/components/confirm_modal/confirm_modal_widget.dart';
+import '/components/edit_fines/edit_fines_widget.dart';
+import '/components/notification_card/notification_card_widget.dart';
 import '/components/side_nav/side_nav_widget.dart';
+import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -24,7 +30,8 @@ class FinesWidget extends StatefulWidget {
   State<FinesWidget> createState() => _FinesWidgetState();
 }
 
-class _FinesWidgetState extends State<FinesWidget> {
+class _FinesWidgetState extends State<FinesWidget>
+    with TickerProviderStateMixin {
   late FinesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -42,6 +49,12 @@ class _FinesWidgetState extends State<FinesWidget> {
 
     _model.searchBoxTextController ??= TextEditingController();
     _model.searchBoxFocusNode ??= FocusNode();
+
+    _model.tabBarController = TabController(
+      vsync: this,
+      length: 2,
+      initialIndex: 0,
+    )..addListener(() => safeSetState(() {}));
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -87,6 +100,753 @@ class _FinesWidgetState extends State<FinesWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            endDrawer: Container(
+              width: 400.0,
+              child: Drawer(
+                elevation: 16.0,
+                child: Container(
+                  width: 430.0,
+                  height: 400.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Color(0x33000000),
+                        offset: Offset(
+                          0.0,
+                          2.0,
+                        ),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Notifications',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      font: GoogleFonts.outfit(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.close_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  size: 40.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment(-1.0, 0),
+                                child: FlutterFlowButtonTabBar(
+                                  useToggleButtonStyle: false,
+                                  isScrollable: true,
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        font: GoogleFonts.plusJakartaSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontStyle,
+                                      ),
+                                  unselectedLabelStyle: TextStyle(),
+                                  labelColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  unselectedLabelColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  unselectedBackgroundColor:
+                                      FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  unselectedBorderColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  borderWidth: 2.0,
+                                  borderRadius: 12.0,
+                                  elevation: 0.0,
+                                  labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  buttonMargin: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 8.0),
+                                  tabs: [
+                                    Tab(
+                                      text: 'New',
+                                    ),
+                                    Tab(
+                                      text: 'All',
+                                    ),
+                                  ],
+                                  controller: _model.tabBarController,
+                                  onTap: (i) async {
+                                    [() async {}, () async {}][i]();
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: TabBarView(
+                                  controller: _model.tabBarController,
+                                  children: [
+                                    StreamBuilder<List<AdminNotifRecord>>(
+                                      stream: queryAdminNotifRecord(
+                                        queryBuilder: (adminNotifRecord) =>
+                                            adminNotifRecord
+                                                .where(
+                                                  'status',
+                                                  isEqualTo: 'pending',
+                                                )
+                                                .where(
+                                                  'type',
+                                                  isEqualTo: 'system',
+                                                )
+                                                .orderBy('created_time',
+                                                    descending: true),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<AdminNotifRecord>
+                                            containerAdminNotifRecordList =
+                                            snapshot.data!;
+
+                                        return ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(12.0),
+                                            bottomRight: Radius.circular(12.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(12.0),
+                                                bottomRight:
+                                                    Radius.circular(12.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(0.0),
+                                              ),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                if ((containerAdminNotifRecordList
+                                                        .isNotEmpty) ==
+                                                    false)
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: 600.0,
+                                                    decoration: BoxDecoration(),
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.playlist_remove,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          size: 70.0,
+                                                        ),
+                                                        Text(
+                                                          'List Empty!',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .outfit(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ].divide(SizedBox(
+                                                          height: 8.0)),
+                                                    ),
+                                                  ),
+                                                if ((containerAdminNotifRecordList
+                                                        .isNotEmpty) ==
+                                                    true)
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final newNotif =
+                                                          containerAdminNotifRecordList
+                                                              .toList();
+
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            newNotif.length,
+                                                        itemBuilder: (context,
+                                                            newNotifIndex) {
+                                                          final newNotifItem =
+                                                              newNotif[
+                                                                  newNotifIndex];
+                                                          return Builder(
+                                                            builder: (context) =>
+                                                                wrapWithModel(
+                                                              model: _model
+                                                                  .notificationCardModels1
+                                                                  .getModel(
+                                                                newNotifIndex
+                                                                    .toString(),
+                                                                newNotifIndex,
+                                                              ),
+                                                              updateCallback: () =>
+                                                                  safeSetState(
+                                                                      () {}),
+                                                              child:
+                                                                  NotificationCardWidget(
+                                                                key: Key(
+                                                                  'Keyywn_${newNotifIndex.toString()}',
+                                                                ),
+                                                                status:
+                                                                    newNotifItem
+                                                                        .status,
+                                                                title:
+                                                                    newNotifItem
+                                                                        .title,
+                                                                subtitle:
+                                                                    newNotifItem
+                                                                        .subtitle,
+                                                                notifRef:
+                                                                    newNotifItem
+                                                                        .reference,
+                                                                confirmAct:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                          },
+                                                                          child:
+                                                                              ConfirmModalWidget(
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.check_circle,
+                                                                              color: FlutterFlowTheme.of(context).success,
+                                                                              size: 50.0,
+                                                                            ),
+                                                                            title:
+                                                                                'Confirm Account Creation',
+                                                                            subtitle:
+                                                                                'Confirm creation of this enforcer account?',
+                                                                            button:
+                                                                                'Confirm',
+                                                                            buttonColor:
+                                                                                FlutterFlowTheme.of(context).success,
+                                                                            primaryButtonAction:
+                                                                                () async {
+                                                                              await newNotifItem.reference.update(createAdminNotifRecordData(
+                                                                                title: 'Account Confirmed!',
+                                                                                subtitle: 'You can log in and start using the app.',
+                                                                                status: 'static',
+                                                                                editedTime: getCurrentTimestamp,
+                                                                                notifType: 'Confirmation',
+                                                                                type: 'system',
+                                                                              ));
+
+                                                                              await newNotifItem.enforcerId!.update(createUsersRecordData(
+                                                                                accStatus: 'active',
+                                                                              ));
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                deleteAct:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                          },
+                                                                          child:
+                                                                              ConfirmModalWidget(
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.delete_forever,
+                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                              size: 50.0,
+                                                                            ),
+                                                                            title:
+                                                                                'Confirm Deletion',
+                                                                            subtitle:
+                                                                                'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                            button:
+                                                                                'Delete',
+                                                                            buttonColor:
+                                                                                FlutterFlowTheme.of(context).error,
+                                                                            primaryButtonAction:
+                                                                                () async {
+                                                                              await newNotifItem.reference.delete();
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    StreamBuilder<List<AdminNotifRecord>>(
+                                      stream: queryAdminNotifRecord(
+                                        queryBuilder: (adminNotifRecord) =>
+                                            adminNotifRecord
+                                                .where(
+                                                  'type',
+                                                  isEqualTo: 'system',
+                                                )
+                                                .orderBy('created_time',
+                                                    descending: true),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<AdminNotifRecord>
+                                            containerAdminNotifRecordList =
+                                            snapshot.data!;
+
+                                        return ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(12.0),
+                                            bottomRight: Radius.circular(12.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(12.0),
+                                                bottomRight:
+                                                    Radius.circular(12.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(0.0),
+                                              ),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                if ((containerAdminNotifRecordList
+                                                        .isNotEmpty) ==
+                                                    false)
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: 600.0,
+                                                    decoration: BoxDecoration(),
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.playlist_remove,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          size: 70.0,
+                                                        ),
+                                                        Text(
+                                                          'List Empty!',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .outfit(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ].divide(SizedBox(
+                                                          height: 8.0)),
+                                                    ),
+                                                  ),
+                                                if ((containerAdminNotifRecordList
+                                                        .isNotEmpty) ==
+                                                    true)
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final all =
+                                                          containerAdminNotifRecordList
+                                                              .toList();
+
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount: all.length,
+                                                        itemBuilder: (context,
+                                                            allIndex) {
+                                                          final allItem =
+                                                              all[allIndex];
+                                                          return Builder(
+                                                            builder: (context) =>
+                                                                wrapWithModel(
+                                                              model: _model
+                                                                  .notificationCardModels2
+                                                                  .getModel(
+                                                                allIndex
+                                                                    .toString(),
+                                                                allIndex,
+                                                              ),
+                                                              updateCallback: () =>
+                                                                  safeSetState(
+                                                                      () {}),
+                                                              child:
+                                                                  NotificationCardWidget(
+                                                                key: Key(
+                                                                  'Keyyky_${allIndex.toString()}',
+                                                                ),
+                                                                status: allItem
+                                                                    .status,
+                                                                title: allItem
+                                                                    .title,
+                                                                subtitle: allItem
+                                                                    .subtitle,
+                                                                notifRef: allItem
+                                                                    .reference,
+                                                                confirmAct:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                          },
+                                                                          child:
+                                                                              ConfirmModalWidget(
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.check_circle,
+                                                                              color: FlutterFlowTheme.of(context).success,
+                                                                              size: 50.0,
+                                                                            ),
+                                                                            title:
+                                                                                'Confirm Account Creation',
+                                                                            subtitle:
+                                                                                'Confirm creation of this enforcer account?',
+                                                                            button:
+                                                                                'Confirm',
+                                                                            buttonColor:
+                                                                                FlutterFlowTheme.of(context).success,
+                                                                            primaryButtonAction:
+                                                                                () async {
+                                                                              await allItem.reference.update(createAdminNotifRecordData(
+                                                                                title: 'Account Confirmed!',
+                                                                                subtitle: 'You can log in and start using the app.',
+                                                                                status: 'static',
+                                                                                editedTime: getCurrentTimestamp,
+                                                                                notifType: 'Confirmation',
+                                                                                type: 'system',
+                                                                              ));
+
+                                                                              await allItem.enforcerId!.update(createUsersRecordData(
+                                                                                accStatus: 'active',
+                                                                              ));
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                deleteAct:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                          },
+                                                                          child:
+                                                                              ConfirmModalWidget(
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.delete_forever,
+                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                              size: 50.0,
+                                                                            ),
+                                                                            title:
+                                                                                'Confirm Deletion',
+                                                                            subtitle:
+                                                                                'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                            button:
+                                                                                'Delete',
+                                                                            buttonColor:
+                                                                                FlutterFlowTheme.of(context).error,
+                                                                            primaryButtonAction:
+                                                                                () async {
+                                                                              await allItem.reference.delete();
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             body: SafeArea(
               top: true,
               child: Row(
@@ -97,6 +857,7 @@ class _FinesWidgetState extends State<FinesWidget> {
                     updateCallback: () => safeSetState(() {}),
                     child: SideNavWidget(
                       selectedNav: 4,
+                      notifDrawer: () async {},
                     ),
                   ),
                   Expanded(
@@ -187,8 +948,8 @@ class _FinesWidgetState extends State<FinesWidget> {
                                       ],
                                     ),
                                     FFButtonWidget(
-                                      onPressed: () {
-                                        print('DownloadCSVButton pressed ...');
+                                      onPressed: () async {
+                                        await actions.violationExportToCSV();
                                       },
                                       text: 'Download CSV',
                                       options: FFButtonOptions(
@@ -515,27 +1276,73 @@ class _FinesWidgetState extends State<FinesWidget> {
                                             )
                                           ],
                                         ),
-                                        child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('Button pressed ...');
-                                          },
-                                          text: 'Add Violation',
-                                          options: FFButtonOptions(
-                                            height: 50.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts
-                                                          .plusJakartaSans(
+                                        child: Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        FocusScope.of(
+                                                                dialogContext)
+                                                            .unfocus();
+                                                        FocusManager.instance
+                                                            .primaryFocus
+                                                            ?.unfocus();
+                                                      },
+                                                      child: AddFinesWidget(),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            text: 'Add Violation',
+                                            options: FFButtonOptions(
+                                              height: 50.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .plusJakartaSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textbox,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -547,26 +1354,10 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                                 .titleSmall
                                                                 .fontStyle,
                                                       ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .textbox,
-                                                      fontSize: 18.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -1098,71 +1889,104 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                                     MainAxisAlignment
                                                                         .end,
                                                                 children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .edit,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .success,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .edit,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .success,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: EditFinesWidget(
+                                                                                  violationRef: noSearchItem.reference,
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () {
-                                                                      print(
-                                                                          'editButton pressed ...');
-                                                                    },
                                                                   ),
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .delete_forever,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .delete_forever,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: ConfirmModalWidget(
+                                                                                  icon: Icon(
+                                                                                    Icons.delete,
+                                                                                    color: FlutterFlowTheme.of(context).error,
+                                                                                    size: 50.0,
+                                                                                  ),
+                                                                                  title: 'Confirm Deletion',
+                                                                                  subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                                  button: 'Delete',
+                                                                                  buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                  primaryButtonAction: () async {
+                                                                                    await noSearchItem.reference.delete();
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      var confirmDialogResponse = await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Are you sure?'),
-                                                                                content: Text('Are you sure you want to delete this? This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Confirm'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                      if (confirmDialogResponse) {
-                                                                        await noSearchItem
-                                                                            .reference
-                                                                            .delete();
-                                                                      }
-                                                                    },
                                                                   ),
                                                                 ].divide(SizedBox(
                                                                     width:
@@ -1433,71 +2257,104 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                                     MainAxisAlignment
                                                                         .end,
                                                                 children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .edit,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .success,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .edit,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .success,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: EditFinesWidget(
+                                                                                  violationRef: resultItem.reference,
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () {
-                                                                      print(
-                                                                          'editButton pressed ...');
-                                                                    },
                                                                   ),
-                                                                  FlutterFlowIconButton(
-                                                                    borderRadius:
-                                                                        50.0,
-                                                                    buttonSize:
-                                                                        40.0,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .delete_forever,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      size:
-                                                                          24.0,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FlutterFlowIconButton(
+                                                                      borderRadius:
+                                                                          50.0,
+                                                                      buttonSize:
+                                                                          40.0,
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .delete_forever,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: GestureDetector(
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
+                                                                                child: ConfirmModalWidget(
+                                                                                  icon: Icon(
+                                                                                    Icons.delete,
+                                                                                    color: FlutterFlowTheme.of(context).error,
+                                                                                    size: 50.0,
+                                                                                  ),
+                                                                                  title: 'Confirm Deletion',
+                                                                                  subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                                  button: 'Delete',
+                                                                                  buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                  primaryButtonAction: () async {
+                                                                                    await resultItem.reference.delete();
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      var confirmDialogResponse = await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Are you sure?'),
-                                                                                content: Text('Are you sure you want to delete this? This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Confirm'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                      if (confirmDialogResponse) {
-                                                                        await resultItem
-                                                                            .reference
-                                                                            .delete();
-                                                                      }
-                                                                    },
                                                                   ),
                                                                 ].divide(SizedBox(
                                                                     width:

@@ -10,7 +10,6 @@ import 'schema/citation_record.dart';
 import 'schema/users_record.dart';
 import 'schema/annual_violations_record.dart';
 import 'schema/appre_places_record.dart';
-import 'schema/enforcer_assignment_record.dart';
 import 'schema/admin_notif_record.dart';
 import 'schema/address_brgy_record.dart';
 import 'schema/address_city_record.dart';
@@ -28,7 +27,6 @@ export 'schema/citation_record.dart';
 export 'schema/users_record.dart';
 export 'schema/annual_violations_record.dart';
 export 'schema/appre_places_record.dart';
-export 'schema/enforcer_assignment_record.dart';
 export 'schema/admin_notif_record.dart';
 export 'schema/address_brgy_record.dart';
 export 'schema/address_city_record.dart';
@@ -214,43 +212,6 @@ Future<List<ApprePlacesRecord>> queryApprePlacesRecordOnce({
     queryCollectionOnce(
       ApprePlacesRecord.collection,
       ApprePlacesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query EnforcerAssignmentRecords (as a Stream and as a Future).
-Future<int> queryEnforcerAssignmentRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      EnforcerAssignmentRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<EnforcerAssignmentRecord>> queryEnforcerAssignmentRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      EnforcerAssignmentRecord.collection,
-      EnforcerAssignmentRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<EnforcerAssignmentRecord>> queryEnforcerAssignmentRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      EnforcerAssignmentRecord.collection,
-      EnforcerAssignmentRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

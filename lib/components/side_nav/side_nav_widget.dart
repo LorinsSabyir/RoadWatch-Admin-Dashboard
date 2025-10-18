@@ -12,9 +12,11 @@ class SideNavWidget extends StatefulWidget {
   const SideNavWidget({
     super.key,
     required this.selectedNav,
+    this.notifDrawer,
   });
 
   final int? selectedNav;
+  final Future Function()? notifDrawer;
 
   @override
   State<SideNavWidget> createState() => _SideNavWidgetState();
@@ -97,12 +99,14 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                 )
                               ],
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Row(
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       ClipRRect(
@@ -147,8 +151,23 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await widget.notifDrawer?.call();
+                                    },
+                                    child: Icon(
+                                      Icons.notifications,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 30.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -816,111 +835,6 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              NotificationsWidget.routeName,
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                ),
-                              },
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: widget.selectedNav == 8
-                                  ? FlutterFlowTheme.of(context).accent1
-                                  : FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                              borderRadius: BorderRadius.circular(12.0),
-                              shape: BoxShape.rectangle,
-                              border: Border.all(
-                                color: widget.selectedNav == 8
-                                    ? FlutterFlowTheme.of(context).accent1
-                                    : FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                width: 1.0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 12.0, 12.0),
-                                    child: Container(
-                                      width: 4.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: widget.selectedNav == 8
-                                            ? FlutterFlowTheme.of(context)
-                                                .primary
-                                            : FlutterFlowTheme.of(context)
-                                                .accent1,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.notifications_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 28.0,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Notifications',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                       Builder(
                         builder: (context) => Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(

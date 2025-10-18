@@ -161,6 +161,11 @@ class CitationRecord extends FirestoreRecord {
   String get violatorGender => _violatorGender ?? '';
   bool hasViolatorGender() => _violatorGender != null;
 
+  // "conf_unit_type" field.
+  String? _confUnitType;
+  String get confUnitType => _confUnitType ?? '';
+  bool hasConfUnitType() => _confUnitType != null;
+
   void _initializeFields() {
     _citationNumber = snapshotData['citation_number'] as String?;
     _confUnitSerialNum = snapshotData['conf_unit_serial_num'] as String?;
@@ -193,6 +198,7 @@ class CitationRecord extends FirestoreRecord {
     _violationTotalFine =
         castToType<double>(snapshotData['violation_total_fine']);
     _violatorGender = snapshotData['violator_gender'] as String?;
+    _confUnitType = snapshotData['conf_unit_type'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -256,6 +262,7 @@ Map<String, dynamic> createCitationRecordData({
   DateTime? editedTime,
   double? violationTotalFine,
   String? violatorGender,
+  String? confUnitType,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -285,6 +292,7 @@ Map<String, dynamic> createCitationRecordData({
       'edited_time': editedTime,
       'violation_total_fine': violationTotalFine,
       'violator_gender': violatorGender,
+      'conf_unit_type': confUnitType,
     }.withoutNulls,
   );
 
@@ -325,7 +333,8 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         listEquality.equals(e1?.violationFine, e2?.violationFine) &&
         listEquality.equals(e1?.violationName, e2?.violationName) &&
         e1?.violationTotalFine == e2?.violationTotalFine &&
-        e1?.violatorGender == e2?.violatorGender;
+        e1?.violatorGender == e2?.violatorGender &&
+        e1?.confUnitType == e2?.confUnitType;
   }
 
   @override
@@ -358,7 +367,8 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.violationFine,
         e?.violationName,
         e?.violationTotalFine,
-        e?.violatorGender
+        e?.violatorGender,
+        e?.confUnitType
       ]);
 
   @override
