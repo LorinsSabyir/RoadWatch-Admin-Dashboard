@@ -18,7 +18,7 @@ Future<void> apprePlaceExportToCSV(BuildContext context) async {
   try {
     // 🔹 Fetch data from Firestore
     final querySnapshot =
-        await FirebaseFirestore.instance.collection('apprPlace').get();
+        await FirebaseFirestore.instance.collection('apprePlaces').get();
 
     if (querySnapshot.docs.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
