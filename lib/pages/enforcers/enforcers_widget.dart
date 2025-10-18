@@ -960,7 +960,9 @@ class _EnforcersWidgetState extends State<EnforcersWidget>
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        await actions.enforcerExportToCSV();
+                                        await actions.enforcerExportToCSV(
+                                          context,
+                                        );
                                       },
                                       text: 'Download CSV',
                                       options: FFButtonOptions(

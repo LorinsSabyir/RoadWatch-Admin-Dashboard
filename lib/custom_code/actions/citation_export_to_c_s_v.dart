@@ -7,21 +7,26 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// i want you to create a custom action that gets the data from firebase and downloads it in a csv file
+// Web-compatible Firebase CSV Export for Citation Collection
 import 'dart:convert';
 import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csv/csv.dart';
 
-/// it downloads the citation data from firebase into a csv file.
-Future citaionExportToCSV() async {
+/// Downloads citation data from Firebase Firestore into a CSV file (Web-compatible)
+Future<void> citationExportToCSV(BuildContext context) async {
   try {
     // Get data from Firebase Firestore
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('citation').get();
 
     if (querySnapshot.docs.isEmpty) {
-      print('No citation data found');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('No citation data found'),
+          backgroundColor: FlutterFlowTheme.of(context).error,
+        ),
+      );
       return;
     }
 
@@ -42,7 +47,7 @@ Future citaionExportToCSV() async {
       'Confiscated Unit Model',
       'Confiscated Unit Plate #',
       'Confiscated Unit Description',
-      'Apprehesion Place',
+      'Apprehension Place',
       'Apprehended Enforcer',
       'Apprehension Time',
       'Violation Name',
@@ -57,9 +62,9 @@ Future citaionExportToCSV() async {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
       csvData.add([
-        doc.id ?? '',
+        doc.id,
         data['violator_name'] ?? '',
-        data['volator_gender'] ?? '',
+        data['violator_gender'] ?? '', // fixed typo
         data['violator_address_province'] ?? '',
         data['violator_address_city'] ?? '',
         data['violator_address_brgy'] ?? '',
@@ -71,19 +76,25 @@ Future citaionExportToCSV() async {
         data['conf_unit_desc'] ?? '',
         data['appre_place'] ?? '',
         data['appre_enforcer'] ?? '',
-        DateFormat('yyyy/MM/dd HH:mm').format(data['created_time'].toDate()),
+        data['created_time'] != null
+            ? DateFormat('yyyy/MM/dd HH:mm')
+                .format(data['created_time'].toDate())
+            : '',
         (data['violation_name'] as List<dynamic>?)?.join(', ') ?? '',
         (data['violation_section'] as List<dynamic>?)?.join(', ') ?? '',
         (data['violation_fine'] as List<dynamic>?)?.join(', ') ?? '',
         data['violation_total_fine']?.toString() ?? '',
-        data['edited_time']?.toDate()?.toString() ?? ''
+        data['edited_time'] != null
+            ? DateFormat('yyyy/MM/dd HH:mm')
+                .format(data['edited_time'].toDate())
+            : '',
       ]);
     }
 
     // Convert to CSV string
     String csvString = const ListToCsvConverter().convert(csvData);
 
-    // Create and download file
+    // Create and download file (Web)
     final bytes = utf8.encode(csvString);
     final blob = html.Blob([bytes]);
     final url = html.Url.createObjectUrlFromBlob(blob);
@@ -96,13 +107,23 @@ Future citaionExportToCSV() async {
 
     html.document.body?.children.add(anchor);
     anchor.click();
-
     html.document.body?.children.remove(anchor);
     html.Url.revokeObjectUrl(url);
 
-    print('CSV export completed successfully');
+    // ✅ Success message (themed)
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('✅ Citation data exported successfully!'),
+        backgroundColor: FlutterFlowTheme.of(context).success,
+      ),
+    );
   } catch (e) {
-    print('Error exporting data to CSV: $e');
-    throw Exception('Failed to export data: $e');
+    // ❌ Error message (themed)
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('❌ Failed to export citation data: $e'),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
+    );
   }
 }

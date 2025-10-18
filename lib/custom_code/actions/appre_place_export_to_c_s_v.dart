@@ -14,11 +14,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csv/csv.dart';
 import 'package:intl/intl.dart';
 
-Future<void> enforcerExportToCSV(BuildContext context) async {
+Future<void> apprePlaceExportToCSV(BuildContext context) async {
   try {
     // 🔹 Fetch data from Firestore
     final querySnapshot =
-        await FirebaseFirestore.instance.collection('users').get();
+        await FirebaseFirestore.instance.collection('apprPlace').get();
 
     if (querySnapshot.docs.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -39,14 +39,11 @@ Future<void> enforcerExportToCSV(BuildContext context) async {
     // 🔹 Prepare CSV headers
     final List<List<dynamic>> csvData = [
       [
-        'Enforcer ID',
-        'Badge #',
-        'First Name',
-        'Last Name',
-        'Email',
-        'Gender',
-        'Phone #',
-        'Account Status',
+        'Apprehension Place ID',
+        'Landmark',
+        'Barangay',
+        'Purok',
+        'Street',
         'Edited Time',
         'Created Time',
       ]
@@ -68,13 +65,10 @@ Future<void> enforcerExportToCSV(BuildContext context) async {
 
       csvData.add([
         doc.id,
-        data['badge_number'] ?? '',
-        data['display_name'] ?? '',
-        data['last_name'] ?? '',
-        data['email'] ?? '',
-        data['gender'] ?? '',
-        data['phone_num'] ?? '',
-        data['acc_status'] ?? '',
+        data['landmark'] ?? '',
+        data['barangay'] ?? '',
+        data['purok'] ?? '',
+        data['street'] ?? '',
         edited,
         created,
       ]);
@@ -91,7 +85,7 @@ Future<void> enforcerExportToCSV(BuildContext context) async {
     final anchor = html.AnchorElement(href: url)
       ..style.display = 'none'
       ..download =
-          'enforcer_export_${DateTime.now().millisecondsSinceEpoch}.csv';
+          'appre_placce_export_${DateTime.now().millisecondsSinceEpoch}.csv';
 
     html.document.body?.children.add(anchor);
     anchor.click();

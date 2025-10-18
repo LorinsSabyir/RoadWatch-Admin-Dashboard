@@ -958,7 +958,9 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        await actions.citaionExportToCSV();
+                                        await actions.citationExportToCSV(
+                                          context,
+                                        );
                                       },
                                       text: 'Download CSV',
                                       options: FFButtonOptions(
