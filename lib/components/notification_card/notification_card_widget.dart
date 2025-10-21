@@ -14,6 +14,7 @@ class NotificationCardWidget extends StatefulWidget {
     this.confirmAct,
     this.deleteAct,
     this.notifRef,
+    this.enforcerRef,
   });
 
   final String? status;
@@ -22,6 +23,7 @@ class NotificationCardWidget extends StatefulWidget {
   final Future Function()? confirmAct;
   final Future Function()? deleteAct;
   final DocumentReference? notifRef;
+  final DocumentReference? enforcerRef;
 
   @override
   State<NotificationCardWidget> createState() => _NotificationCardWidgetState();

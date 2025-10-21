@@ -1,6 +1,7 @@
 import '/components/account_user_dropdown/account_user_dropdown_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/modals/notification_drawer/notification_drawer_widget.dart';
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,9 @@ class SideNavWidget extends StatefulWidget {
   const SideNavWidget({
     super.key,
     required this.selectedNav,
-    this.notifDrawer,
   });
 
   final int? selectedNav;
-  final Future Function()? notifDrawer;
 
   @override
   State<SideNavWidget> createState() => _SideNavWidgetState();
@@ -151,19 +150,37 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                       ),
                                     ],
                                   ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await widget.notifDrawer?.call();
-                                    },
-                                    child: Icon(
-                                      Icons.notifications,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30.0,
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(1.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: NotificationDrawerWidget(),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Icon(
+                                        Icons.notifications,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 30.0,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -849,8 +866,8 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                 barrierColor: Color(0x4C606A85),
                                 context: context,
                                 isGlobal: false,
-                                avoidOverflow: true,
-                                targetAnchor: AlignmentDirectional(0.0, 1.0)
+                                avoidOverflow: false,
+                                targetAnchor: AlignmentDirectional(1.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 followerAnchor: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),

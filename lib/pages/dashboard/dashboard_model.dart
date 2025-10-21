@@ -1,7 +1,6 @@
 import '/components/dashboard_card/dashboard_card_widget.dart';
-import '/components/notification_card/notification_card_widget.dart';
-import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/modals/side_nav/side_nav_widget.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
@@ -16,17 +15,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late DashboardCardModel totalCitationModel;
   // Model for CitationsToday.
   late DashboardCardModel citationsTodayModel;
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
-
-  // Models for NotificationCard dynamic component.
-  late FlutterFlowDynamicModels<NotificationCardModel> notificationCardModels1;
-  // Models for NotificationCard dynamic component.
-  late FlutterFlowDynamicModels<NotificationCardModel> notificationCardModels2;
 
   @override
   void initState(BuildContext context) {
@@ -34,10 +22,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     columnController = ScrollController();
     totalCitationModel = createModel(context, () => DashboardCardModel());
     citationsTodayModel = createModel(context, () => DashboardCardModel());
-    notificationCardModels1 =
-        FlutterFlowDynamicModels(() => NotificationCardModel());
-    notificationCardModels2 =
-        FlutterFlowDynamicModels(() => NotificationCardModel());
   }
 
   @override
@@ -46,8 +30,5 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     columnController?.dispose();
     totalCitationModel.dispose();
     citationsTodayModel.dispose();
-    tabBarController?.dispose();
-    notificationCardModels1.dispose();
-    notificationCardModels2.dispose();
   }
 }

@@ -65,11 +65,7 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
         final containerCitationRecord = snapshot.data!;
 
         return Container(
-          width: MediaQuery.sizeOf(context).width * 0.699,
-          height: MediaQuery.sizeOf(context).height * 1.0,
-          constraints: BoxConstraints(
-            maxWidth: 430.0,
-          ),
+          width: 500.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
             borderRadius: BorderRadius.circular(12.0),
@@ -123,190 +119,20 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                             .fontStyle,
                                       ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Purok',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    Text(
-                                      containerCitationRecord
-                                          .violatorAddressPrk,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Brgy.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    Text(
-                                      containerCitationRecord
-                                          .violatorAddressBrgy,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    Text(
-                                      containerCitationRecord
-                                          .violatorAddressCity,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    Text(
-                                      containerCitationRecord
-                                          .violatorAddressProvince,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
                                 Text(
                                   containerCitationRecord.violatorPhoneNum,
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
                                         font: GoogleFonts.plusJakartaSans(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelLarge
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelLarge
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelLarge
-                                            .fontWeight,
+                                        fontWeight: FontWeight.normal,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .fontStyle,
@@ -318,19 +144,33 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       .labelLarge
                                       .override(
                                         font: GoogleFonts.plusJakartaSans(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelLarge
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelLarge
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
+                                        fontWeight: FontWeight.normal,
+                                        fontStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
-                                            .fontWeight,
+                                            .fontStyle,
+                                      ),
+                                ),
+                                Text(
+                                  '${containerCitationRecord.violatorAddressPrk}, ${containerCitationRecord.violatorAddressBrgy}, ${containerCitationRecord.violatorAddressCity}, ${containerCitationRecord.violatorAddressProvince}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.plusJakartaSans(
+                                          fontWeight: FontWeight.normal,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .fontStyle,
@@ -379,20 +219,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -403,30 +237,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       containerCitationRecord
                                           .violatorLicenseNum,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -438,20 +266,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -461,30 +283,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     Text(
                                       containerCitationRecord.confUnitPlateNum,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -496,20 +312,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -519,30 +329,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     Text(
                                       containerCitationRecord.confUnitSerialNum,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                               ].divide(SizedBox(height: 4.0)),
                             ),
@@ -560,20 +364,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -583,30 +381,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     Text(
                                       containerCitationRecord.confUnitType,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -618,20 +410,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -641,30 +427,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     Text(
                                       containerCitationRecord.confUnitBrand,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -676,20 +456,14 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           .labelLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelLarge
@@ -699,30 +473,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     Text(
                                       containerCitationRecord.confUnitModel,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleLarge
                                           .override(
                                             font: GoogleFonts.plusJakartaSans(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .titleLarge
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyLarge
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                               ].divide(SizedBox(height: 4.0)),
                             ),
@@ -748,43 +516,38 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                 Text(
                                   'Enforcer Name:',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .labelLarge
                                       .override(
                                         font: GoogleFonts.plusJakartaSans(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                                  .labelLarge
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
+                                        fontWeight: FontWeight.normal,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .labelLarge
                                             .fontStyle,
                                       ),
                                 ),
                                 Text(
                                   containerCitationRecord.appreEnforcer,
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
+                                      .titleLarge
                                       .override(
                                         font: GoogleFonts.plusJakartaSans(
                                           fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyLarge
+                                                  .titleLarge
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                            .titleLarge
                                             .fontStyle,
                                       ),
                                 ),
@@ -798,26 +561,20 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                   child: Text(
                                     'Title',
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                        .titleLarge
                                         .override(
                                           font: GoogleFonts.plusJakartaSans(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleLarge
                                                   .fontStyle,
                                         ),
                                   ),
@@ -827,26 +584,20 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                   child: Text(
                                     'Name',
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                        .titleLarge
                                         .override(
                                           font: GoogleFonts.plusJakartaSans(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleLarge
                                                   .fontStyle,
                                         ),
                                   ),
@@ -857,26 +608,20 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                     'Fine',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                        .titleLarge
                                         .override(
                                           font: GoogleFonts.plusJakartaSans(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleLarge
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleLarge
                                                   .fontStyle,
                                         ),
                                   ),
@@ -911,31 +656,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           return Text(
                                             violationSectionItem,
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .labelLarge
                                                 .override(
                                                   font: GoogleFonts
                                                       .plusJakartaSans(
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
+                                                        FontWeight.normal,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyMedium
+                                                            .labelLarge
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
+                                                  fontWeight: FontWeight.normal,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyMedium
+                                                          .labelLarge
                                                           .fontStyle,
                                                 ),
                                           );
@@ -967,31 +705,24 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           return Text(
                                             violationNameItem,
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .labelLarge
                                                 .override(
                                                   font: GoogleFonts
                                                       .plusJakartaSans(
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
+                                                        FontWeight.normal,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyMedium
+                                                            .labelLarge
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
+                                                  fontWeight: FontWeight.normal,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyMedium
+                                                          .labelLarge
                                                           .fontStyle,
                                                 ),
                                           );
@@ -1027,31 +758,25 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                               violationFineItem.toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .labelLarge
                                                       .override(
                                                         font: GoogleFonts
                                                             .plusJakartaSans(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
+                                                              FontWeight.normal,
                                                           fontStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium
+                                                                  .labelLarge
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
+                                                            FontWeight.normal,
                                                         fontStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
+                                                                .labelLarge
                                                                 .fontStyle,
                                                       ),
                                             ),
@@ -1071,7 +796,7 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                       thickness: 2.0,
                       color: FlutterFlowTheme.of(context).alternate,
                     ),
-                  ].divide(SizedBox(height: 32.0)),
+                  ].divide(SizedBox(height: 16.0)),
                 ),
               ),
             ),
