@@ -298,7 +298,6 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget> {
                                                             record
                                                                 .violatorName,
                                                             record.apprePlace,
-                                                            record.recieptNum,
                                                             record
                                                                 .appreEnforcer,
                                                             record

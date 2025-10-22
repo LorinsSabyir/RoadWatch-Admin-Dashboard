@@ -1093,7 +1093,8 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                                 Expanded(
                                                                   flex: 4,
                                                                   child: Text(
-                                                                    '${noSearchItem.assignmentLandmark}, ${noSearchItem.assignmentBrgy}, ${noSearchItem.assignmentPrk}, ${noSearchItem.assignmentStreet}'
+                                                                    noSearchItem
+                                                                        .assignmentAddress
                                                                         .maybeHandleOverflow(
                                                                       maxChars:
                                                                           30,
@@ -1605,11 +1606,9 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                                 Expanded(
                                                                   flex: 4,
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      '${resultItem.assignmentLandmark}, ${resultItem.assignmentBrgy}, ${resultItem.assignmentPrk}, ${resultItem.assignmentStreet}',
-                                                                      'Assignment',
-                                                                    ).maybeHandleOverflow(
+                                                                    resultItem
+                                                                        .assignmentAddress
+                                                                        .maybeHandleOverflow(
                                                                       maxChars:
                                                                           30,
                                                                       replacement:

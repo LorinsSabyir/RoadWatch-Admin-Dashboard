@@ -75,26 +75,6 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get lastActive => _lastActive;
   bool hasLastActive() => _lastActive != null;
 
-  // "assignment_prk" field.
-  String? _assignmentPrk;
-  String get assignmentPrk => _assignmentPrk ?? '';
-  bool hasAssignmentPrk() => _assignmentPrk != null;
-
-  // "assignment_brgy" field.
-  String? _assignmentBrgy;
-  String get assignmentBrgy => _assignmentBrgy ?? '';
-  bool hasAssignmentBrgy() => _assignmentBrgy != null;
-
-  // "assignment_landmark" field.
-  String? _assignmentLandmark;
-  String get assignmentLandmark => _assignmentLandmark ?? '';
-  bool hasAssignmentLandmark() => _assignmentLandmark != null;
-
-  // "assignment_street" field.
-  String? _assignmentStreet;
-  String get assignmentStreet => _assignmentStreet ?? '';
-  bool hasAssignmentStreet() => _assignmentStreet != null;
-
   // "gender" field.
   String? _gender;
   String get gender => _gender ?? '';
@@ -115,6 +95,11 @@ class UsersRecord extends FirestoreRecord {
   String get role => _role ?? '';
   bool hasRole() => _role != null;
 
+  // "assignment_address" field.
+  String? _assignmentAddress;
+  String get assignmentAddress => _assignmentAddress ?? '';
+  bool hasAssignmentAddress() => _assignmentAddress != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -128,14 +113,11 @@ class UsersRecord extends FirestoreRecord {
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _accStatus = snapshotData['acc_status'] as String?;
     _lastActive = snapshotData['last_active'] as DateTime?;
-    _assignmentPrk = snapshotData['assignment_prk'] as String?;
-    _assignmentBrgy = snapshotData['assignment_brgy'] as String?;
-    _assignmentLandmark = snapshotData['assignment_landmark'] as String?;
-    _assignmentStreet = snapshotData['assignment_street'] as String?;
     _gender = snapshotData['gender'] as String?;
     _assignmentTime = snapshotData['assignment_time'] as DateTime?;
     _lastName = snapshotData['last_name'] as String?;
     _role = snapshotData['role'] as String?;
+    _assignmentAddress = snapshotData['assignment_address'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -184,14 +166,11 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? editedTime,
   String? accStatus,
   DateTime? lastActive,
-  String? assignmentPrk,
-  String? assignmentBrgy,
-  String? assignmentLandmark,
-  String? assignmentStreet,
   String? gender,
   DateTime? assignmentTime,
   String? lastName,
   String? role,
+  String? assignmentAddress,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -207,14 +186,11 @@ Map<String, dynamic> createUsersRecordData({
       'edited_time': editedTime,
       'acc_status': accStatus,
       'last_active': lastActive,
-      'assignment_prk': assignmentPrk,
-      'assignment_brgy': assignmentBrgy,
-      'assignment_landmark': assignmentLandmark,
-      'assignment_street': assignmentStreet,
       'gender': gender,
       'assignment_time': assignmentTime,
       'last_name': lastName,
       'role': role,
+      'assignment_address': assignmentAddress,
     }.withoutNulls,
   );
 
@@ -238,14 +214,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.editedTime == e2?.editedTime &&
         e1?.accStatus == e2?.accStatus &&
         e1?.lastActive == e2?.lastActive &&
-        e1?.assignmentPrk == e2?.assignmentPrk &&
-        e1?.assignmentBrgy == e2?.assignmentBrgy &&
-        e1?.assignmentLandmark == e2?.assignmentLandmark &&
-        e1?.assignmentStreet == e2?.assignmentStreet &&
         e1?.gender == e2?.gender &&
         e1?.assignmentTime == e2?.assignmentTime &&
         e1?.lastName == e2?.lastName &&
-        e1?.role == e2?.role;
+        e1?.role == e2?.role &&
+        e1?.assignmentAddress == e2?.assignmentAddress;
   }
 
   @override
@@ -262,14 +235,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.editedTime,
         e?.accStatus,
         e?.lastActive,
-        e?.assignmentPrk,
-        e?.assignmentBrgy,
-        e?.assignmentLandmark,
-        e?.assignmentStreet,
         e?.gender,
         e?.assignmentTime,
         e?.lastName,
-        e?.role
+        e?.role,
+        e?.assignmentAddress
       ]);
 
   @override

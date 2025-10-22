@@ -55,6 +55,16 @@ class AdminNotifRecord extends FirestoreRecord {
   String get notifType => _notifType ?? '';
   bool hasNotifType() => _notifType != null;
 
+  // "assignment_address" field.
+  String? _assignmentAddress;
+  String get assignmentAddress => _assignmentAddress ?? '';
+  bool hasAssignmentAddress() => _assignmentAddress != null;
+
+  // "assignment_time" field.
+  DateTime? _assignmentTime;
+  DateTime? get assignmentTime => _assignmentTime;
+  bool hasAssignmentTime() => _assignmentTime != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _subtitle = snapshotData['subtitle'] as String?;
@@ -64,6 +74,8 @@ class AdminNotifRecord extends FirestoreRecord {
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _enforcerId = snapshotData['enforcer_id'] as DocumentReference?;
     _notifType = snapshotData['notif_type'] as String?;
+    _assignmentAddress = snapshotData['assignment_address'] as String?;
+    _assignmentTime = snapshotData['assignment_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +121,8 @@ Map<String, dynamic> createAdminNotifRecordData({
   DateTime? editedTime,
   DocumentReference? enforcerId,
   String? notifType,
+  String? assignmentAddress,
+  DateTime? assignmentTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -120,6 +134,8 @@ Map<String, dynamic> createAdminNotifRecordData({
       'edited_time': editedTime,
       'enforcer_id': enforcerId,
       'notif_type': notifType,
+      'assignment_address': assignmentAddress,
+      'assignment_time': assignmentTime,
     }.withoutNulls,
   );
 
@@ -138,7 +154,9 @@ class AdminNotifRecordDocumentEquality implements Equality<AdminNotifRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.editedTime == e2?.editedTime &&
         e1?.enforcerId == e2?.enforcerId &&
-        e1?.notifType == e2?.notifType;
+        e1?.notifType == e2?.notifType &&
+        e1?.assignmentAddress == e2?.assignmentAddress &&
+        e1?.assignmentTime == e2?.assignmentTime;
   }
 
   @override
@@ -150,7 +168,9 @@ class AdminNotifRecordDocumentEquality implements Equality<AdminNotifRecord> {
         e?.createdTime,
         e?.editedTime,
         e?.enforcerId,
-        e?.notifType
+        e?.notifType,
+        e?.assignmentAddress,
+        e?.assignmentTime
       ]);
 
   @override

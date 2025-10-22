@@ -1,3 +1,5 @@
+import '/backend/backend.dart';
+import '/components/confirm_modal/confirm_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,7 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
       padding: EdgeInsets.all(16.0),
       child: Container(
         width: 300.0,
-        height: 200.0,
+        height: 170.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           boxShadow: [
@@ -111,83 +113,77 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Icon(
-                          Icons.edit_sharp,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 20.0,
+            Divider(
+              thickness: 2.0,
+              color: FlutterFlowTheme.of(context).alternate,
+            ),
+            Builder(
+              builder: (context) => InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return Dialog(
+                        elevation: 0,
+                        insetPadding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        alignment: AlignmentDirectional(0.0, 0.0)
+                            .resolve(Directionality.of(context)),
+                        child: ConfirmModalWidget(
+                          icon: Icon(
+                            Icons.task_alt,
+                            color: FlutterFlowTheme.of(context).success,
+                            size: 50.0,
+                          ),
+                          title: 'Confirm Payment?',
+                          subtitle:
+                              'Are you sure you want to proceed with this payment?',
+                          button: 'Confirm',
+                          buttonColor: FlutterFlowTheme.of(context).success,
+                          primaryButtonAction: () async {
+                            await widget.violatorRef!
+                                .update(createCitationRecordData(
+                              receiptStatus: false,
+                            ));
+                            Navigator.pop(context);
+                          },
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
+                      );
+                    },
+                  );
+
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Edit',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
+                          child: Icon(
+                            Icons.payments_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 20.0,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Icon(
-                        Icons.payments_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 20.0,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Reciept Status',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Reciept Status',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     font: GoogleFonts.plusJakartaSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -204,16 +200,14 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            Divider(
-              thickness: 1.0,
-              color: FlutterFlowTheme.of(context).alternate,
             ),
             InkWell(
               splashColor: Colors.transparent,
@@ -275,7 +269,7 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                 ),
               ),
             ),
-          ],
+          ].divide(SizedBox(height: 4.0)),
         ),
       ),
     );

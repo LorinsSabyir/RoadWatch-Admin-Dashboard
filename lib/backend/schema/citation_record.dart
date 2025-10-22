@@ -61,11 +61,6 @@ class CitationRecord extends FirestoreRecord {
   String get violatorName => _violatorName ?? '';
   bool hasViolatorName() => _violatorName != null;
 
-  // "reciept_num" field.
-  String? _recieptNum;
-  String get recieptNum => _recieptNum ?? '';
-  bool hasRecieptNum() => _recieptNum != null;
-
   // "appre_enforcer" field.
   String? _appreEnforcer;
   String get appreEnforcer => _appreEnforcer ?? '';
@@ -176,7 +171,6 @@ class CitationRecord extends FirestoreRecord {
     _appreTime = snapshotData['appre_time'] as String?;
     _apprePlace = snapshotData['appre_place'] as String?;
     _violatorName = snapshotData['violator_name'] as String?;
-    _recieptNum = snapshotData['reciept_num'] as String?;
     _appreEnforcer = snapshotData['appre_enforcer'] as String?;
     _id = snapshotData['id'] as String?;
     _violationSection = getDataList(snapshotData['violation_section']);
@@ -245,7 +239,6 @@ Map<String, dynamic> createCitationRecordData({
   String? appreTime,
   String? apprePlace,
   String? violatorName,
-  String? recieptNum,
   String? appreEnforcer,
   String? id,
   bool? receiptStatus,
@@ -275,7 +268,6 @@ Map<String, dynamic> createCitationRecordData({
       'appre_time': appreTime,
       'appre_place': apprePlace,
       'violator_name': violatorName,
-      'reciept_num': recieptNum,
       'appre_enforcer': appreEnforcer,
       'id': id,
       'receipt_status': receiptStatus,
@@ -314,7 +306,6 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e1?.appreTime == e2?.appreTime &&
         e1?.apprePlace == e2?.apprePlace &&
         e1?.violatorName == e2?.violatorName &&
-        e1?.recieptNum == e2?.recieptNum &&
         e1?.appreEnforcer == e2?.appreEnforcer &&
         e1?.id == e2?.id &&
         listEquality.equals(e1?.violationSection, e2?.violationSection) &&
@@ -348,7 +339,6 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.appreTime,
         e?.apprePlace,
         e?.violatorName,
-        e?.recieptNum,
         e?.appreEnforcer,
         e?.id,
         e?.violationSection,

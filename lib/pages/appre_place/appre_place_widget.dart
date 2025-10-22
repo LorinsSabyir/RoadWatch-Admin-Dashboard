@@ -733,41 +733,6 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                 Expanded(
                                                   flex: 1,
                                                   child: Text(
-                                                    'Active Count',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
                                                     'Actions',
                                                     textAlign: TextAlign.end,
                                                     style: FlutterFlowTheme.of(
@@ -919,46 +884,6 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                                             .titleLarge
                                                                             .fontStyle,
                                                                       ),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              flex: 1,
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  noSearchItem
-                                                                      .activeCount
-                                                                      .toString(),
-                                                                  '0',
-                                                                ).maybeHandleOverflow(
-                                                                  maxChars: 15,
-                                                                  replacement:
-                                                                      '…',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      fontSize:
-                                                                          18.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
@@ -1209,46 +1134,6 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                                             .titleLarge
                                                                             .fontStyle,
                                                                       ),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              flex: 1,
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  resultItem
-                                                                      .activeCount
-                                                                      .toString(),
-                                                                  '0',
-                                                                ).maybeHandleOverflow(
-                                                                  maxChars: 15,
-                                                                  replacement:
-                                                                      '…',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      fontSize:
-                                                                          18.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
