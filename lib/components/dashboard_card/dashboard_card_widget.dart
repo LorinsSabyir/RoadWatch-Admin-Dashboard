@@ -8,16 +8,14 @@ export 'dashboard_card_model.dart';
 class DashboardCardWidget extends StatefulWidget {
   const DashboardCardWidget({
     super.key,
-    this.cardTitle,
-    this.cardValue,
-    this.cardTrend,
-    this.cardPercent,
+    this.title,
+    this.value,
+    this.percent,
   });
 
-  final String? cardTitle;
-  final int? cardValue;
-  final Widget? cardTrend;
-  final int? cardPercent;
+  final String? title;
+  final int? value;
+  final double? percent;
 
   @override
   State<DashboardCardWidget> createState() => _DashboardCardWidgetState();
@@ -50,6 +48,7 @@ class _DashboardCardWidgetState extends State<DashboardCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 275.0,
       height: 100.0,
       constraints: BoxConstraints(
         maxWidth: 350.0,
@@ -63,47 +62,46 @@ class _DashboardCardWidgetState extends State<DashboardCardWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        padding: EdgeInsets.all(16.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    valueOrDefault<String>(
-                      widget.cardTitle,
-                      'Total Citations',
-                    ),
-                    style: FlutterFlowTheme.of(context).labelSmall.override(
-                          font: GoogleFonts.plusJakartaSans(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .fontStyle,
-                          ),
-                          letterSpacing: 0.0,
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  valueOrDefault<String>(
+                    widget.title,
+                    'Total Citations',
+                  ),
+                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                        font: GoogleFonts.plusJakartaSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .labelSmall
                               .fontWeight,
                           fontStyle:
                               FlutterFlowTheme.of(context).labelSmall.fontStyle,
                         ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                      ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                      child: Text(
                         valueOrDefault<String>(
-                          widget.cardValue.toString(),
+                          widget.value.toString(),
                           '1,500',
                         ),
                         style:
@@ -125,53 +123,79 @@ class _DashboardCardWidgetState extends State<DashboardCardWidget> {
                                       .fontStyle,
                                 ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        if (widget.percent! > 0.0)
                           Icon(
                             Icons.arrow_drop_up,
                             color: FlutterFlowTheme.of(context).success,
                             size: 18.0,
                           ),
-                          Text(
-                            valueOrDefault<String>(
-                              formatNumber(
-                                widget.cardPercent,
-                                formatType: FormatType.percent,
-                              ),
-                              '16.00',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context).success,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
+                        if (widget.percent! <= 0.0)
+                          Icon(
+                            Icons.arrow_drop_down,
+                            color: FlutterFlowTheme.of(context).error,
+                            size: 18.0,
                           ),
-                        ],
+                      ],
+                    ),
+                    Text(
+                      valueOrDefault<String>(
+                        formatNumber(
+                          widget.percent,
+                          formatType: FormatType.percent,
+                        ),
+                        '16.00',
                       ),
-                    ],
-                  ),
-                ].divide(SizedBox(height: 4.0)),
-              ),
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            font: GoogleFonts.plusJakartaSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontStyle,
+                          ),
+                    ),
+                  ],
+                ),
+              ].divide(SizedBox(height: 4.0)),
             ),
-            widget.cardTrend!,
-          ].divide(SizedBox(width: 16.0)),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (widget.percent! <= 0.0)
+                      Icon(
+                        Icons.trending_down_rounded,
+                        color: FlutterFlowTheme.of(context).error,
+                        size: 40.0,
+                      ),
+                    if (widget.percent! > 0.0)
+                      Icon(
+                        Icons.trending_up_rounded,
+                        color: FlutterFlowTheme.of(context).success,
+                        size: 40.0,
+                      ),
+                  ],
+                ),
+              ].divide(SizedBox(width: 8.0)),
+            ),
+          ],
         ),
       ),
     );

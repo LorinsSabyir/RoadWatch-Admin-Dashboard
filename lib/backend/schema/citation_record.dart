@@ -161,6 +161,16 @@ class CitationRecord extends FirestoreRecord {
   String get confUnitType => _confUnitType ?? '';
   bool hasConfUnitType() => _confUnitType != null;
 
+  // "violator_pic_url" field.
+  String? _violatorPicUrl;
+  String get violatorPicUrl => _violatorPicUrl ?? '';
+  bool hasViolatorPicUrl() => _violatorPicUrl != null;
+
+  // "control_num" field.
+  String? _controlNum;
+  String get controlNum => _controlNum ?? '';
+  bool hasControlNum() => _controlNum != null;
+
   void _initializeFields() {
     _citationNumber = snapshotData['citation_number'] as String?;
     _confUnitSerialNum = snapshotData['conf_unit_serial_num'] as String?;
@@ -193,6 +203,8 @@ class CitationRecord extends FirestoreRecord {
         castToType<double>(snapshotData['violation_total_fine']);
     _violatorGender = snapshotData['violator_gender'] as String?;
     _confUnitType = snapshotData['conf_unit_type'] as String?;
+    _violatorPicUrl = snapshotData['violator_pic_url'] as String?;
+    _controlNum = snapshotData['control_num'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -256,6 +268,8 @@ Map<String, dynamic> createCitationRecordData({
   double? violationTotalFine,
   String? violatorGender,
   String? confUnitType,
+  String? violatorPicUrl,
+  String? controlNum,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -285,6 +299,8 @@ Map<String, dynamic> createCitationRecordData({
       'violation_total_fine': violationTotalFine,
       'violator_gender': violatorGender,
       'conf_unit_type': confUnitType,
+      'violator_pic_url': violatorPicUrl,
+      'control_num': controlNum,
     }.withoutNulls,
   );
 
@@ -325,7 +341,9 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         listEquality.equals(e1?.violationName, e2?.violationName) &&
         e1?.violationTotalFine == e2?.violationTotalFine &&
         e1?.violatorGender == e2?.violatorGender &&
-        e1?.confUnitType == e2?.confUnitType;
+        e1?.confUnitType == e2?.confUnitType &&
+        e1?.violatorPicUrl == e2?.violatorPicUrl &&
+        e1?.controlNum == e2?.controlNum;
   }
 
   @override
@@ -358,7 +376,9 @@ class CitationRecordDocumentEquality implements Equality<CitationRecord> {
         e?.violationName,
         e?.violationTotalFine,
         e?.violatorGender,
-        e?.confUnitType
+        e?.confUnitType,
+        e?.violatorPicUrl,
+        e?.controlNum
       ]);
 
   @override

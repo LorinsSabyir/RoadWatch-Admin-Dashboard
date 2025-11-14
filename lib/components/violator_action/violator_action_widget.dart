@@ -147,7 +147,7 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                           primaryButtonAction: () async {
                             await widget.violatorRef!
                                 .update(createCitationRecordData(
-                              receiptStatus: false,
+                              receiptStatus: true,
                             ));
                             Navigator.pop(context);
                           },
@@ -155,8 +155,6 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                       );
                     },
                   );
-
-                  Navigator.pop(context);
                 },
                 child: Container(
                   width: double.infinity,
@@ -180,7 +178,7 @@ class _ViolatorActionWidgetState extends State<ViolatorActionWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Reciept Status',
+                              'Confirm Payment',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

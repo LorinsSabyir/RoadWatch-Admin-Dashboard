@@ -907,23 +907,6 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 12.0, 12.0),
-                                      child: Container(
-                                        width: 4.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: widget.selectedNav == 9
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .accent1,
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                      ),
-                                    ),
                                     Icon(
                                       Icons.settings_sharp,
                                       color: FlutterFlowTheme.of(context)

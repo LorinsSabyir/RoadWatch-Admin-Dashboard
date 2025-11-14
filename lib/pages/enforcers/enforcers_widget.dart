@@ -63,17 +63,19 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<List<UsersRecord>>(
-      stream: queryUsersRecord(
-        queryBuilder: (usersRecord) => usersRecord
-            .where(
-              'acc_status',
-              isEqualTo: 'active',
-            )
-            .where(
-              'role',
-              isEqualTo: 'user',
-            )
-            .orderBy('display_name'),
+      stream: FFAppState().enforcerPageCache(
+        requestFn: () => queryUsersRecord(
+          queryBuilder: (usersRecord) => usersRecord
+              .where(
+                'acc_status',
+                isEqualTo: 'active',
+              )
+              .where(
+                'role',
+                isEqualTo: 'user',
+              )
+              .orderBy('display_name'),
+        ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -499,1336 +501,1161 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 0.0),
+                                padding: EdgeInsets.all(16.0),
                                 child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x35000000),
-                                        offset: Offset(
-                                          0.0,
-                                          1.0,
+                                  decoration: BoxDecoration(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 3.0,
+                                              color: Color(0x35000000),
+                                              offset: Offset(
+                                                0.0,
+                                                1.0,
+                                              ),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          border: Border.all(
+                                            color:
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
+                                            width: 1.0,
+                                          ),
                                         ),
-                                      )
+                                        child: Padding(
+                                          padding: EdgeInsets.all(16.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: double.infinity,
+                                                height: 40.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .accent1,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(0.0),
+                                                    bottomRight:
+                                                        Radius.circular(0.0),
+                                                    topLeft:
+                                                        Radius.circular(8.0),
+                                                    topRight:
+                                                        Radius.circular(8.0),
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(16.0, 0.0,
+                                                              16.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(
+                                                          '#',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 3,
+                                                        child: Text(
+                                                          'Enforcer Name',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(
+                                                          'Badge #',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                          'Citations Issued',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 4,
+                                                        child: Text(
+                                                          'Assignment',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(
+                                                          'Status',
+                                                          textAlign: TextAlign
+                                                              .center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                          'Actions',
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              if (!FFAppState()
+                                                  .searchIsActive)
+                                                Builder(
+                                                  builder: (context) {
+                                                    final noSearch =
+                                                        enforcersUsersRecordList
+                                                            .toList();
+
+                                                    return ListView.builder(
+                                                      padding:
+                                                          EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          noSearch.length,
+                                                      itemBuilder: (context,
+                                                          noSearchIndex) {
+                                                        final noSearchItem =
+                                                            noSearch[
+                                                                noSearchIndex];
+                                                        return Builder(
+                                                          builder:
+                                                              (context) =>
+                                                                  Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        1.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap:
+                                                                  () async {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets.zero,
+                                                                      backgroundColor:
+                                                                          Colors.transparent,
+                                                                      alignment:
+                                                                          AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                      child:
+                                                                          GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(dialogContext).unfocus();
+                                                                          FocusManager.instance.primaryFocus?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            ViewEnforcerWidget(
+                                                                          enforcerRef:
+                                                                              noSearchItem.reference,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                              child:
+                                                                  Container(
+                                                                width: 100.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          0.0,
+                                                                      color: FlutterFlowTheme.of(context)
+                                                                          .primaryBackground,
+                                                                      offset:
+                                                                          Offset(
+                                                                        0.0,
+                                                                        1.0,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                child:
+                                                                    Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                        tablet:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              1,
+                                                                          child:
+                                                                              Text(
+                                                                            noSearchIndex.toString(),
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  font: GoogleFonts.plusJakartaSans(
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            3,
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              valueOrDefault<String>(
+                                                                                '${noSearchItem.displayName} ${noSearchItem.lastName}',
+                                                                                'Name',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                    ),
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              noSearchItem.email,
+                                                                              style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                    ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                        tablet:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              1,
+                                                                          child:
+                                                                              Text(
+                                                                            noSearchItem.badgeNumber,
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  font: GoogleFonts.plusJakartaSans(
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              2,
+                                                                          child:
+                                                                              FutureBuilder<int>(
+                                                                            future: queryCitationRecordCount(
+                                                                              queryBuilder: (citationRecord) => citationRecord.where(
+                                                                                'appre_enforcer',
+                                                                                isEqualTo: noSearchItem.displayName,
+                                                                              ),
+                                                                            ),
+                                                                            builder: (context, snapshot) {
+                                                                              // Customize what your widget looks like when it's loading.
+                                                                              if (!snapshot.hasData) {
+                                                                                return Center(
+                                                                                  child: SizedBox(
+                                                                                    width: 50.0,
+                                                                                    height: 50.0,
+                                                                                    child: CircularProgressIndicator(
+                                                                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                                                                        FlutterFlowTheme.of(context).primary,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              }
+                                                                              int textCount = snapshot.data!;
+
+                                                                              return Text(
+                                                                                valueOrDefault<String>(
+                                                                                  textCount.toString(),
+                                                                                  '0',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                    ),
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            4,
+                                                                        child:
+                                                                            Text(
+                                                                          noSearchItem.assignmentAddress.maybeHandleOverflow(
+                                                                            maxChars: 30,
+                                                                            replacement: '…',
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            1,
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            if (noSearchItem.status == true)
+                                                                              wrapWithModel(
+                                                                                model: _model.statusModels1.getModel(
+                                                                                  noSearchItem.status.toString(),
+                                                                                  noSearchIndex,
+                                                                                ),
+                                                                                updateCallback: () => safeSetState(() {}),
+                                                                                child: StatusWidget(
+                                                                                  key: Key(
+                                                                                    'Key7h3_${noSearchItem.status.toString()}',
+                                                                                  ),
+                                                                                  text: 'Active',
+                                                                                  fillColor: FlutterFlowTheme.of(context).success,
+                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                  action: () async {},
+                                                                                ),
+                                                                              ),
+                                                                            if (noSearchItem.status == false)
+                                                                              wrapWithModel(
+                                                                                model: _model.statusModels2.getModel(
+                                                                                  noSearchItem.status.toString(),
+                                                                                  noSearchIndex,
+                                                                                ),
+                                                                                updateCallback: () => safeSetState(() {}),
+                                                                                child: StatusWidget(
+                                                                                  key: Key(
+                                                                                    'Key22g_${noSearchItem.status.toString()}',
+                                                                                  ),
+                                                                                  text: 'Inactive',
+                                                                                  fillColor: FlutterFlowTheme.of(context).error,
+                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                  action: () async {},
+                                                                                ),
+                                                                              ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            2,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.end,
+                                                                          children:
+                                                                              [
+                                                                            Builder(
+                                                                              builder: (context) => FlutterFlowIconButton(
+                                                                                borderRadius: 50.0,
+                                                                                buttonSize: 40.0,
+                                                                                icon: Icon(
+                                                                                  Icons.person_add,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        elevation: 0,
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () {
+                                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                                          },
+                                                                                          child: EnforcerAssignmentModalWidget(
+                                                                                            enforcerId: noSearchItem.reference,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                            Builder(
+                                                                              builder: (context) => FlutterFlowIconButton(
+                                                                                borderRadius: 50.0,
+                                                                                buttonSize: 40.0,
+                                                                                icon: Icon(
+                                                                                  Icons.delete_forever,
+                                                                                  color: FlutterFlowTheme.of(context).error,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        elevation: 0,
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () {
+                                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                                          },
+                                                                                          child: ConfirmModalWidget(
+                                                                                            icon: Icon(
+                                                                                              Icons.delete_forever,
+                                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                                              size: 50.0,
+                                                                                            ),
+                                                                                            title: 'Confirm Deletion',
+                                                                                            subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                                            button: 'Delete',
+                                                                                            buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                            primaryButtonAction: () async {
+                                                                                              await noSearchItem.reference.delete();
+                                                                                            },
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          ].divide(SizedBox(width: 4.0)),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              if (FFAppState().searchIsActive)
+                                                Builder(
+                                                  builder: (context) {
+                                                    final result = _model
+                                                        .simpleSearchResults
+                                                        .toList();
+
+                                                    return ListView.builder(
+                                                      padding:
+                                                          EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          result.length,
+                                                      itemBuilder: (context,
+                                                          resultIndex) {
+                                                        final resultItem =
+                                                            result[
+                                                                resultIndex];
+                                                        return Builder(
+                                                          builder:
+                                                              (context) =>
+                                                                  Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        1.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap:
+                                                                  () async {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets.zero,
+                                                                      backgroundColor:
+                                                                          Colors.transparent,
+                                                                      alignment:
+                                                                          AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                      child:
+                                                                          GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(dialogContext).unfocus();
+                                                                          FocusManager.instance.primaryFocus?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            ViewEnforcerWidget(
+                                                                          enforcerRef:
+                                                                              resultItem.reference,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                              child:
+                                                                  Container(
+                                                                width: 100.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          0.0,
+                                                                      color: FlutterFlowTheme.of(context)
+                                                                          .primaryBackground,
+                                                                      offset:
+                                                                          Offset(
+                                                                        0.0,
+                                                                        1.0,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                child:
+                                                                    Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                        tablet:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              1,
+                                                                          child:
+                                                                              Text(
+                                                                            resultIndex.toString(),
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  font: GoogleFonts.plusJakartaSans(
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            3,
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              valueOrDefault<String>(
+                                                                                '${resultItem.displayName} ${resultItem.lastName}',
+                                                                                'Name',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                    ),
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              resultItem.email,
+                                                                              style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                    ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                        tablet:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              1,
+                                                                          child:
+                                                                              Text(
+                                                                            resultItem.badgeNumber,
+                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                  font: GoogleFonts.plusJakartaSans(
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      if (responsiveVisibility(
+                                                                        context:
+                                                                            context,
+                                                                        phone:
+                                                                            false,
+                                                                      ))
+                                                                        Expanded(
+                                                                          flex:
+                                                                              2,
+                                                                          child:
+                                                                              FutureBuilder<int>(
+                                                                            future: queryCitationRecordCount(
+                                                                              queryBuilder: (citationRecord) => citationRecord.where(
+                                                                                'appre_enforcer',
+                                                                                isEqualTo: resultItem.displayName,
+                                                                              ),
+                                                                            ),
+                                                                            builder: (context, snapshot) {
+                                                                              // Customize what your widget looks like when it's loading.
+                                                                              if (!snapshot.hasData) {
+                                                                                return Center(
+                                                                                  child: SizedBox(
+                                                                                    width: 50.0,
+                                                                                    height: 50.0,
+                                                                                    child: CircularProgressIndicator(
+                                                                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                                                                        FlutterFlowTheme.of(context).primary,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              }
+                                                                              int textCount = snapshot.data!;
+
+                                                                              return Text(
+                                                                                valueOrDefault<String>(
+                                                                                  textCount.toString(),
+                                                                                  '0',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                    ),
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            4,
+                                                                        child:
+                                                                            Text(
+                                                                          resultItem.assignmentAddress.maybeHandleOverflow(
+                                                                            maxChars: 30,
+                                                                            replacement: '…',
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            1,
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            if (resultItem.status == true)
+                                                                              wrapWithModel(
+                                                                                model: _model.statusModels3.getModel(
+                                                                                  resultItem.status.toString(),
+                                                                                  resultIndex,
+                                                                                ),
+                                                                                updateCallback: () => safeSetState(() {}),
+                                                                                child: StatusWidget(
+                                                                                  key: Key(
+                                                                                    'Keywkc_${resultItem.status.toString()}',
+                                                                                  ),
+                                                                                  text: 'Active',
+                                                                                  fillColor: FlutterFlowTheme.of(context).success,
+                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                  action: () async {},
+                                                                                ),
+                                                                              ),
+                                                                            if (resultItem.status == false)
+                                                                              wrapWithModel(
+                                                                                model: _model.statusModels4.getModel(
+                                                                                  resultItem.status.toString(),
+                                                                                  resultIndex,
+                                                                                ),
+                                                                                updateCallback: () => safeSetState(() {}),
+                                                                                child: StatusWidget(
+                                                                                  key: Key(
+                                                                                    'Keyjvt_${resultItem.status.toString()}',
+                                                                                  ),
+                                                                                  text: 'Inactive',
+                                                                                  fillColor: FlutterFlowTheme.of(context).error,
+                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                  action: () async {},
+                                                                                ),
+                                                                              ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        flex:
+                                                                            2,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.end,
+                                                                          children:
+                                                                              [
+                                                                            Builder(
+                                                                              builder: (context) => FlutterFlowIconButton(
+                                                                                borderRadius: 50.0,
+                                                                                buttonSize: 40.0,
+                                                                                icon: Icon(
+                                                                                  Icons.person_add,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        elevation: 0,
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () {
+                                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                                          },
+                                                                                          child: EnforcerAssignmentModalWidget(
+                                                                                            enforcerId: resultItem.reference,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                            Builder(
+                                                                              builder: (context) => FlutterFlowIconButton(
+                                                                                borderRadius: 50.0,
+                                                                                buttonSize: 40.0,
+                                                                                icon: Icon(
+                                                                                  Icons.delete_forever,
+                                                                                  color: FlutterFlowTheme.of(context).error,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        elevation: 0,
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () {
+                                                                                            FocusScope.of(dialogContext).unfocus();
+                                                                                            FocusManager.instance.primaryFocus?.unfocus();
+                                                                                          },
+                                                                                          child: ConfirmModalWidget(
+                                                                                            icon: Icon(
+                                                                                              Icons.delete_forever,
+                                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                                              size: 50.0,
+                                                                                            ),
+                                                                                            title: 'Confirm Deletion',
+                                                                                            subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
+                                                                                            button: 'Delete',
+                                                                                            buttonColor: FlutterFlowTheme.of(context).error,
+                                                                                            primaryButtonAction: () async {
+                                                                                              await resultItem.reference.delete();
+                                                                                            },
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          ].divide(SizedBox(width: 4.0)),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ],
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: double.infinity,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .accent1,
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight: Radius.circular(0.0),
-                                              topLeft: Radius.circular(8.0),
-                                              topRight: Radius.circular(8.0),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    '#',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: Text(
-                                                    'Enforcer Name',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    'Badge #',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 2,
-                                                  child: Text(
-                                                    'Citations Issued',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 4,
-                                                  child: Text(
-                                                    'Assignment',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    'Status',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 2,
-                                                  child: Text(
-                                                    'Actions',
-                                                    textAlign: TextAlign.end,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        if (!FFAppState().searchIsActive)
-                                          Builder(
-                                            builder: (context) {
-                                              final noSearch =
-                                                  enforcersUsersRecordList
-                                                      .toList();
-
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: noSearch.length,
-                                                itemBuilder:
-                                                    (context, noSearchIndex) {
-                                                  final noSearchItem =
-                                                      noSearch[noSearchIndex];
-                                                  return Builder(
-                                                    builder: (context) =>
-                                                        Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  1.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (dialogContext) {
-                                                              return Dialog(
-                                                                elevation: 0,
-                                                                insetPadding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                alignment: AlignmentDirectional(
-                                                                        0.0,
-                                                                        0.0)
-                                                                    .resolve(
-                                                                        Directionality.of(
-                                                                            context)),
-                                                                child:
-                                                                    GestureDetector(
-                                                                  onTap: () {
-                                                                    FocusScope.of(
-                                                                            dialogContext)
-                                                                        .unfocus();
-                                                                    FocusManager
-                                                                        .instance
-                                                                        .primaryFocus
-                                                                        ?.unfocus();
-                                                                  },
-                                                                  child:
-                                                                      ViewEnforcerWidget(
-                                                                    enforcerRef:
-                                                                        noSearchItem
-                                                                            .reference,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                blurRadius: 0.0,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                offset: Offset(
-                                                                  0.0,
-                                                                  1.0,
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child: Text(
-                                                                      noSearchIndex
-                                                                          .toString(),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.normal,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                Expanded(
-                                                                  flex: 3,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          '${noSearchItem.displayName} ${noSearchItem.lastName}',
-                                                                          'Name',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyLarge
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          noSearchItem
-                                                                              .email,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .override(
-                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child: Text(
-                                                                      noSearchItem
-                                                                          .badgeNumber,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 2,
-                                                                    child:
-                                                                        FutureBuilder<
-                                                                            int>(
-                                                                      future:
-                                                                          queryCitationRecordCount(
-                                                                        queryBuilder:
-                                                                            (citationRecord) =>
-                                                                                citationRecord.where(
-                                                                          'appre_enforcer',
-                                                                          isEqualTo:
-                                                                              noSearchItem.displayName,
-                                                                        ),
-                                                                      ),
-                                                                      builder:
-                                                                          (context,
-                                                                              snapshot) {
-                                                                        // Customize what your widget looks like when it's loading.
-                                                                        if (!snapshot
-                                                                            .hasData) {
-                                                                          return Center(
-                                                                            child:
-                                                                                SizedBox(
-                                                                              width: 50.0,
-                                                                              height: 50.0,
-                                                                              child: CircularProgressIndicator(
-                                                                                valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                  FlutterFlowTheme.of(context).primary,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        }
-                                                                        int textCount =
-                                                                            snapshot.data!;
-
-                                                                        return Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            textCount.toString(),
-                                                                            '0',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .titleLarge
-                                                                              .override(
-                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                              ),
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                Expanded(
-                                                                  flex: 4,
-                                                                  child: Text(
-                                                                    noSearchItem
-                                                                        .assignmentAddress
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          30,
-                                                                      replacement:
-                                                                          '…',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyLarge
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  flex: 1,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      if (noSearchItem
-                                                                              .status ==
-                                                                          true)
-                                                                        wrapWithModel(
-                                                                          model: _model
-                                                                              .statusModels1
-                                                                              .getModel(
-                                                                            noSearchItem.status.toString(),
-                                                                            noSearchIndex,
-                                                                          ),
-                                                                          updateCallback: () =>
-                                                                              safeSetState(() {}),
-                                                                          child:
-                                                                              StatusWidget(
-                                                                            key:
-                                                                                Key(
-                                                                              'Key7h3_${noSearchItem.status.toString()}',
-                                                                            ),
-                                                                            text:
-                                                                                'Active',
-                                                                            fillColor:
-                                                                                FlutterFlowTheme.of(context).success,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            textColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            action:
-                                                                                () async {},
-                                                                          ),
-                                                                        ),
-                                                                      if (noSearchItem
-                                                                              .status ==
-                                                                          false)
-                                                                        wrapWithModel(
-                                                                          model: _model
-                                                                              .statusModels2
-                                                                              .getModel(
-                                                                            noSearchItem.status.toString(),
-                                                                            noSearchIndex,
-                                                                          ),
-                                                                          updateCallback: () =>
-                                                                              safeSetState(() {}),
-                                                                          child:
-                                                                              StatusWidget(
-                                                                            key:
-                                                                                Key(
-                                                                              'Key22g_${noSearchItem.status.toString()}',
-                                                                            ),
-                                                                            text:
-                                                                                'Inactive',
-                                                                            fillColor:
-                                                                                FlutterFlowTheme.of(context).error,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            textColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            action:
-                                                                                () async {},
-                                                                          ),
-                                                                        ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  flex: 2,
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      Builder(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              50.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.person_add,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showDialog(
-                                                                              context: context,
-                                                                              builder: (dialogContext) {
-                                                                                return Dialog(
-                                                                                  elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () {
-                                                                                      FocusScope.of(dialogContext).unfocus();
-                                                                                      FocusManager.instance.primaryFocus?.unfocus();
-                                                                                    },
-                                                                                    child: EnforcerAssignmentModalWidget(
-                                                                                      enforcerId: noSearchItem.reference,
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      Builder(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              50.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.delete_forever,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).error,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showDialog(
-                                                                              context: context,
-                                                                              builder: (dialogContext) {
-                                                                                return Dialog(
-                                                                                  elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () {
-                                                                                      FocusScope.of(dialogContext).unfocus();
-                                                                                      FocusManager.instance.primaryFocus?.unfocus();
-                                                                                    },
-                                                                                    child: ConfirmModalWidget(
-                                                                                      icon: Icon(
-                                                                                        Icons.delete_forever,
-                                                                                        color: FlutterFlowTheme.of(context).error,
-                                                                                        size: 50.0,
-                                                                                      ),
-                                                                                      title: 'Confirm Deletion',
-                                                                                      subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
-                                                                                      button: 'Delete',
-                                                                                      buttonColor: FlutterFlowTheme.of(context).error,
-                                                                                      primaryButtonAction: () async {
-                                                                                        await noSearchItem.reference.delete();
-                                                                                      },
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                    ].divide(SizedBox(
-                                                                        width:
-                                                                            4.0)),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        if (FFAppState().searchIsActive)
-                                          Builder(
-                                            builder: (context) {
-                                              final result = _model
-                                                  .simpleSearchResults
-                                                  .toList();
-
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: result.length,
-                                                itemBuilder:
-                                                    (context, resultIndex) {
-                                                  final resultItem =
-                                                      result[resultIndex];
-                                                  return Builder(
-                                                    builder: (context) =>
-                                                        Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  1.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (dialogContext) {
-                                                              return Dialog(
-                                                                elevation: 0,
-                                                                insetPadding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                alignment: AlignmentDirectional(
-                                                                        0.0,
-                                                                        0.0)
-                                                                    .resolve(
-                                                                        Directionality.of(
-                                                                            context)),
-                                                                child:
-                                                                    GestureDetector(
-                                                                  onTap: () {
-                                                                    FocusScope.of(
-                                                                            dialogContext)
-                                                                        .unfocus();
-                                                                    FocusManager
-                                                                        .instance
-                                                                        .primaryFocus
-                                                                        ?.unfocus();
-                                                                  },
-                                                                  child:
-                                                                      ViewEnforcerWidget(
-                                                                    enforcerRef:
-                                                                        resultItem
-                                                                            .reference,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                blurRadius: 0.0,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                offset: Offset(
-                                                                  0.0,
-                                                                  1.0,
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child: Text(
-                                                                      resultIndex
-                                                                          .toString(),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.normal,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                Expanded(
-                                                                  flex: 3,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          '${resultItem.displayName} ${resultItem.lastName}',
-                                                                          'Name',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyLarge
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          resultItem
-                                                                              .email,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .override(
-                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child: Text(
-                                                                      resultItem
-                                                                          .badgeNumber,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                if (responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                ))
-                                                                  Expanded(
-                                                                    flex: 2,
-                                                                    child:
-                                                                        FutureBuilder<
-                                                                            int>(
-                                                                      future:
-                                                                          queryCitationRecordCount(
-                                                                        queryBuilder:
-                                                                            (citationRecord) =>
-                                                                                citationRecord.where(
-                                                                          'appre_enforcer',
-                                                                          isEqualTo:
-                                                                              resultItem.displayName,
-                                                                        ),
-                                                                      ),
-                                                                      builder:
-                                                                          (context,
-                                                                              snapshot) {
-                                                                        // Customize what your widget looks like when it's loading.
-                                                                        if (!snapshot
-                                                                            .hasData) {
-                                                                          return Center(
-                                                                            child:
-                                                                                SizedBox(
-                                                                              width: 50.0,
-                                                                              height: 50.0,
-                                                                              child: CircularProgressIndicator(
-                                                                                valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                  FlutterFlowTheme.of(context).primary,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        }
-                                                                        int textCount =
-                                                                            snapshot.data!;
-
-                                                                        return Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            textCount.toString(),
-                                                                            '0',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .titleLarge
-                                                                              .override(
-                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                              ),
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                Expanded(
-                                                                  flex: 4,
-                                                                  child: Text(
-                                                                    resultItem
-                                                                        .assignmentAddress
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          30,
-                                                                      replacement:
-                                                                          '…',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyLarge
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  flex: 1,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      if (resultItem
-                                                                              .status ==
-                                                                          true)
-                                                                        wrapWithModel(
-                                                                          model: _model
-                                                                              .statusModels3
-                                                                              .getModel(
-                                                                            resultItem.status.toString(),
-                                                                            resultIndex,
-                                                                          ),
-                                                                          updateCallback: () =>
-                                                                              safeSetState(() {}),
-                                                                          child:
-                                                                              StatusWidget(
-                                                                            key:
-                                                                                Key(
-                                                                              'Keywkc_${resultItem.status.toString()}',
-                                                                            ),
-                                                                            text:
-                                                                                'Active',
-                                                                            fillColor:
-                                                                                FlutterFlowTheme.of(context).success,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            textColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            action:
-                                                                                () async {},
-                                                                          ),
-                                                                        ),
-                                                                      if (resultItem
-                                                                              .status ==
-                                                                          false)
-                                                                        wrapWithModel(
-                                                                          model: _model
-                                                                              .statusModels4
-                                                                              .getModel(
-                                                                            resultItem.status.toString(),
-                                                                            resultIndex,
-                                                                          ),
-                                                                          updateCallback: () =>
-                                                                              safeSetState(() {}),
-                                                                          child:
-                                                                              StatusWidget(
-                                                                            key:
-                                                                                Key(
-                                                                              'Keyjvt_${resultItem.status.toString()}',
-                                                                            ),
-                                                                            text:
-                                                                                'Inactive',
-                                                                            fillColor:
-                                                                                FlutterFlowTheme.of(context).error,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            textColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            action:
-                                                                                () async {},
-                                                                          ),
-                                                                        ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  flex: 2,
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      Builder(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              50.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.person_add,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showDialog(
-                                                                              context: context,
-                                                                              builder: (dialogContext) {
-                                                                                return Dialog(
-                                                                                  elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () {
-                                                                                      FocusScope.of(dialogContext).unfocus();
-                                                                                      FocusManager.instance.primaryFocus?.unfocus();
-                                                                                    },
-                                                                                    child: EnforcerAssignmentModalWidget(
-                                                                                      enforcerId: resultItem.reference,
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      Builder(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              50.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.delete_forever,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).error,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showDialog(
-                                                                              context: context,
-                                                                              builder: (dialogContext) {
-                                                                                return Dialog(
-                                                                                  elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () {
-                                                                                      FocusScope.of(dialogContext).unfocus();
-                                                                                      FocusManager.instance.primaryFocus?.unfocus();
-                                                                                    },
-                                                                                    child: ConfirmModalWidget(
-                                                                                      icon: Icon(
-                                                                                        Icons.delete_forever,
-                                                                                        color: FlutterFlowTheme.of(context).error,
-                                                                                        size: 50.0,
-                                                                                      ),
-                                                                                      title: 'Confirm Deletion',
-                                                                                      subtitle: 'Are you sure you want to delete this record? This action cannot be undone.',
-                                                                                      button: 'Delete',
-                                                                                      buttonColor: FlutterFlowTheme.of(context).error,
-                                                                                      primaryButtonAction: () async {
-                                                                                        await resultItem.reference.delete();
-                                                                                      },
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                    ].divide(SizedBox(
-                                                                        width:
-                                                                            4.0)),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                      ],
-                                    ),
                                   ),
                                 ),
                               ),

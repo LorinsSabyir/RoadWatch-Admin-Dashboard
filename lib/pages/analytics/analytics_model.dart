@@ -1,4 +1,3 @@
-import '/components/status/status_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/modals/side_nav/side_nav_widget.dart';
@@ -16,27 +15,24 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   late SideNavModel sideNavModel;
   // State field(s) for Column widget.
   ScrollController? columnController;
+  // State field(s) for violationChartYearFilter widget.
+  String? violationChartYearFilterValue;
+  FormFieldController<String>? violationChartYearFilterValueController;
   // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
-  // Model for Status component.
-  late StatusModel statusModel1;
-  // Model for Status component.
-  late StatusModel statusModel2;
+  // State field(s) for violationTableMonthFilter widget.
+  String? violationTableMonthFilterValue;
+  FormFieldController<String>? violationTableMonthFilterValueController;
 
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
     columnController = ScrollController();
-    statusModel1 = createModel(context, () => StatusModel());
-    statusModel2 = createModel(context, () => StatusModel());
   }
 
   @override
@@ -45,8 +41,5 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
     columnController?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
-
-    statusModel1.dispose();
-    statusModel2.dispose();
   }
 }

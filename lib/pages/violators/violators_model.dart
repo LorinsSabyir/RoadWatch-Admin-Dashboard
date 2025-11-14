@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/components/status/status_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/modals/side_nav/side_nav_widget.dart';
@@ -29,6 +30,8 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   late FlutterFlowDynamicModels<StatusModel> statusModels3;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels4;
+  // Model for IsEmptyCard component.
+  late IsEmptyCardModel isEmptyCardModel;
 
   @override
   void initState(BuildContext context) {
@@ -38,6 +41,7 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
     statusModels2 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels3 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels4 = FlutterFlowDynamicModels(() => StatusModel());
+    isEmptyCardModel = createModel(context, () => IsEmptyCardModel());
   }
 
   @override
@@ -51,5 +55,6 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
     statusModels2.dispose();
     statusModels3.dispose();
     statusModels4.dispose();
+    isEmptyCardModel.dispose();
   }
 }

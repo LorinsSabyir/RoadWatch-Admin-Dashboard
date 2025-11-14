@@ -14,6 +14,9 @@ import 'schema/admin_notif_record.dart';
 import 'schema/address_brgy_record.dart';
 import 'schema/address_city_record.dart';
 import 'schema/address_province_record.dart';
+import 'schema/analytics_record.dart';
+import 'schema/annual_citation_chart_record.dart';
+import 'schema/monthly_summary_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -31,6 +34,9 @@ export 'schema/admin_notif_record.dart';
 export 'schema/address_brgy_record.dart';
 export 'schema/address_city_record.dart';
 export 'schema/address_province_record.dart';
+export 'schema/analytics_record.dart';
+export 'schema/annual_citation_chart_record.dart';
+export 'schema/monthly_summary_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -360,6 +366,117 @@ Future<List<AddressProvinceRecord>> queryAddressProvinceRecordOnce({
     queryCollectionOnce(
       AddressProvinceRecord.collection,
       AddressProvinceRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AnalyticsRecords (as a Stream and as a Future).
+Future<int> queryAnalyticsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AnalyticsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AnalyticsRecord>> queryAnalyticsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AnalyticsRecord.collection,
+      AnalyticsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AnalyticsRecord>> queryAnalyticsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AnalyticsRecord.collection,
+      AnalyticsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AnnualCitationChartRecords (as a Stream and as a Future).
+Future<int> queryAnnualCitationChartRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AnnualCitationChartRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AnnualCitationChartRecord>> queryAnnualCitationChartRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AnnualCitationChartRecord.collection,
+      AnnualCitationChartRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AnnualCitationChartRecord>> queryAnnualCitationChartRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AnnualCitationChartRecord.collection,
+      AnnualCitationChartRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MonthlySummaryRecords (as a Stream and as a Future).
+Future<int> queryMonthlySummaryRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MonthlySummaryRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MonthlySummaryRecord>> queryMonthlySummaryRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MonthlySummaryRecord.collection,
+      MonthlySummaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MonthlySummaryRecord>> queryMonthlySummaryRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MonthlySummaryRecord.collection,
+      MonthlySummaryRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
