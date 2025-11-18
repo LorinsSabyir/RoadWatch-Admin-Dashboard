@@ -1,38 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "annualCitationChart",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "year",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "month_num",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "users",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "acc_status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "role",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "display_name",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "adminNotif",
       "queryScope": "COLLECTION",
       "fields": [
@@ -61,6 +29,24 @@
         {
           "fieldPath": "created_time",
           "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "acc_status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "role",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "display_name",
+          "order": "ASCENDING"
         }
       ]
     }

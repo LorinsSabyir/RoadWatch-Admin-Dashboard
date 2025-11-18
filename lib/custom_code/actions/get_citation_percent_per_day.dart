@@ -8,62 +8,78 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 /// Calculates the percentage difference in citations between today and
-/// yesterday.
+/// yesterday using the 'created_time' Timestamp field.
+///
+/// Returns: - The calculated percentage (rounded to 2 decimals) on success. -
+/// null if Yesterday's count is 0 and Today's is > 0 (N/A). - 0.0 if both
+/// counts are 0. - -999.0 if a Firestore query or other exception occurs
+/// (error sentinel).
 Future<double?> getCitationPercentPerDay() async {
-  // --- 1. Define Date Ranges ---
-  final now = DateTime.now();
+  // ✅ CONFIRMED FIELD NAME
+  const String kCitationTimestampField = 'created_time';
 
-  // Define Today's Start and End (start of day to start of next day)
-  final todayStart = DateTime(now.year, now.month, now.day);
-  final tomorrowStart = todayStart.add(const Duration(days: 1));
+  try {
+    // --- 1. Define Date Ranges (Using LOCAL Time) ---
+    // Use local time for date range definition to match how data is usually entered locally.
+    final now = DateTime.now();
 
-  // Define Yesterday's Start and End
-  final yesterdayStart = todayStart.subtract(const Duration(days: 1));
-  final todayStartForYesterday = todayStart; // Same as todayStart
+    // Define Today's Start (00:00:00 Local Time)
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final tomorrowStart = todayStart.add(const Duration(days: 1));
 
-  // Reference to your Firestore collection
-  // **NOTE: Ensure 'citation' is the correct collection name**
-  final citationsCollection = FirebaseFirestore.instance.collection('citation');
+    // Define Yesterday's Start
+    final yesterdayStart = todayStart.subtract(const Duration(days: 1));
 
-  // --- 2. Get Today's Count ---
-  // Assuming the citation document has a Firestore Timestamp field named 'appre_date'
-  final todayQuery = await citationsCollection
-      .where('appre_date_day', isGreaterThanOrEqualTo: todayStart)
-      .where('appre_date_day', isLessThan: tomorrowStart)
-      .get();
+    // Reference to your Firestore collection
+    final citationsCollection =
+        FirebaseFirestore.instance.collection('citation');
 
-  final int todayCount = todayQuery.size;
+    // --- 2. Get Today's Count ---
+    final todayQuery = await citationsCollection
+        // Querying the full 'created_time' Timestamp field
+        .where(kCitationTimestampField, isGreaterThanOrEqualTo: todayStart)
+        .where(kCitationTimestampField, isLessThan: tomorrowStart)
+        .get();
 
-  // --- 3. Get Yesterday's Count ---
-  final yesterdayQuery = await citationsCollection
-      .where('appre_date_day', isGreaterThanOrEqualTo: yesterdayStart)
-      .where('appre_date_day', isLessThan: todayStartForYesterday)
-      .get();
+    final int todayCount = todayQuery.size;
 
-  final int yesterdayCount = yesterdayQuery.size;
+    // --- 3. Get Yesterday's Count ---
+    final yesterdayQuery = await citationsCollection
+        // Querying the full 'created_time' Timestamp field
+        .where(kCitationTimestampField, isGreaterThanOrEqualTo: yesterdayStart)
+        .where(kCitationTimestampField, isLessThan: todayStart)
+        .get();
 
-  // --- 4. Calculation ---
+    final int yesterdayCount = yesterdayQuery.size;
 
-  // Check if yesterday's count is zero to avoid division by zero
-  if (yesterdayCount == 0) {
-    if (todayCount > 0) {
-      // Growth from zero is mathematically undefined. Return null for N/A.
-      return null;
-    } else {
-      // Both are 0, difference is 0%.
-      return 0.0;
+    // --- 4. Calculation ---
+
+    // For debugging, print the counts!
+    print('Today Count: $todayCount. Yesterday Count: $yesterdayCount.');
+
+    if (yesterdayCount == 0) {
+      if (todayCount > 0) {
+        return null; // N/A
+      } else {
+        return 0.0; // Both 0
+      }
     }
+
+    // Calculate the percentage difference
+    final double rawPercentDifference =
+        ((todayCount - yesterdayCount) / yesterdayCount) * 100;
+
+    // ✅ Apply rounding to 2 decimal places and parse back to double
+    final double percentDifference =
+        double.parse(rawPercentDifference.toStringAsFixed(2));
+
+    // Success: Return the calculated percentage
+    return percentDifference;
+  } catch (e) {
+    // 🚨 On Error: Log the exception and return the sentinel value.
+    print('🚨 FIRESTORE CRITICAL ERROR in getCitationPercentPerDay: $e');
+    return -999.0;
   }
-
-  // Calculate the difference and percentage difference
-  final double difference = (todayCount - yesterdayCount).toDouble();
-
-  // Formula: ((Today - Yesterday) / Yesterday) * 100
-  final double percentDifference = (difference / yesterdayCount) * 100;
-
-  // Return the percentage difference (e.g., 25.0 for 25% increase)
-  return percentDifference;
 }

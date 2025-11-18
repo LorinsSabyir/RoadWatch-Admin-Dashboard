@@ -81,6 +81,18 @@ class FFAppState extends ChangeNotifier {
     _ThisDayPercentage = value;
   }
 
+  String _searchQuery = '';
+  String get searchQuery => _searchQuery;
+  set searchQuery(String value) {
+    _searchQuery = value;
+  }
+
+  bool _isSearching = false;
+  bool get isSearching => _isSearching;
+  set isSearching(bool value) {
+    _isSearching = value;
+  }
+
   final _finesPageCacheManager = StreamRequestManager<List<ViolationRecord>>();
   Stream<List<ViolationRecord>> finesPageCache({
     String? uniqueQueryKey,
@@ -95,21 +107,6 @@ class FFAppState extends ChangeNotifier {
   void clearFinesPageCacheCache() => _finesPageCacheManager.clear();
   void clearFinesPageCacheCacheKey(String? uniqueKey) =>
       _finesPageCacheManager.clearRequest(uniqueKey);
-
-  final _enforcerPageCacheManager = StreamRequestManager<List<UsersRecord>>();
-  Stream<List<UsersRecord>> enforcerPageCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<List<UsersRecord>> Function() requestFn,
-  }) =>
-      _enforcerPageCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearEnforcerPageCacheCache() => _enforcerPageCacheManager.clear();
-  void clearEnforcerPageCacheCacheKey(String? uniqueKey) =>
-      _enforcerPageCacheManager.clearRequest(uniqueKey);
 
   final _apprePlacePageCacheManager =
       StreamRequestManager<List<ApprePlacesRecord>>();
@@ -126,102 +123,6 @@ class FFAppState extends ChangeNotifier {
   void clearApprePlacePageCacheCache() => _apprePlacePageCacheManager.clear();
   void clearApprePlacePageCacheCacheKey(String? uniqueKey) =>
       _apprePlacePageCacheManager.clearRequest(uniqueKey);
-
-  final _violatorsPageCacheManager =
-      StreamRequestManager<List<CitationRecord>>();
-  Stream<List<CitationRecord>> violatorsPageCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<List<CitationRecord>> Function() requestFn,
-  }) =>
-      _violatorsPageCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearViolatorsPageCacheCache() => _violatorsPageCacheManager.clear();
-  void clearViolatorsPageCacheCacheKey(String? uniqueKey) =>
-      _violatorsPageCacheManager.clearRequest(uniqueKey);
-
-  final _citationsTodayCardCacheManager = FutureRequestManager<int>();
-  Future<int> citationsTodayCardCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<int> Function() requestFn,
-  }) =>
-      _citationsTodayCardCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearCitationsTodayCardCacheCache() =>
-      _citationsTodayCardCacheManager.clear();
-  void clearCitationsTodayCardCacheCacheKey(String? uniqueKey) =>
-      _citationsTodayCardCacheManager.clearRequest(uniqueKey);
-
-  final _citationsThisMonthCardCacheManager = FutureRequestManager<int>();
-  Future<int> citationsThisMonthCardCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<int> Function() requestFn,
-  }) =>
-      _citationsThisMonthCardCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearCitationsThisMonthCardCacheCache() =>
-      _citationsThisMonthCardCacheManager.clear();
-  void clearCitationsThisMonthCardCacheCacheKey(String? uniqueKey) =>
-      _citationsThisMonthCardCacheManager.clearRequest(uniqueKey);
-
-  final _totalCitationsCardCacheManager = FutureRequestManager<int>();
-  Future<int> totalCitationsCardCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<int> Function() requestFn,
-  }) =>
-      _totalCitationsCardCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearTotalCitationsCardCacheCache() =>
-      _totalCitationsCardCacheManager.clear();
-  void clearTotalCitationsCardCacheCacheKey(String? uniqueKey) =>
-      _totalCitationsCardCacheManager.clearRequest(uniqueKey);
-
-  final _forecastingCardCacheManager =
-      StreamRequestManager<List<AnalyticsRecord>>();
-  Stream<List<AnalyticsRecord>> forecastingCardCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<List<AnalyticsRecord>> Function() requestFn,
-  }) =>
-      _forecastingCardCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearForecastingCardCacheCache() => _forecastingCardCacheManager.clear();
-  void clearForecastingCardCacheCacheKey(String? uniqueKey) =>
-      _forecastingCardCacheManager.clearRequest(uniqueKey);
-
-  final _activeEnforcerCardCacheManager = FutureRequestManager<int>();
-  Future<int> activeEnforcerCardCache({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<int> Function() requestFn,
-  }) =>
-      _activeEnforcerCardCacheManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearActiveEnforcerCardCacheCache() =>
-      _activeEnforcerCardCacheManager.clear();
-  void clearActiveEnforcerCardCacheCacheKey(String? uniqueKey) =>
-      _activeEnforcerCardCacheManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

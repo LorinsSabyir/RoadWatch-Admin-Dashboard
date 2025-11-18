@@ -18,16 +18,9 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   // State field(s) for violationChartYearFilter widget.
   String? violationChartYearFilterValue;
   FormFieldController<String>? violationChartYearFilterValueController;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for violationTableMonthFilter widget.
-  String? violationTableMonthFilterValue;
-  FormFieldController<String>? violationTableMonthFilterValueController;
+  // State field(s) for violationChartMonthFilter widget.
+  String? violationChartMonthFilterValue;
+  FormFieldController<String>? violationChartMonthFilterValueController;
 
   @override
   void initState(BuildContext context) {
@@ -39,7 +32,5 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   void dispose() {
     sideNavModel.dispose();
     columnController?.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 }

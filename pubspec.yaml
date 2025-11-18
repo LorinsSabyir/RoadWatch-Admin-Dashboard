@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore_web: 4.4.9
   collection: 1.19.1
   csv: ^6.0.0
+  data_table_2: 2.5.10
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   firebase_auth: 5.6.0

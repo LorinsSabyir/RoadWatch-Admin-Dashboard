@@ -109,14 +109,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AnalyticsWidget(),
         ),
         FFRoute(
-          name: EnforcersWidget.routeName,
-          path: EnforcersWidget.routePath,
-          builder: (context, params) => EnforcersWidget(),
-        ),
-        FFRoute(
           name: ApprePlaceWidget.routeName,
           path: ApprePlaceWidget.routePath,
           builder: (context, params) => ApprePlaceWidget(),
+        ),
+        FFRoute(
+          name: EnforcersWidget.routeName,
+          path: EnforcersWidget.routePath,
+          builder: (context, params) => EnforcersWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

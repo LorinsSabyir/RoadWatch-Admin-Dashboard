@@ -8,51 +8,78 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
-/// Note: You must remove the List<CitationRecord> parameter as the action is
-/// now fetching the data itself.
+/// Calculates the percentage difference in citations between this month and
+/// last month using the 'created_time' Timestamp field.
+///
+/// Returns: - The calculated percentage (rounded to 2 decimals) on success. -
+/// null if Last Month's count is 0 and This Month's is > 0 (N/A). - 0.0 if
+/// both counts are 0. - -999.0 if a Firestore query or other exception occurs
+/// (error sentinel).
 Future<double?> getCitationPercentPerMonth() async {
-  // Get current month and year
-  final now = DateTime.now();
-  final thisMonthName = DateFormat('MMMM').format(now);
-  final thisYear = now.year.toString();
+  // ✅ Confirmed Timestamp field name
+  const String kCitationTimestampField = 'created_time';
 
-  // Compute previous month and year manually
-  final lastMonthDate = DateTime(now.year, now.month - 1, 1);
-  final lastMonthName = DateFormat('MMMM').format(lastMonthDate);
-  final lastMonthYear = lastMonthDate.year.toString();
+  try {
+    // --- 1. Define Date Ranges (Using Local Time) ---
+    final now = DateTime.now();
 
-  // Reference to your Firestore collection (assuming it's 'citations')
-  final citationsCollection = FirebaseFirestore.instance.collection('citation');
+    // Define This Month's Start (1st day of current month, 00:00:00 local)
+    final thisMonthStart = DateTime(now.year, now.month, 1);
 
-  // --- A. Get This Month's Count ---
-  final thisMonthQuery = await citationsCollection
-      .where('appre_date_month', isEqualTo: thisMonthName)
-      .where('appre_date_year', isEqualTo: thisYear)
-      .get();
+    // Define Next Month's Start (Exclusive end date for this month's count)
+    final nextMonthStart = DateTime(now.year, now.month + 1, 1);
 
-  final thisMonthCount = thisMonthQuery.size;
+    // Define Last Month's Start (1st day of previous month)
+    final lastMonthStart = DateTime(now.year, now.month - 1, 1);
 
-  // --- B. Get Last Month's Count ---
-  final lastMonthQuery = await citationsCollection
-      .where('appre_date_month', isEqualTo: lastMonthName)
-      .where('appre_date_year', isEqualTo: lastMonthYear)
-      .get();
+    // Reference to your Firestore collection
+    final citationsCollection =
+        FirebaseFirestore.instance.collection('citation');
 
-  final lastMonthCount = lastMonthQuery.size;
+    // --- 2. Get This Month's Count ---
+    final thisMonthQuery = await citationsCollection
+        // Querying based on Timestamp range
+        .where(kCitationTimestampField, isGreaterThanOrEqualTo: thisMonthStart)
+        .where(kCitationTimestampField, isLessThan: nextMonthStart)
+        .get();
 
-  // --- Calculation ---
+    final int thisMonthCount = thisMonthQuery.size;
 
-  // Check if last month's count is zero to avoid division by zero
-  if (lastMonthCount == 0) {
-    // If there's an increase from 0, return null (undefined percent change)
-    return thisMonthCount > 0 ? null : 0.0;
+    // --- 3. Get Last Month's Count ---
+    final lastMonthQuery = await citationsCollection
+        // Querying based on Timestamp range
+        .where(kCitationTimestampField, isGreaterThanOrEqualTo: lastMonthStart)
+        .where(kCitationTimestampField,
+            isLessThan: thisMonthStart) // End date is thisMonthStart
+        .get();
+
+    final int lastMonthCount = lastMonthQuery.size;
+
+    // For debugging, print the counts!
+    print(
+        'This Month Count: $thisMonthCount. Last Month Count: $lastMonthCount.');
+
+    // --- 4. Calculation ---
+
+    if (lastMonthCount == 0) {
+      // If there's an increase from 0, return null (undefined percent change)
+      return thisMonthCount > 0 ? null : 0.0;
+    }
+
+    // Calculate the raw percentage difference
+    final double rawPercentDifference =
+        ((thisMonthCount - lastMonthCount) / lastMonthCount) * 100;
+
+    // ✅ Apply rounding to 2 decimal places and parse back to double
+    final double percentDifference =
+        double.parse(rawPercentDifference.toStringAsFixed(2));
+
+    return percentDifference;
+  } catch (e) {
+    // 🚨 On Error: Log the exception and return the sentinel value.
+    print('🚨 FIRESTORE CRITICAL ERROR in getCitationPercentPerMonth: $e');
+    return -999.0;
   }
-
-  // Calculate the difference and percentage difference
-  final difference = thisMonthCount - lastMonthCount;
-  final percentDifference = (difference / lastMonthCount) * 100;
-
-  return percentDifference;
 }

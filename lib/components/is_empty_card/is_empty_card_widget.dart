@@ -40,6 +40,7 @@ class _IsEmptyCardWidgetState extends State<IsEmptyCardWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
+      height: 500.0,
       decoration: BoxDecoration(),
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Column(

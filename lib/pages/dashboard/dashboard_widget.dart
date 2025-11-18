@@ -38,8 +38,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getMonthPercent = await actions.getCitationPercentPerMonth();
       _model.getDayPercent = await actions.getCitationPercentPerDay();
-      FFAppState().ThisMonthPercentage = _model.getMonthPercent!;
+      await Future.delayed(
+        Duration(
+          milliseconds: 2000,
+        ),
+      );
       FFAppState().ThisDayPercentage = _model.getDayPercent!;
+      FFAppState().ThisMonthPercentage = _model.getMonthPercent!;
       safeSetState(() {});
     });
 
@@ -173,30 +178,26 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 clipBehavior: Clip.none,
                                 children: [
                                   FutureBuilder<int>(
-                                    future:
-                                        FFAppState().citationsTodayCardCache(
-                                      requestFn: () => queryCitationRecordCount(
-                                        queryBuilder: (citationRecord) =>
-                                            citationRecord
-                                                .where(
-                                                  'appre_date_day',
-                                                  isEqualTo: dateTimeFormat(
-                                                      "dd",
-                                                      getCurrentTimestamp),
-                                                )
-                                                .where(
-                                                  'appre_date_month',
-                                                  isEqualTo: dateTimeFormat(
-                                                      "MMMM",
-                                                      getCurrentTimestamp),
-                                                )
-                                                .where(
-                                                  'appre_date_year',
-                                                  isEqualTo: dateTimeFormat(
-                                                      "yyyy",
-                                                      getCurrentTimestamp),
-                                                ),
-                                      ),
+                                    future: queryCitationRecordCount(
+                                      queryBuilder: (citationRecord) =>
+                                          citationRecord
+                                              .where(
+                                                'appre_date_day',
+                                                isEqualTo: dateTimeFormat(
+                                                    "dd", getCurrentTimestamp),
+                                              )
+                                              .where(
+                                                'appre_date_month',
+                                                isEqualTo: dateTimeFormat(
+                                                    "MMMM",
+                                                    getCurrentTimestamp),
+                                              )
+                                              .where(
+                                                'appre_date_year',
+                                                isEqualTo: dateTimeFormat(
+                                                    "yyyy",
+                                                    getCurrentTimestamp),
+                                              ),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -231,24 +232,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     },
                                   ),
                                   FutureBuilder<int>(
-                                    future: FFAppState()
-                                        .citationsThisMonthCardCache(
-                                      requestFn: () => queryCitationRecordCount(
-                                        queryBuilder: (citationRecord) =>
-                                            citationRecord
-                                                .where(
-                                                  'appre_date_month',
-                                                  isEqualTo: dateTimeFormat(
-                                                      "MMMM",
-                                                      getCurrentTimestamp),
-                                                )
-                                                .where(
-                                                  'appre_date_year',
-                                                  isEqualTo: dateTimeFormat(
-                                                      "yyyy",
-                                                      getCurrentTimestamp),
-                                                ),
-                                      ),
+                                    future: queryCitationRecordCount(
+                                      queryBuilder: (citationRecord) =>
+                                          citationRecord
+                                              .where(
+                                                'appre_date_month',
+                                                isEqualTo: dateTimeFormat(
+                                                    "MMMM",
+                                                    getCurrentTimestamp),
+                                              )
+                                              .where(
+                                                'appre_date_year',
+                                                isEqualTo: dateTimeFormat(
+                                                    "yyyy",
+                                                    getCurrentTimestamp),
+                                              ),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -284,11 +282,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     },
                                   ),
                                   FutureBuilder<int>(
-                                    future:
-                                        FFAppState().totalCitationsCardCache(
-                                      requestFn: () =>
-                                          queryCitationRecordCount(),
-                                    ),
+                                    future: queryCitationRecordCount(),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -402,10 +396,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     },
                                   ),
                                   StreamBuilder<List<AnalyticsRecord>>(
-                                    stream: FFAppState().forecastingCardCache(
-                                      requestFn: () => queryAnalyticsRecord(
-                                        singleRecord: true,
-                                      ),
+                                    stream: queryAnalyticsRecord(
+                                      singleRecord: true,
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -600,20 +592,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     },
                                   ),
                                   FutureBuilder<int>(
-                                    future:
-                                        FFAppState().activeEnforcerCardCache(
-                                      requestFn: () => queryUsersRecordCount(
-                                        queryBuilder: (usersRecord) =>
-                                            usersRecord
-                                                .where(
-                                                  'role',
-                                                  isEqualTo: 'user',
-                                                )
-                                                .where(
-                                                  'status',
-                                                  isEqualTo: false,
-                                                ),
-                                      ),
+                                    future: queryUsersRecordCount(
+                                      queryBuilder: (usersRecord) => usersRecord
+                                          .where(
+                                            'role',
+                                            isEqualTo: 'user',
+                                          )
+                                          .where(
+                                            'status',
+                                            isEqualTo: false,
+                                          ),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -744,89 +732,32 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          FutureBuilder<
-                                              List<MonthlySummaryRecord>>(
-                                            future:
-                                                queryMonthlySummaryRecordOnce(
-                                              queryBuilder:
-                                                  (monthlySummaryRecord) =>
-                                                      monthlySummaryRecord
-                                                          .where(
-                                                            'month',
-                                                            isEqualTo: _model
-                                                                .violationMonthFilterValue,
-                                                          )
-                                                          .where(
-                                                            'year',
-                                                            isEqualTo:
-                                                                dateTimeFormat(
-                                                                    "yyyy",
-                                                                    getCurrentTimestamp),
-                                                          ),
-                                              singleRecord: true,
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<MonthlySummaryRecord>
-                                                  topViolationsMonthlySummaryRecordList =
-                                                  snapshot.data!;
-                                              // Return an empty Container when the item does not exist.
-                                              if (snapshot.data!.isEmpty) {
-                                                return Container();
-                                              }
-                                              final topViolationsMonthlySummaryRecord =
-                                                  topViolationsMonthlySummaryRecordList
-                                                          .isNotEmpty
-                                                      ? topViolationsMonthlySummaryRecordList
-                                                          .first
-                                                      : null;
-
-                                              return Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(16.0),
-                                                  child: Column(
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
                                                     children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'Top Violations - ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                                      Text(
+                                                        'Top Violations - ',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .headlineSmall
                                                                 .override(
                                                                   font: GoogleFonts
@@ -851,210 +782,211 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineSmall
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                            controller: _model
-                                                                    .violationMonthFilterValueController ??=
-                                                                FormFieldController<
-                                                                    String>(
-                                                              _model.violationMonthFilterValue ??=
-                                                                  dateTimeFormat(
-                                                                      "MMMM",
-                                                                      getCurrentTimestamp),
-                                                            ),
-                                                            options: [
-                                                              'January',
-                                                              'February',
-                                                              'March',
-                                                              'April',
-                                                              'May',
-                                                              'June',
-                                                              'July',
-                                                              'August',
-                                                              'September',
-                                                              'October',
-                                                              'November',
-                                                              'December'
-                                                            ],
-                                                            onChanged:
-                                                                (val) async {
-                                                              safeSetState(() =>
-                                                                  _model.violationMonthFilterValue =
-                                                                      val);
-                                                              safeSetState(
-                                                                  () {});
-                                                            },
-                                                            width: 130.0,
-                                                            height: 35.0,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                            hintText: 'Month',
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            elevation: 2.0,
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                            borderWidth: 0.0,
-                                                            borderRadius: 8.0,
-                                                            margin:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0),
-                                                            hidesUnderline:
-                                                                true,
-                                                            isOverButton: false,
-                                                            isSearchable: false,
-                                                            isMultiSelect:
-                                                                false,
-                                                          ),
-                                                        ],
                                                       ),
-                                                      ListView(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        primary: false,
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Builder(
-                                                                  builder:
-                                                                      (context) {
-                                                                    final dashboardCardViolationName = (topViolationsMonthlySummaryRecord?.violationName.toList() ??
-                                                                            [])
-                                                                        .take(5)
-                                                                        .toList();
-
-                                                                    return ListView
-                                                                        .separated(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      primary:
-                                                                          false,
-                                                                      shrinkWrap:
-                                                                          true,
-                                                                      scrollDirection:
-                                                                          Axis.vertical,
-                                                                      itemCount:
-                                                                          dashboardCardViolationName
-                                                                              .length,
-                                                                      separatorBuilder: (_,
-                                                                              __) =>
-                                                                          SizedBox(
-                                                                              height: 16.0),
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              dashboardCardViolationNameIndex) {
-                                                                        final dashboardCardViolationNameItem =
-                                                                            dashboardCardViolationName[dashboardCardViolationNameIndex];
-                                                                        return Text(
-                                                                          dashboardCardViolationNameItem,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyLarge
-                                                                              .override(
-                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                              ),
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
+                                                      FlutterFlowDropDown<
+                                                          String>(
+                                                        controller: _model
+                                                                .violationMonthFilterValueController ??=
+                                                            FormFieldController<
+                                                                String>(
+                                                          _model.violationMonthFilterValue ??=
+                                                              dateTimeFormat(
+                                                                  "MMMM",
+                                                                  getCurrentTimestamp),
+                                                        ),
+                                                        options: [
+                                                          'January',
+                                                          'February',
+                                                          'March',
+                                                          'April',
+                                                          'May',
+                                                          'June',
+                                                          'July',
+                                                          'August',
+                                                          'September',
+                                                          'October',
+                                                          'November',
+                                                          'December'
+                                                        ],
+                                                        onChanged: (val) async {
+                                                          safeSetState(() =>
+                                                              _model.violationMonthFilterValue =
+                                                                  val);
+                                                          safeSetState(() {});
+                                                        },
+                                                        width: 130.0,
+                                                        height: 35.0,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
+                                                        hintText: 'Month',
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        fillColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBackground,
+                                                        elevation: 2.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        borderWidth: 0.0,
+                                                        borderRadius: 8.0,
+                                                        margin:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0),
+                                                        hidesUnderline: true,
+                                                        isOverButton: false,
+                                                        isSearchable: false,
+                                                        isMultiSelect: false,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  FutureBuilder<
+                                                      List<
+                                                          MonthlySummaryRecord>>(
+                                                    future:
+                                                        queryMonthlySummaryRecordOnce(
+                                                      queryBuilder:
+                                                          (monthlySummaryRecord) =>
+                                                              monthlySummaryRecord
+                                                                  .where(
+                                                                    'month',
+                                                                    isEqualTo:
+                                                                        _model
+                                                                            .violationMonthFilterValue,
+                                                                  )
+                                                                  .where(
+                                                                    'year',
+                                                                    isEqualTo: dateTimeFormat(
+                                                                        "yyyy",
+                                                                        getCurrentTimestamp),
+                                                                  ),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                               ),
-                                                              Expanded(
-                                                                child: Builder(
-                                                                  builder:
-                                                                      (context) {
-                                                                    final dashboardCardViolationCount = (topViolationsMonthlySummaryRecord?.violationCount.toList() ??
-                                                                            [])
-                                                                        .take(5)
-                                                                        .toList();
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<MonthlySummaryRecord>
+                                                          containerMonthlySummaryRecordList =
+                                                          snapshot.data!;
+                                                      // Return an empty Container when the item does not exist.
+                                                      if (snapshot
+                                                          .data!.isEmpty) {
+                                                        return Container();
+                                                      }
+                                                      final containerMonthlySummaryRecord =
+                                                          containerMonthlySummaryRecordList
+                                                                  .isNotEmpty
+                                                              ? containerMonthlySummaryRecordList
+                                                                  .first
+                                                              : null;
 
-                                                                    return ListView
-                                                                        .separated(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      primary:
-                                                                          false,
-                                                                      shrinkWrap:
-                                                                          true,
-                                                                      scrollDirection:
-                                                                          Axis.vertical,
-                                                                      itemCount:
-                                                                          dashboardCardViolationCount
-                                                                              .length,
-                                                                      separatorBuilder: (_,
-                                                                              __) =>
-                                                                          SizedBox(
-                                                                              height: 16.0),
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              dashboardCardViolationCountIndex) {
-                                                                        final dashboardCardViolationCountItem =
-                                                                            dashboardCardViolationCount[dashboardCardViolationCountIndex];
-                                                                        return Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              1.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            dashboardCardViolationCountItem.toString(),
+                                                      return Container(
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: ListView(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          primary: false,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Builder(
+                                                                    builder:
+                                                                        (context) {
+                                                                      final dashboardCardViolationName = (containerMonthlySummaryRecord?.violationName.toList() ??
+                                                                              [])
+                                                                          .take(
+                                                                              5)
+                                                                          .toList();
+
+                                                                      return ListView
+                                                                          .separated(
+                                                                        padding:
+                                                                            EdgeInsets.zero,
+                                                                        primary:
+                                                                            false,
+                                                                        shrinkWrap:
+                                                                            true,
+                                                                        scrollDirection:
+                                                                            Axis.vertical,
+                                                                        itemCount:
+                                                                            dashboardCardViolationName.length,
+                                                                        separatorBuilder:
+                                                                            (_, __) =>
+                                                                                SizedBox(height: 16.0),
+                                                                        itemBuilder:
+                                                                            (context,
+                                                                                dashboardCardViolationNameIndex) {
+                                                                          final dashboardCardViolationNameItem =
+                                                                              dashboardCardViolationName[dashboardCardViolationNameIndex];
+                                                                          return Text(
+                                                                            dashboardCardViolationNameItem,
                                                                             style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                   font: GoogleFonts.plusJakartaSans(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
@@ -1066,24 +998,78 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 ),
                                                                             overflow:
                                                                                 TextOverflow.ellipsis,
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ].divide(SizedBox(
-                                                            height: 16.0)),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(height: 16.0)),
+                                                                Expanded(
+                                                                  child:
+                                                                      Builder(
+                                                                    builder:
+                                                                        (context) {
+                                                                      final dashboardCardViolationCount = (containerMonthlySummaryRecord?.violationCount.toList() ??
+                                                                              [])
+                                                                          .take(
+                                                                              5)
+                                                                          .toList();
+
+                                                                      return ListView
+                                                                          .separated(
+                                                                        padding:
+                                                                            EdgeInsets.zero,
+                                                                        primary:
+                                                                            false,
+                                                                        shrinkWrap:
+                                                                            true,
+                                                                        scrollDirection:
+                                                                            Axis.vertical,
+                                                                        itemCount:
+                                                                            dashboardCardViolationCount.length,
+                                                                        separatorBuilder:
+                                                                            (_, __) =>
+                                                                                SizedBox(height: 16.0),
+                                                                        itemBuilder:
+                                                                            (context,
+                                                                                dashboardCardViolationCountIndex) {
+                                                                          final dashboardCardViolationCountItem =
+                                                                              dashboardCardViolationCount[dashboardCardViolationCountIndex];
+                                                                          return Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(1.0, 0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              dashboardCardViolationCountItem.toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                    font: GoogleFonts.plusJakartaSans(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                    ),
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                  ),
+                                                                              overflow: TextOverflow.ellipsis,
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              height: 16.0)),
+                                                        ),
+                                                      );
+                                                    },
                                                   ),
-                                                ),
-                                              );
-                                            },
+                                                ].divide(
+                                                    SizedBox(height: 16.0)),
+                                              ),
+                                            ),
                                           ),
                                         ].divide(SizedBox(height: 16.0)),
                                       ),
@@ -1096,85 +1082,33 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          FutureBuilder<List<CitationRecord>>(
-                                            future: queryCitationRecordOnce(
-                                              queryBuilder: (citationRecord) =>
-                                                  citationRecord
-                                                      .where(
-                                                        'appre_date_month',
-                                                        isEqualTo: _model
-                                                            .brgyMonthFilterValue,
-                                                      )
-                                                      .where(
-                                                        'appre_date_year',
-                                                        isEqualTo: dateTimeFormat(
-                                                            "yyyy",
-                                                            getCurrentTimestamp),
-                                                      )
-                                                      .where(
-                                                        'violator_address_province',
-                                                        isEqualTo:
-                                                            'Davao del Norte',
-                                                      )
-                                                      .where(
-                                                        'violator_address_city',
-                                                        isEqualTo:
-                                                            'City of Panabo',
-                                                      ),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<CitationRecord>
-                                                  citationsPerBrgyCitationRecordList =
-                                                  snapshot.data!;
-
-                                              return Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                    width: 1.0,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(16.0),
-                                                  child: Column(
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
                                                     children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'Citations per Brgy - ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                                      Text(
+                                                        'Citations per brgy in Panabo - ',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .headlineSmall
                                                                 .override(
                                                                   font: GoogleFonts
@@ -1199,234 +1133,285 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineSmall
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                            controller: _model
-                                                                    .brgyMonthFilterValueController ??=
-                                                                FormFieldController<
-                                                                    String>(
-                                                              _model.brgyMonthFilterValue ??=
-                                                                  dateTimeFormat(
-                                                                      "MMMM",
-                                                                      getCurrentTimestamp),
-                                                            ),
-                                                            options: [
-                                                              'January',
-                                                              'February',
-                                                              'March',
-                                                              'April',
-                                                              'May',
-                                                              'June',
-                                                              'July',
-                                                              'August',
-                                                              'September',
-                                                              'October',
-                                                              'November',
-                                                              'December'
-                                                            ],
-                                                            onChanged:
-                                                                (val) async {
-                                                              safeSetState(() =>
-                                                                  _model.brgyMonthFilterValue =
-                                                                      val);
-                                                              safeSetState(
-                                                                  () {});
-                                                            },
-                                                            width: 130.0,
-                                                            height: 35.0,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                            hintText: 'Month',
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            elevation: 2.0,
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                            borderWidth: 0.0,
-                                                            borderRadius: 8.0,
-                                                            margin:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0),
-                                                            hidesUnderline:
-                                                                true,
-                                                            isOverButton: false,
-                                                            isSearchable: false,
-                                                            isMultiSelect:
-                                                                false,
-                                                          ),
-                                                        ],
                                                       ),
-                                                      Builder(
-                                                        builder: (context) {
-                                                          final brgyViolations =
-                                                              citationsPerBrgyCitationRecordList
-                                                                  .take(5)
-                                                                  .toList()
-                                                                  .map((e) => e
-                                                                      .violatorAddressBrgy)
-                                                                  .toList()
-                                                                  .sortedList(
-                                                                      keyOf:
-                                                                          (e) =>
-                                                                              e,
-                                                                      desc:
-                                                                          false)
-                                                                  .toList();
-                                                          if (brgyViolations
-                                                              .isEmpty) {
-                                                            return IsEmptyCardWidget();
-                                                          }
-
-                                                          return ListView
-                                                              .separated(
-                                                            padding:
-                                                                EdgeInsets.zero,
-                                                            primary: false,
-                                                            shrinkWrap: true,
-                                                            scrollDirection:
-                                                                Axis.vertical,
-                                                            itemCount:
-                                                                brgyViolations
-                                                                    .length,
-                                                            separatorBuilder: (_,
-                                                                    __) =>
-                                                                SizedBox(
-                                                                    height:
-                                                                        16.0),
-                                                            itemBuilder: (context,
-                                                                brgyViolationsIndex) {
-                                                              final brgyViolationsItem =
-                                                                  brgyViolations[
-                                                                      brgyViolationsIndex];
-                                                              return FutureBuilder<
-                                                                  int>(
-                                                                future:
-                                                                    queryCitationRecordCount(
-                                                                  queryBuilder:
-                                                                      (citationRecord) =>
-                                                                          citationRecord
-                                                                              .where(
-                                                                    'violator_address_brgy',
-                                                                    isEqualTo:
-                                                                        brgyViolationsItem,
+                                                      FlutterFlowDropDown<
+                                                          String>(
+                                                        controller: _model
+                                                                .brgyMonthFilterValueController ??=
+                                                            FormFieldController<
+                                                                String>(
+                                                          _model.brgyMonthFilterValue ??=
+                                                              dateTimeFormat(
+                                                                  "MMMM",
+                                                                  getCurrentTimestamp),
+                                                        ),
+                                                        options: [
+                                                          'January',
+                                                          'February',
+                                                          'March',
+                                                          'April',
+                                                          'May',
+                                                          'June',
+                                                          'July',
+                                                          'August',
+                                                          'September',
+                                                          'October',
+                                                          'November',
+                                                          'December'
+                                                        ],
+                                                        onChanged: (val) async {
+                                                          safeSetState(() =>
+                                                              _model.brgyMonthFilterValue =
+                                                                  val);
+                                                          safeSetState(() {});
+                                                        },
+                                                        width: 130.0,
+                                                        height: 35.0,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
                                                                   ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
                                                                 ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
+                                                        hintText: 'Month',
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        fillColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBackground,
+                                                        elevation: 2.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        borderWidth: 0.0,
+                                                        borderRadius: 8.0,
+                                                        margin:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0),
+                                                        hidesUnderline: true,
+                                                        isOverButton: false,
+                                                        isSearchable: false,
+                                                        isMultiSelect: false,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  FutureBuilder<
+                                                      List<CitationRecord>>(
+                                                    future:
+                                                        queryCitationRecordOnce(
+                                                      queryBuilder:
+                                                          (citationRecord) =>
+                                                              citationRecord
+                                                                  .where(
+                                                                    'appre_date_month',
+                                                                    isEqualTo:
+                                                                        _model
+                                                                            .brgyMonthFilterValue,
+                                                                  )
+                                                                  .where(
+                                                                    'appre_date_year',
+                                                                    isEqualTo: dateTimeFormat(
+                                                                        "yyyy",
+                                                                        getCurrentTimestamp),
+                                                                  )
+                                                                  .where(
+                                                                    'violator_address_province',
+                                                                    isEqualTo:
+                                                                        'Davao del Norte',
+                                                                  )
+                                                                  .where(
+                                                                    'violator_address_city',
+                                                                    isEqualTo:
+                                                                        'City of Panabo',
+                                                                  ),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<CitationRecord>
+                                                          containerCitationRecordList =
+                                                          snapshot.data!;
+
+                                                      return Container(
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final brgyViolations =
+                                                                containerCitationRecordList
+                                                                    .unique((e) =>
+                                                                        e.violatorAddressBrgy)
+                                                                    .toList();
+                                                            if (brgyViolations
+                                                                .isEmpty) {
+                                                              return IsEmptyCardWidget();
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              primary: false,
+                                                              shrinkWrap: true,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  brgyViolations
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  SizedBox(
+                                                                      height:
+                                                                          16.0),
+                                                              itemBuilder: (context,
+                                                                  brgyViolationsIndex) {
+                                                                final brgyViolationsItem =
+                                                                    brgyViolations[
+                                                                        brgyViolationsIndex];
+                                                                return FutureBuilder<
+                                                                    int>(
+                                                                  future:
+                                                                      queryCitationRecordCount(
+                                                                    queryBuilder:
+                                                                        (citationRecord) =>
+                                                                            citationRecord.where(
+                                                                      'violator_address_brgy',
+                                                                      isEqualTo:
+                                                                          brgyViolationsItem
+                                                                              .violatorAddressBrgy,
+                                                                    ),
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          valueColor:
-                                                                              AlwaysStoppedAnimation<Color>(
-                                                                            FlutterFlowTheme.of(context).primary,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  int rowCount =
-                                                                      snapshot
-                                                                          .data!;
+                                                                      );
+                                                                    }
+                                                                    int rowCount =
+                                                                        snapshot
+                                                                            .data!;
 
-                                                                  return Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Text(
-                                                                        brgyViolationsItem,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyLarge
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                    return Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          brgyViolationsItem
+                                                                              .violatorAddressBrgy,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyLarge
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                               ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                      Text(
-                                                                        rowCount
-                                                                            .toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                        ),
+                                                                        Text(
+                                                                          rowCount
+                                                                              .toString(),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(height: 16.0)),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      );
+                                                    },
                                                   ),
-                                                ),
-                                              );
-                                            },
+                                                ].divide(
+                                                    SizedBox(height: 16.0)),
+                                              ),
+                                            ),
                                           ),
                                         ].divide(SizedBox(height: 16.0)),
                                       ),

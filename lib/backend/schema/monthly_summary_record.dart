@@ -16,11 +16,6 @@ class MonthlySummaryRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
   // "last_updated" field.
   DateTime? _lastUpdated;
   DateTime? get lastUpdated => _lastUpdated;
@@ -51,14 +46,19 @@ class MonthlySummaryRecord extends FirestoreRecord {
   String get year => _year ?? '';
   bool hasYear() => _year != null;
 
+  // "month_num" field.
+  int? _monthNum;
+  int get monthNum => _monthNum ?? 0;
+  bool hasMonthNum() => _monthNum != null;
+
   void _initializeFields() {
-    _uid = snapshotData['uid'] as String?;
     _lastUpdated = snapshotData['last_updated'] as DateTime?;
     _totalViolations = castToType<int>(snapshotData['total_violations']);
     _violationCount = getDataList(snapshotData['violation_count']);
     _violationName = getDataList(snapshotData['violation_name']);
     _month = snapshotData['month'] as String?;
     _year = snapshotData['year'] as String?;
+    _monthNum = castToType<int>(snapshotData['month_num']);
   }
 
   static CollectionReference get collection =>
@@ -96,19 +96,19 @@ class MonthlySummaryRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createMonthlySummaryRecordData({
-  String? uid,
   DateTime? lastUpdated,
   int? totalViolations,
   String? month,
   String? year,
+  int? monthNum,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'uid': uid,
       'last_updated': lastUpdated,
       'total_violations': totalViolations,
       'month': month,
       'year': year,
+      'month_num': monthNum,
     }.withoutNulls,
   );
 
@@ -122,24 +122,24 @@ class MonthlySummaryRecordDocumentEquality
   @override
   bool equals(MonthlySummaryRecord? e1, MonthlySummaryRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.uid == e2?.uid &&
-        e1?.lastUpdated == e2?.lastUpdated &&
+    return e1?.lastUpdated == e2?.lastUpdated &&
         e1?.totalViolations == e2?.totalViolations &&
         listEquality.equals(e1?.violationCount, e2?.violationCount) &&
         listEquality.equals(e1?.violationName, e2?.violationName) &&
         e1?.month == e2?.month &&
-        e1?.year == e2?.year;
+        e1?.year == e2?.year &&
+        e1?.monthNum == e2?.monthNum;
   }
 
   @override
   int hash(MonthlySummaryRecord? e) => const ListEquality().hash([
-        e?.uid,
         e?.lastUpdated,
         e?.totalViolations,
         e?.violationCount,
         e?.violationName,
         e?.month,
-        e?.year
+        e?.year,
+        e?.monthNum
       ]);
 
   @override

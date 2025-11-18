@@ -144,10 +144,7 @@ class _DashboardCardWidgetState extends State<DashboardCardWidget> {
                     ),
                     Text(
                       valueOrDefault<String>(
-                        formatNumber(
-                          widget.percent,
-                          formatType: FormatType.percent,
-                        ),
+                        widget.percent.toString(),
                         '16.00',
                       ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -158,6 +155,38 @@ class _DashboardCardWidgetState extends State<DashboardCardWidget> {
                               fontStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .fontStyle,
+                            ),
+                            color: valueOrDefault<Color>(
+                              widget.percent! > 0.0
+                                  ? FlutterFlowTheme.of(context).success
+                                  : FlutterFlowTheme.of(context).error,
+                              FlutterFlowTheme.of(context).success,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontStyle,
+                          ),
+                    ),
+                    Text(
+                      '%',
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            font: GoogleFonts.plusJakartaSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontStyle,
+                            ),
+                            color: valueOrDefault<Color>(
+                              widget.percent! > 0.0
+                                  ? FlutterFlowTheme.of(context).success
+                                  : FlutterFlowTheme.of(context).error,
+                              FlutterFlowTheme.of(context).success,
                             ),
                             letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
