@@ -17,6 +17,8 @@ import 'schema/address_province_record.dart';
 import 'schema/analytics_record.dart';
 import 'schema/annual_citation_chart_record.dart';
 import 'schema/monthly_summary_record.dart';
+import 'schema/violation_summary_record.dart';
+import 'schema/violation_summary_per_brgy_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -37,6 +39,8 @@ export 'schema/address_province_record.dart';
 export 'schema/analytics_record.dart';
 export 'schema/annual_citation_chart_record.dart';
 export 'schema/monthly_summary_record.dart';
+export 'schema/violation_summary_record.dart';
+export 'schema/violation_summary_per_brgy_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -481,6 +485,81 @@ Future<List<MonthlySummaryRecord>> queryMonthlySummaryRecordOnce({
       limit: limit,
       singleRecord: singleRecord,
     );
+
+/// Functions to query ViolationSummaryRecords (as a Stream and as a Future).
+Future<int> queryViolationSummaryRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ViolationSummaryRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ViolationSummaryRecord>> queryViolationSummaryRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ViolationSummaryRecord.collection,
+      ViolationSummaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ViolationSummaryRecord>> queryViolationSummaryRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ViolationSummaryRecord.collection,
+      ViolationSummaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ViolationSummaryPerBrgyRecords (as a Stream and as a Future).
+Future<int> queryViolationSummaryPerBrgyRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ViolationSummaryPerBrgyRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ViolationSummaryPerBrgyRecord>> queryViolationSummaryPerBrgyRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ViolationSummaryPerBrgyRecord.collection,
+      ViolationSummaryPerBrgyRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ViolationSummaryPerBrgyRecord>>
+    queryViolationSummaryPerBrgyRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollectionOnce(
+          ViolationSummaryPerBrgyRecord.collection,
+          ViolationSummaryPerBrgyRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
 
 Future<int> queryCollectionCount(
   Query collection, {

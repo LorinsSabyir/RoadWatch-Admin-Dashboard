@@ -508,6 +508,78 @@ class _NotificationDrawerWidgetState extends State<NotificationDrawerWidget>
                                                               },
                                                             );
                                                           },
+                                                          rejectAct: () async {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (dialogContext) {
+                                                                return Dialog(
+                                                                  elevation: 0,
+                                                                  insetPadding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0)
+                                                                      .resolve(
+                                                                          Directionality.of(
+                                                                              context)),
+                                                                  child:
+                                                                      ConfirmModalWidget(
+                                                                    icon: Icon(
+                                                                      Icons
+                                                                          .check_circle,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
+                                                                      size:
+                                                                          50.0,
+                                                                    ),
+                                                                    title:
+                                                                        'Reject Account Creation',
+                                                                    subtitle:
+                                                                        'Reject creation of this enforcer account?',
+                                                                    button:
+                                                                        'Reject',
+                                                                    buttonColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                    primaryButtonAction:
+                                                                        () async {
+                                                                      await newNotifItem
+                                                                          .reference
+                                                                          .update(
+                                                                              createAdminNotifRecordData(
+                                                                        title:
+                                                                            'Account Rejected!',
+                                                                        subtitle:
+                                                                            'You cannot log in and use the app!',
+                                                                        status:
+                                                                            'static',
+                                                                        editedTime:
+                                                                            getCurrentTimestamp,
+                                                                        notifType:
+                                                                            'Rejection',
+                                                                        type:
+                                                                            'system',
+                                                                      ));
+
+                                                                      await newNotifItem
+                                                                          .enforcerId!
+                                                                          .update(
+                                                                              createUsersRecordData(
+                                                                        accStatus:
+                                                                            'rejected',
+                                                                      ));
+                                                                    },
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -835,6 +907,78 @@ class _NotificationDrawerWidgetState extends State<NotificationDrawerWidget>
                                                                       await allItem
                                                                           .reference
                                                                           .delete();
+                                                                    },
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                          rejectAct: () async {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (dialogContext) {
+                                                                return Dialog(
+                                                                  elevation: 0,
+                                                                  insetPadding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0)
+                                                                      .resolve(
+                                                                          Directionality.of(
+                                                                              context)),
+                                                                  child:
+                                                                      ConfirmModalWidget(
+                                                                    icon: Icon(
+                                                                      Icons
+                                                                          .check_circle,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
+                                                                      size:
+                                                                          50.0,
+                                                                    ),
+                                                                    title:
+                                                                        'Reject Account Creation',
+                                                                    subtitle:
+                                                                        'Reject creation of this enforcer account?',
+                                                                    button:
+                                                                        'Reject',
+                                                                    buttonColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                    primaryButtonAction:
+                                                                        () async {
+                                                                      await allItem
+                                                                          .reference
+                                                                          .update(
+                                                                              createAdminNotifRecordData(
+                                                                        title:
+                                                                            'Account Rejected!',
+                                                                        subtitle:
+                                                                            'You cannot log in and use the app!',
+                                                                        status:
+                                                                            'static',
+                                                                        editedTime:
+                                                                            getCurrentTimestamp,
+                                                                        notifType:
+                                                                            'Rejection',
+                                                                        type:
+                                                                            'system',
+                                                                      ));
+
+                                                                      await allItem
+                                                                          .enforcerId!
+                                                                          .update(
+                                                                              createUsersRecordData(
+                                                                        accStatus:
+                                                                            'rejected',
+                                                                      ));
                                                                     },
                                                                   ),
                                                                 );

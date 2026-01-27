@@ -60,6 +60,11 @@
     <string>Allow camera access to capture necessary images.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>Allow photo library access to upload or select images when needed.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 

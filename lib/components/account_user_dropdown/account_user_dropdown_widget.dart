@@ -379,6 +379,21 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
 
                           context.goNamedAuth(
                               LoginWidget.routeName, context.mounted);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Logged out successfully!',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).success,
+                            ),
+                          );
                         },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 150),
@@ -415,7 +430,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      'Log out',
+                                      'Logout',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

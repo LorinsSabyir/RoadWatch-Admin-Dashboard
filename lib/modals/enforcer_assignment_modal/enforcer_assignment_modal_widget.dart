@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -544,6 +545,20 @@ class _EnforcerAssignmentModalWidgetState
                                                         assignmentAddress:
                                                             '${noSearchItem.landmark}, ${noSearchItem.barangay}, ${noSearchItem.purok}, ${noSearchItem.street}',
                                                       ));
+                                                      triggerPushNotification(
+                                                        notificationTitle:
+                                                            'You have been assigned!',
+                                                        notificationText:
+                                                            '${noSearchItem.landmark}, ${noSearchItem.barangay}, ${noSearchItem.purok}, ${noSearchItem.street}',
+                                                        notificationSound:
+                                                            'default',
+                                                        userRefs: [
+                                                          widget.enforcerId!
+                                                        ],
+                                                        initialPageName:
+                                                            'Enforcers',
+                                                        parameterData: {},
+                                                      );
                                                       Navigator.pop(context);
                                                     }
                                                   },

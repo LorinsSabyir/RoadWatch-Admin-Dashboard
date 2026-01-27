@@ -474,10 +474,10 @@ class _EditAdminWidgetState extends State<EditAdminWidget> {
                         fillColor:
                             FlutterFlowTheme.of(context).primaryBackground,
                         suffixIcon: InkWell(
-                          onTap: () => safeSetState(
-                            () => _model.passwordVisibility =
-                                !_model.passwordVisibility,
-                          ),
+                          onTap: () async {
+                            safeSetState(() => _model.passwordVisibility =
+                                !_model.passwordVisibility);
+                          },
                           focusNode: FocusNode(skipTraversal: true),
                           child: Icon(
                             _model.passwordVisibility
@@ -569,10 +569,11 @@ class _EditAdminWidgetState extends State<EditAdminWidget> {
                         fillColor:
                             FlutterFlowTheme.of(context).primaryBackground,
                         suffixIcon: InkWell(
-                          onTap: () => safeSetState(
-                            () => _model.confirmPasswordVisibility =
-                                !_model.confirmPasswordVisibility,
-                          ),
+                          onTap: () async {
+                            safeSetState(() =>
+                                _model.confirmPasswordVisibility =
+                                    !_model.confirmPasswordVisibility);
+                          },
                           focusNode: FocusNode(skipTraversal: true),
                           child: Icon(
                             _model.confirmPasswordVisibility

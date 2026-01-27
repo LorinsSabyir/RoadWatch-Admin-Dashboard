@@ -15,6 +15,7 @@ class NotificationCardWidget extends StatefulWidget {
     this.deleteAct,
     this.notifRef,
     this.enforcerRef,
+    this.rejectAct,
   });
 
   final String? status;
@@ -24,6 +25,7 @@ class NotificationCardWidget extends StatefulWidget {
   final Future Function()? deleteAct;
   final DocumentReference? notifRef;
   final DocumentReference? enforcerRef;
+  final Future Function()? rejectAct;
 
   @override
   State<NotificationCardWidget> createState() => _NotificationCardWidgetState();
@@ -172,6 +174,21 @@ class _NotificationCardWidgetState extends State<NotificationCardWidget> {
                       child: Icon(
                         Icons.check_rounded,
                         color: FlutterFlowTheme.of(context).success,
+                        size: 30.0,
+                      ),
+                    ),
+                  if (widget.status == 'pending')
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await widget.rejectAct?.call();
+                      },
+                      child: Icon(
+                        Icons.close_rounded,
+                        color: FlutterFlowTheme.of(context).error,
                         size: 30.0,
                       ),
                     ),

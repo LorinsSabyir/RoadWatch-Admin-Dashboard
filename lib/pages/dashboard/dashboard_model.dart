@@ -1,4 +1,6 @@
+import '/backend/backend.dart';
 import '/components/dashboard_card/dashboard_card_widget.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/modals/side_nav/side_nav_widget.dart';
@@ -20,12 +22,24 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late DashboardCardModel citationsTodayModel;
   // Model for CItationsThisMonth.
   late DashboardCardModel cItationsThisMonthModel;
+  // State field(s) for violationChartYearFilter widget.
+  String? violationChartYearFilterValue;
+  FormFieldController<String>? violationChartYearFilterValueController;
+  // State field(s) for violationChartMonthFilter widget.
+  String? violationChartMonthFilterValue;
+  FormFieldController<String>? violationChartMonthFilterValueController;
+  // State field(s) for violationFilter widget.
+  String? violationFilterValue;
+  FormFieldController<String>? violationFilterValueController;
   // State field(s) for violationMonthFilter widget.
   String? violationMonthFilterValue;
   FormFieldController<String>? violationMonthFilterValueController;
   // State field(s) for brgyMonthFilter widget.
   String? brgyMonthFilterValue;
   FormFieldController<String>? brgyMonthFilterValueController;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController =
+      FlutterFlowDataTableController<CitationRecord>();
 
   @override
   void initState(BuildContext context) {
@@ -41,5 +55,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     columnController?.dispose();
     citationsTodayModel.dispose();
     cItationsThisMonthModel.dispose();
+    paginatedDataTableController.dispose();
   }
 }

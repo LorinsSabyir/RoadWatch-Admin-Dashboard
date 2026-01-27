@@ -120,7 +120,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Admin',
+                                          'RoadWatch',
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(

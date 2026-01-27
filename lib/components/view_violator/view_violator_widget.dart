@@ -187,7 +187,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       ),
                                 ),
                                 Text(
-                                  containerCitationRecord.violatorPhoneNum,
+                                  valueOrDefault<String>(
+                                    containerCitationRecord.violatorPhoneNum,
+                                    'N/A',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -206,7 +209,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       ),
                                 ),
                                 Text(
-                                  containerCitationRecord.violatorGender,
+                                  valueOrDefault<String>(
+                                    containerCitationRecord.violatorGender,
+                                    'N/A',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -225,7 +231,26 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '${containerCitationRecord.violatorAddressPrk}, ${containerCitationRecord.violatorAddressBrgy}, ${containerCitationRecord.violatorAddressCity}, ${containerCitationRecord.violatorAddressProvince}',
+                                  valueOrDefault<String>(
+                                    '${valueOrDefault<String>(
+                                      containerCitationRecord
+                                          .violatorAddressPrk,
+                                      'N/A',
+                                    )}, ${valueOrDefault<String>(
+                                      containerCitationRecord
+                                          .violatorAddressBrgy,
+                                      'N/A',
+                                    )}, ${valueOrDefault<String>(
+                                      containerCitationRecord
+                                          .violatorAddressCity,
+                                      'N/A',
+                                    )}, ${valueOrDefault<String>(
+                                      containerCitationRecord
+                                          .violatorAddressProvince,
+                                      'N/A',
+                                    )}',
+                                    'N/A',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -287,8 +312,11 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord
-                                          .violatorLicenseNum,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord
+                                            .violatorLicenseNum,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -334,7 +362,11 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord.confUnitPlateNum,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord
+                                            .confUnitPlateNum,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -380,7 +412,11 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord.confUnitSerialNum,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord
+                                            .confUnitSerialNum,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -432,7 +468,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord.confUnitType,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord.confUnitType,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -478,7 +517,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord.confUnitBrand,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord.confUnitBrand,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -524,7 +566,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           ),
                                     ),
                                     Text(
-                                      containerCitationRecord.confUnitModel,
+                                      valueOrDefault<String>(
+                                        containerCitationRecord.confUnitModel,
+                                        'N/A',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
@@ -693,7 +738,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                               violationSection[
                                                   violationSectionIndex];
                                           return Text(
-                                            violationSectionItem,
+                                            valueOrDefault<String>(
+                                              violationSectionItem,
+                                              'N/A',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
@@ -742,7 +790,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                           final violationNameItem =
                                               violationName[violationNameIndex];
                                           return Text(
-                                            violationNameItem,
+                                            valueOrDefault<String>(
+                                              violationNameItem,
+                                              'N/A',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
@@ -794,7 +845,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                             alignment:
                                                 AlignmentDirectional(1.0, 0.0),
                                             child: Text(
-                                              violationFineItem.toString(),
+                                              valueOrDefault<String>(
+                                                violationFineItem.toString(),
+                                                'N/A',
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
@@ -901,7 +955,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       ),
                                 ),
                                 Text(
-                                  containerCitationRecord.appreEnforcer,
+                                  valueOrDefault<String>(
+                                    containerCitationRecord.appreEnforcer,
+                                    'N/A',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
@@ -944,7 +1001,10 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                       ),
                                 ),
                                 Text(
-                                  containerCitationRecord.apprePlace,
+                                  valueOrDefault<String>(
+                                    containerCitationRecord.apprePlace,
+                                    'N/A',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
@@ -986,26 +1046,55 @@ class _ViewViolatorWidgetState extends State<ViewViolatorWidget> {
                                             .fontStyle,
                                       ),
                                 ),
-                                Text(
-                                  dateTimeFormat("yMd",
-                                      containerCitationRecord.createdTime!),
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
+                                if (containerCitationRecord.createdTime != null)
+                                  Text(
+                                    valueOrDefault<String>(
+                                      dateTimeFormat("yMd",
+                                          containerCitationRecord.createdTime),
+                                      'N/A',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          font: GoogleFonts.plusJakartaSans(
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleLarge
                                                   .fontStyle,
                                         ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                ),
+                                  ),
+                                if (containerCitationRecord.createdTime == null)
+                                  Text(
+                                    valueOrDefault<String>(
+                                      '${containerCitationRecord.appreDateMonth} ${containerCitationRecord.appreDateDay}, ${containerCitationRecord.appreDateYear}',
+                                      'N/A',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          font: GoogleFonts.plusJakartaSans(
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                  ),
                               ].divide(SizedBox(width: 4.0)),
                             ),
                           ],

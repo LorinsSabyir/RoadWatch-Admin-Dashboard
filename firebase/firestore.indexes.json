@@ -1,6 +1,24 @@
 {
   "indexes": [
     {
+      "collectionGroup": "citation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "appre_date_month",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "appre_date_day",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "appre_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "adminNotif",
       "queryScope": "COLLECTION",
       "fields": [
@@ -47,6 +65,18 @@
         {
           "fieldPath": "display_name",
           "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
         }
       ]
     }
