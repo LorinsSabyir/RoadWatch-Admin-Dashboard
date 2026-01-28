@@ -39,7 +39,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   FormFieldController<String>? brgyMonthFilterValueController;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
-      FlutterFlowDataTableController<CitationRecord>();
+      FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
 
   @override
   void initState(BuildContext context) {
