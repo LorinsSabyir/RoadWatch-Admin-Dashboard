@@ -19,6 +19,7 @@ import 'schema/annual_citation_chart_record.dart';
 import 'schema/monthly_summary_record.dart';
 import 'schema/violation_summary_record.dart';
 import 'schema/violation_summary_per_brgy_record.dart';
+import 'schema/violation_summary_per_violation_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -41,6 +42,7 @@ export 'schema/annual_citation_chart_record.dart';
 export 'schema/monthly_summary_record.dart';
 export 'schema/violation_summary_record.dart';
 export 'schema/violation_summary_per_brgy_record.dart';
+export 'schema/violation_summary_per_violation_record.dart';
 
 /// Functions to query ViolationRecords (as a Stream and as a Future).
 Future<int> queryViolationRecordCount({
@@ -556,6 +558,45 @@ Future<List<ViolationSummaryPerBrgyRecord>>
         queryCollectionOnce(
           ViolationSummaryPerBrgyRecord.collection,
           ViolationSummaryPerBrgyRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+/// Functions to query ViolationSummaryPerViolationRecords (as a Stream and as a Future).
+Future<int> queryViolationSummaryPerViolationRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ViolationSummaryPerViolationRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ViolationSummaryPerViolationRecord>>
+    queryViolationSummaryPerViolationRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollection(
+          ViolationSummaryPerViolationRecord.collection,
+          ViolationSummaryPerViolationRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+Future<List<ViolationSummaryPerViolationRecord>>
+    queryViolationSummaryPerViolationRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollectionOnce(
+          ViolationSummaryPerViolationRecord.collection,
+          ViolationSummaryPerViolationRecord.fromSnapshot,
           queryBuilder: queryBuilder,
           limit: limit,
           singleRecord: singleRecord,

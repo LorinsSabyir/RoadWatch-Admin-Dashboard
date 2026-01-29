@@ -11,28 +11,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'analytics_model.dart';
-export 'analytics_model.dart';
+import 'analytics_copy2_model.dart';
+export 'analytics_copy2_model.dart';
 
-class AnalyticsWidget extends StatefulWidget {
-  const AnalyticsWidget({super.key});
+class AnalyticsCopy2Widget extends StatefulWidget {
+  const AnalyticsCopy2Widget({super.key});
 
-  static String routeName = 'Analytics';
-  static String routePath = '/Analytics';
+  static String routeName = 'AnalyticsCopy2';
+  static String routePath = '/AnalyticsCopy1';
 
   @override
-  State<AnalyticsWidget> createState() => _AnalyticsWidgetState();
+  State<AnalyticsCopy2Widget> createState() => _AnalyticsCopy2WidgetState();
 }
 
-class _AnalyticsWidgetState extends State<AnalyticsWidget> {
-  late AnalyticsModel _model;
+class _AnalyticsCopy2WidgetState extends State<AnalyticsCopy2Widget> {
+  late AnalyticsCopy2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AnalyticsModel());
+    _model = createModel(context, () => AnalyticsCopy2Model());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -55,7 +55,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
     context.watch<FFAppState>();
 
     return Title(
-        title: 'Analytics',
+        title: 'AnalyticsCopy2',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
           onTap: () {
@@ -255,10 +255,8 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                   children: [
                                     Expanded(
                                       child: StreamBuilder<
-                                          List<
-                                              ViolationSummaryPerViolationRecord>>(
-                                        stream:
-                                            queryViolationSummaryPerViolationRecord(
+                                          List<MonthlySummaryRecord>>(
+                                        stream: queryMonthlySummaryRecord(
                                           singleRecord: true,
                                         ),
                                         builder: (context, snapshot) {
@@ -280,13 +278,13 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                               ),
                                             );
                                           }
-                                          List<ViolationSummaryPerViolationRecord>
-                                              graphViolationSummaryPerViolationRecordList =
+                                          List<MonthlySummaryRecord>
+                                              graphMonthlySummaryRecordList =
                                               snapshot.data!;
-                                          final graphViolationSummaryPerViolationRecord =
-                                              graphViolationSummaryPerViolationRecordList
+                                          final graphMonthlySummaryRecord =
+                                              graphMonthlySummaryRecordList
                                                       .isNotEmpty
-                                                  ? graphViolationSummaryPerViolationRecordList
+                                                  ? graphMonthlySummaryRecordList
                                                       .first
                                                   : null;
 
@@ -567,8 +565,8 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                   FlutterFlowBarChart(
                                                                 barData: [
                                                                   FFBarChartData(
-                                                                    yData: graphViolationSummaryPerViolationRecord!
-                                                                        .totalOccurrences,
+                                                                    yData: graphMonthlySummaryRecord!
+                                                                        .violationCount,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .accent1,
@@ -580,7 +578,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                   )
                                                                 ],
                                                                 xLabels:
-                                                                    graphViolationSummaryPerViolationRecord
+                                                                    graphMonthlySummaryRecord
                                                                         .violationName,
                                                                 barWidth: 32.0,
                                                                 barBorderRadius:

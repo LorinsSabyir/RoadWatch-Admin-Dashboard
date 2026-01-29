@@ -76,23 +76,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
+      errorBuilder: (context, state) => RootPageContext.wrap(
+        appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
+        errorRoute: state.uri.toString(),
+      ),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
+          builder: (context, _) => RootPageContext.wrap(
+            appStateNotifier.loggedIn ? DashboardWidget() : LoginWidget(),
+          ),
         ),
         FFRoute(
           name: ViolatorsWidget.routeName,
           path: ViolatorsWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => ViolatorsWidget(),
         ),
         FFRoute(
           name: DashboardWidget.routeName,
           path: DashboardWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => DashboardWidget(),
         ),
         FFRoute(
@@ -103,22 +108,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: FinesWidget.routeName,
           path: FinesWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => FinesWidget(),
         ),
         FFRoute(
           name: AnalyticsWidget.routeName,
           path: AnalyticsWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => AnalyticsWidget(),
         ),
         FFRoute(
           name: ApprePlaceWidget.routeName,
           path: ApprePlaceWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => ApprePlaceWidget(),
         ),
         FFRoute(
           name: EnforcersWidget.routeName,
           path: EnforcersWidget.routePath,
+          requireAuth: true,
           builder: (context, params) => EnforcersWidget(),
+        ),
+        FFRoute(
+          name: AnalyticsCopy2Widget.routeName,
+          path: AnalyticsCopy2Widget.routePath,
+          requireAuth: true,
+          builder: (context, params) => AnalyticsCopy2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -6,3 +6,5 @@ export '/pages/fines/fines_widget.dart' show FinesWidget;
 export '/pages/analytics/analytics_widget.dart' show AnalyticsWidget;
 export '/pages/appre_place/appre_place_widget.dart' show ApprePlaceWidget;
 export '/pages/enforcers/enforcers_widget.dart' show EnforcersWidget;
+export '/pages/analytics_copy2/analytics_copy2_widget.dart'
+    show AnalyticsCopy2Widget;

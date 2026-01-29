@@ -116,6 +116,7 @@ final parametersBuilderMap =
   'Analytics': ParameterData.none(),
   'ApprePlace': ParameterData.none(),
   'Enforcers': ParameterData.none(),
+  'AnalyticsCopy2': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

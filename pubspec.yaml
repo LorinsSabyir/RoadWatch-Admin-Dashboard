@@ -99,6 +99,7 @@ dependencies:
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
+  syncfusion_flutter_charts: ^28.1.33
   synchronized: 3.4.0
   text_search: 1.0.1
   timeago: 3.7.1
@@ -117,6 +118,7 @@ dependencies:
 
 dependency_overrides:
   http: 1.4.0
+  intl: 0.20.2
   uuid: ^4.0.0
 
 dev_dependencies:

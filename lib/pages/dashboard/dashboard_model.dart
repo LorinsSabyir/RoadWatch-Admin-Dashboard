@@ -17,7 +17,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // Model for SideNav component.
   late SideNavModel sideNavModel;
   // State field(s) for Column widget.
-  ScrollController? columnController;
+  ScrollController? columnController1;
   // Model for CitationsToday.
   late DashboardCardModel citationsTodayModel;
   // Model for CItationsThisMonth.
@@ -31,12 +31,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // State field(s) for violationFilter widget.
   String? violationFilterValue;
   FormFieldController<String>? violationFilterValueController;
-  // State field(s) for violationMonthFilter widget.
-  String? violationMonthFilterValue;
-  FormFieldController<String>? violationMonthFilterValueController;
-  // State field(s) for brgyMonthFilter widget.
-  String? brgyMonthFilterValue;
-  FormFieldController<String>? brgyMonthFilterValueController;
+  // State field(s) for Column widget.
+  ScrollController? columnController2;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
@@ -44,17 +40,19 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
-    columnController = ScrollController();
+    columnController1 = ScrollController();
     citationsTodayModel = createModel(context, () => DashboardCardModel());
     cItationsThisMonthModel = createModel(context, () => DashboardCardModel());
+    columnController2 = ScrollController();
   }
 
   @override
   void dispose() {
     sideNavModel.dispose();
-    columnController?.dispose();
+    columnController1?.dispose();
     citationsTodayModel.dispose();
     cItationsThisMonthModel.dispose();
+    columnController2?.dispose();
     paginatedDataTableController.dispose();
   }
 }
