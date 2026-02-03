@@ -19,29 +19,29 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
-import 'violators_model.dart';
-export 'violators_model.dart';
+import 'violators_copy_model.dart';
+export 'violators_copy_model.dart';
 
-class ViolatorsWidget extends StatefulWidget {
-  const ViolatorsWidget({super.key});
+class ViolatorsCopyWidget extends StatefulWidget {
+  const ViolatorsCopyWidget({super.key});
 
-  static String routeName = 'Violators';
-  static String routePath = '/Violators';
+  static String routeName = 'ViolatorsCopy';
+  static String routePath = '/Violatorscopy';
 
   @override
-  State<ViolatorsWidget> createState() => _ViolatorsWidgetState();
+  State<ViolatorsCopyWidget> createState() => _ViolatorsCopyWidgetState();
 }
 
-class _ViolatorsWidgetState extends State<ViolatorsWidget>
+class _ViolatorsCopyWidgetState extends State<ViolatorsCopyWidget>
     with TickerProviderStateMixin {
-  late ViolatorsModel _model;
+  late ViolatorsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ViolatorsModel());
+    _model = createModel(context, () => ViolatorsCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -97,10 +97,10 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
             ),
           );
         }
-        List<CitationRecord> violatorsCitationRecordList = snapshot.data!;
+        List<CitationRecord> violatorsCopyCitationRecordList = snapshot.data!;
 
         return Title(
-            title: 'Violators',
+            title: 'ViolatorsCopy',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
               onTap: () {
@@ -224,8 +224,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            await actions
-                                                .citationExportToCSVCopy(
+                                            await actions.citationExportToCSV(
                                               context,
                                             );
                                           },
@@ -538,7 +537,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                           safeSetState(() {
                                                             _model.simpleSearchResults =
                                                                 TextSearch(
-                                                              violatorsCitationRecordList
+                                                              violatorsCopyCitationRecordList
                                                                   .map(
                                                                     (record) =>
                                                                         TextSearchItem.fromTerms(
@@ -936,7 +935,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                             child: Builder(
                                                               builder:
                                                                   (context) {
-                                                                final allNoSearch = violatorsCitationRecordList
+                                                                final allNoSearch = violatorsCopyCitationRecordList
                                                                     .where((e) =>
                                                                         (e.appreDateMonth ==
                                                                             _model
@@ -946,13 +945,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                     .toList();
                                                                 if (allNoSearch
                                                                     .isEmpty) {
-                                                                  return Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  );
+                                                                  return IsEmptyCardWidget();
                                                                 }
 
                                                                 return FlutterFlowDataTable<
@@ -1408,7 +1401,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                           updateCallback: () => safeSetState(() {}),
                                                                                           child: StatusWidget(
                                                                                             key: Key(
-                                                                                              'Keyyzj_${allNoSearchItem.receiptStatus.toString()}',
+                                                                                              'Key4ai_${allNoSearchItem.receiptStatus.toString()}',
                                                                                             ),
                                                                                             text: 'Not Paid',
                                                                                             fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -1427,7 +1420,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                         updateCallback: () => safeSetState(() {}),
                                                                                         child: StatusWidget(
                                                                                           key: Key(
-                                                                                            'Keyluw_${allNoSearchItem.receiptStatus.toString()}',
+                                                                                            'Keykn2_${allNoSearchItem.receiptStatus.toString()}',
                                                                                           ),
                                                                                           text: 'Paid',
                                                                                           fillColor: FlutterFlowTheme.of(context).success,
@@ -1507,13 +1500,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   ),
                                                                   emptyBuilder:
                                                                       () =>
-                                                                          Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  ),
+                                                                          IsEmptyCardWidget(),
                                                                   paginated:
                                                                       true,
                                                                   selectable:
@@ -1521,7 +1508,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   hidePaginator:
                                                                       false,
                                                                   showFirstLastButtons:
-                                                                      false,
+                                                                      true,
                                                                   headingRowHeight:
                                                                       40.0,
                                                                   dataRowHeight:
@@ -2112,7 +2099,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                   updateCallback: () => safeSetState(() {}),
                                                                                                   child: StatusWidget(
                                                                                                     key: Key(
-                                                                                                      'Keyefl_${allResultItem.receiptStatus.toString()}',
+                                                                                                      'Key92d_${allResultItem.receiptStatus.toString()}',
                                                                                                     ),
                                                                                                     text: 'Not Paid',
                                                                                                     fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -2131,7 +2118,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                 updateCallback: () => safeSetState(() {}),
                                                                                                 child: StatusWidget(
                                                                                                   key: Key(
-                                                                                                    'Keymvu_${allResultItem.receiptStatus.toString()}',
+                                                                                                    'Key6gh_${allResultItem.receiptStatus.toString()}',
                                                                                                   ),
                                                                                                   text: 'Paid',
                                                                                                   fillColor: FlutterFlowTheme.of(context).success,
@@ -2241,7 +2228,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                             child: Builder(
                                                               builder:
                                                                   (context) {
-                                                                final unpaidNoSearch = violatorsCitationRecordList
+                                                                final unpaidNoSearch = violatorsCopyCitationRecordList
                                                                     .where((e) =>
                                                                         (e.receiptStatus ==
                                                                             false) &&
@@ -2253,13 +2240,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                     .toList();
                                                                 if (unpaidNoSearch
                                                                     .isEmpty) {
-                                                                  return Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  );
+                                                                  return IsEmptyCardWidget();
                                                                 }
 
                                                                 return FlutterFlowDataTable<
@@ -2715,7 +2696,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                           updateCallback: () => safeSetState(() {}),
                                                                                           child: StatusWidget(
                                                                                             key: Key(
-                                                                                              'Keyd0l_${unpaidNoSearchItem.receiptStatus.toString()}',
+                                                                                              'Keyeod_${unpaidNoSearchItem.receiptStatus.toString()}',
                                                                                             ),
                                                                                             text: 'Not Paid',
                                                                                             fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -2734,7 +2715,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                         updateCallback: () => safeSetState(() {}),
                                                                                         child: StatusWidget(
                                                                                           key: Key(
-                                                                                            'Keyzhy_${unpaidNoSearchItem.receiptStatus.toString()}',
+                                                                                            'Keyw6l_${unpaidNoSearchItem.receiptStatus.toString()}',
                                                                                           ),
                                                                                           text: 'Paid',
                                                                                           fillColor: FlutterFlowTheme.of(context).success,
@@ -2814,13 +2795,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   ),
                                                                   emptyBuilder:
                                                                       () =>
-                                                                          Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  ),
+                                                                          IsEmptyCardWidget(),
                                                                   paginated:
                                                                       true,
                                                                   selectable:
@@ -2828,7 +2803,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   hidePaginator:
                                                                       false,
                                                                   showFirstLastButtons:
-                                                                      false,
+                                                                      true,
                                                                   headingRowHeight:
                                                                       40.0,
                                                                   dataRowHeight:
@@ -3147,12 +3122,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                           .toList();
                                                                       if (unpaidResult
                                                                           .isEmpty) {
-                                                                        return Container(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          child:
-                                                                              IsEmptyCardWidget(),
-                                                                        );
+                                                                        return IsEmptyCardWidget();
                                                                       }
 
                                                                       return ListView
@@ -3425,7 +3395,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                   updateCallback: () => safeSetState(() {}),
                                                                                                   child: StatusWidget(
                                                                                                     key: Key(
-                                                                                                      'Keymvk_${unpaidResultItem.receiptStatus.toString()}',
+                                                                                                      'Key48w_${unpaidResultItem.receiptStatus.toString()}',
                                                                                                     ),
                                                                                                     text: 'Not Paid',
                                                                                                     fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -3444,7 +3414,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                 updateCallback: () => safeSetState(() {}),
                                                                                                 child: StatusWidget(
                                                                                                   key: Key(
-                                                                                                    'Keym2p_${unpaidResultItem.receiptStatus.toString()}',
+                                                                                                    'Keyowt_${unpaidResultItem.receiptStatus.toString()}',
                                                                                                   ),
                                                                                                   text: 'Paid',
                                                                                                   fillColor: FlutterFlowTheme.of(context).success,
@@ -3554,7 +3524,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                             child: Builder(
                                                               builder:
                                                                   (context) {
-                                                                final paidNoSearch = violatorsCitationRecordList
+                                                                final paidNoSearch = violatorsCopyCitationRecordList
                                                                     .where((e) =>
                                                                         (e.receiptStatus ==
                                                                             true) &&
@@ -3566,13 +3536,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                     .toList();
                                                                 if (paidNoSearch
                                                                     .isEmpty) {
-                                                                  return Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  );
+                                                                  return IsEmptyCardWidget();
                                                                 }
 
                                                                 return FlutterFlowDataTable<
@@ -4028,7 +3992,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                           updateCallback: () => safeSetState(() {}),
                                                                                           child: StatusWidget(
                                                                                             key: Key(
-                                                                                              'Key78m_${paidNoSearchItem.receiptStatus.toString()}',
+                                                                                              'Keycsc_${paidNoSearchItem.receiptStatus.toString()}',
                                                                                             ),
                                                                                             text: 'Not Paid',
                                                                                             fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -4047,7 +4011,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                         updateCallback: () => safeSetState(() {}),
                                                                                         child: StatusWidget(
                                                                                           key: Key(
-                                                                                            'Key5n2_${paidNoSearchItem.receiptStatus.toString()}',
+                                                                                            'Keyzwa_${paidNoSearchItem.receiptStatus.toString()}',
                                                                                           ),
                                                                                           text: 'Paid',
                                                                                           fillColor: FlutterFlowTheme.of(context).success,
@@ -4127,13 +4091,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   ),
                                                                   emptyBuilder:
                                                                       () =>
-                                                                          Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    child:
-                                                                        IsEmptyCardWidget(),
-                                                                  ),
+                                                                          IsEmptyCardWidget(),
                                                                   paginated:
                                                                       true,
                                                                   selectable:
@@ -4141,7 +4099,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                   hidePaginator:
                                                                       false,
                                                                   showFirstLastButtons:
-                                                                      false,
+                                                                      true,
                                                                   headingRowHeight:
                                                                       40.0,
                                                                   dataRowHeight:
@@ -4460,12 +4418,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                           .toList();
                                                                       if (paidResult
                                                                           .isEmpty) {
-                                                                        return Container(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          child:
-                                                                              IsEmptyCardWidget(),
-                                                                        );
+                                                                        return IsEmptyCardWidget();
                                                                       }
 
                                                                       return ListView
@@ -4738,7 +4691,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                   updateCallback: () => safeSetState(() {}),
                                                                                                   child: StatusWidget(
                                                                                                     key: Key(
-                                                                                                      'Keyu36_${paidResultItem.receiptStatus.toString()}',
+                                                                                                      'Keyt7p_${paidResultItem.receiptStatus.toString()}',
                                                                                                     ),
                                                                                                     text: 'Not Paid',
                                                                                                     fillColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -4757,7 +4710,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                                 updateCallback: () => safeSetState(() {}),
                                                                                                 child: StatusWidget(
                                                                                                   key: Key(
-                                                                                                    'Keyi28_${paidResultItem.receiptStatus.toString()}',
+                                                                                                    'Keyer0_${paidResultItem.receiptStatus.toString()}',
                                                                                                   ),
                                                                                                   text: 'Paid',
                                                                                                   fillColor: FlutterFlowTheme.of(context).success,

@@ -71,6 +71,34 @@ class ViolationSummaryPerViolationRecord extends FirestoreRecord {
   List<int> get totalOccurrences => _totalOccurrences ?? const [];
   bool hasTotalOccurrences() => _totalOccurrences != null;
 
+  // "variance" field.
+  int? _variance;
+  int get variance => _variance ?? 0;
+  bool hasVariance() => _variance != null;
+
+  // "forecasted_violation_name" field.
+  List<String>? _forecastedViolationName;
+  List<String> get forecastedViolationName =>
+      _forecastedViolationName ?? const [];
+  bool hasForecastedViolationName() => _forecastedViolationName != null;
+
+  // "forecasted_violation_section" field.
+  List<String>? _forecastedViolationSection;
+  List<String> get forecastedViolationSection =>
+      _forecastedViolationSection ?? const [];
+  bool hasForecastedViolationSection() => _forecastedViolationSection != null;
+
+  // "total_forecasted_occurrences" field.
+  List<int>? _totalForecastedOccurrences;
+  List<int> get totalForecastedOccurrences =>
+      _totalForecastedOccurrences ?? const [];
+  bool hasTotalForecastedOccurrences() => _totalForecastedOccurrences != null;
+
+  // "forecasted_for_this_month" field.
+  int? _forecastedForThisMonth;
+  int get forecastedForThisMonth => _forecastedForThisMonth ?? 0;
+  bool hasForecastedForThisMonth() => _forecastedForThisMonth != null;
+
   void _initializeFields() {
     _city = snapshotData['city'] as String?;
     _month = snapshotData['month'] as String?;
@@ -84,6 +112,15 @@ class ViolationSummaryPerViolationRecord extends FirestoreRecord {
     _violationName = getDataList(snapshotData['violation_name']);
     _violationSection = getDataList(snapshotData['violation_section']);
     _totalOccurrences = getDataList(snapshotData['total_occurrences']);
+    _variance = castToType<int>(snapshotData['variance']);
+    _forecastedViolationName =
+        getDataList(snapshotData['forecasted_violation_name']);
+    _forecastedViolationSection =
+        getDataList(snapshotData['forecasted_violation_section']);
+    _totalForecastedOccurrences =
+        getDataList(snapshotData['total_forecasted_occurrences']);
+    _forecastedForThisMonth =
+        castToType<int>(snapshotData['forecasted_for_this_month']);
   }
 
   static CollectionReference get collection =>
@@ -134,6 +171,8 @@ Map<String, dynamic> createViolationSummaryPerViolationRecordData({
   DateTime? createdAt,
   DateTime? updatedAt,
   String? year,
+  int? variance,
+  int? forecastedForThisMonth,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -145,6 +184,8 @@ Map<String, dynamic> createViolationSummaryPerViolationRecordData({
       'created_at': createdAt,
       'updated_at': updatedAt,
       'year': year,
+      'variance': variance,
+      'forecasted_for_this_month': forecastedForThisMonth,
     }.withoutNulls,
   );
 
@@ -169,7 +210,15 @@ class ViolationSummaryPerViolationRecordDocumentEquality
         e1?.year == e2?.year &&
         listEquality.equals(e1?.violationName, e2?.violationName) &&
         listEquality.equals(e1?.violationSection, e2?.violationSection) &&
-        listEquality.equals(e1?.totalOccurrences, e2?.totalOccurrences);
+        listEquality.equals(e1?.totalOccurrences, e2?.totalOccurrences) &&
+        e1?.variance == e2?.variance &&
+        listEquality.equals(
+            e1?.forecastedViolationName, e2?.forecastedViolationName) &&
+        listEquality.equals(
+            e1?.forecastedViolationSection, e2?.forecastedViolationSection) &&
+        listEquality.equals(
+            e1?.totalForecastedOccurrences, e2?.totalForecastedOccurrences) &&
+        e1?.forecastedForThisMonth == e2?.forecastedForThisMonth;
   }
 
   @override
@@ -184,7 +233,12 @@ class ViolationSummaryPerViolationRecordDocumentEquality
         e?.year,
         e?.violationName,
         e?.violationSection,
-        e?.totalOccurrences
+        e?.totalOccurrences,
+        e?.variance,
+        e?.forecastedViolationName,
+        e?.forecastedViolationSection,
+        e?.totalForecastedOccurrences,
+        e?.forecastedForThisMonth
       ]);
 
   @override

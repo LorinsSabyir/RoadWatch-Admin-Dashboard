@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/confirm_modal/confirm_modal_widget.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/components/status/status_widget.dart';
 import '/components/view_enforcer/view_enforcer_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
@@ -543,6 +544,17 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                     final noSearch =
                                                         enforcersUsersRecordList
                                                             .toList();
+                                                    if (noSearch.isEmpty) {
+                                                      return Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      );
+                                                    }
 
                                                     return FlutterFlowDataTable<
                                                         UsersRecord>(
@@ -614,7 +626,7 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                                   ),
                                                                 ),
                                                                 Expanded(
-                                                                  flex: 1,
+                                                                  flex: 2,
                                                                   child: Text(
                                                                     'Badge #',
                                                                     style: FlutterFlowTheme.of(
@@ -918,7 +930,7 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                                         false,
                                                                   ))
                                                                     Expanded(
-                                                                      flex: 1,
+                                                                      flex: 2,
                                                                       child:
                                                                           Text(
                                                                         noSearchItem
@@ -1192,11 +1204,21 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                                 DataCell(c))
                                                             .toList(),
                                                       ),
+                                                      emptyBuilder: () =>
+                                                          Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      ),
                                                       paginated: true,
                                                       selectable: false,
                                                       hidePaginator: false,
                                                       showFirstLastButtons:
-                                                          false,
+                                                          true,
                                                       headingRowHeight: 40.0,
                                                       dataRowHeight: 56.0,
                                                       columnSpacing: 20.0,
@@ -1503,6 +1525,17 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                                         final result = _model
                                                             .simpleSearchResults
                                                             .toList();
+                                                        if (result.isEmpty) {
+                                                          return Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            child:
+                                                                IsEmptyCardWidget(),
+                                                          );
+                                                        }
 
                                                         return ListView.builder(
                                                           padding:

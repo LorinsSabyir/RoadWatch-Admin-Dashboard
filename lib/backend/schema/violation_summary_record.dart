@@ -60,6 +60,11 @@ class ViolationSummaryRecord extends FirestoreRecord {
   DateTime? get updatedAt => _updatedAt;
   bool hasUpdatedAt() => _updatedAt != null;
 
+  // "variance" field.
+  int? _variance;
+  int get variance => _variance ?? 0;
+  bool hasVariance() => _variance != null;
+
   void _initializeFields() {
     _city = snapshotData['city'] as String?;
     _month = snapshotData['month'] as String?;
@@ -71,6 +76,7 @@ class ViolationSummaryRecord extends FirestoreRecord {
     _modelUsed = snapshotData['model_used'] as String?;
     _monthNum = castToType<int>(snapshotData['month_num']);
     _updatedAt = snapshotData['updated_at'] as DateTime?;
+    _variance = castToType<int>(snapshotData['variance']);
   }
 
   static CollectionReference get collection =>
@@ -118,6 +124,7 @@ Map<String, dynamic> createViolationSummaryRecordData({
   String? modelUsed,
   int? monthNum,
   DateTime? updatedAt,
+  int? variance,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -130,6 +137,7 @@ Map<String, dynamic> createViolationSummaryRecordData({
       'model_used': modelUsed,
       'month_num': monthNum,
       'updated_at': updatedAt,
+      'variance': variance,
     }.withoutNulls,
   );
 
@@ -150,7 +158,8 @@ class ViolationSummaryRecordDocumentEquality
         e1?.year == e2?.year &&
         e1?.modelUsed == e2?.modelUsed &&
         e1?.monthNum == e2?.monthNum &&
-        e1?.updatedAt == e2?.updatedAt;
+        e1?.updatedAt == e2?.updatedAt &&
+        e1?.variance == e2?.variance;
   }
 
   @override
@@ -163,7 +172,8 @@ class ViolationSummaryRecordDocumentEquality
         e?.year,
         e?.modelUsed,
         e?.monthNum,
-        e?.updatedAt
+        e?.updatedAt,
+        e?.variance
       ]);
 
   @override

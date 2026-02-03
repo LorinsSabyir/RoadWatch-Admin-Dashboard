@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/confirm_modal/confirm_modal_widget.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -647,6 +648,17 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                     final noSearch =
                                                         apprePlaceApprePlacesRecordList
                                                             .toList();
+                                                    if (noSearch.isEmpty) {
+                                                      return Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      );
+                                                    }
 
                                                     return FlutterFlowDataTable<
                                                         ApprePlacesRecord>(
@@ -973,11 +985,21 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                                 DataCell(c))
                                                             .toList(),
                                                       ),
+                                                      emptyBuilder: () =>
+                                                          Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      ),
                                                       paginated: true,
                                                       selectable: false,
                                                       hidePaginator: false,
                                                       showFirstLastButtons:
-                                                          false,
+                                                          true,
                                                       headingRowHeight: 40.0,
                                                       dataRowHeight: 56.0,
                                                       columnSpacing: 20.0,
@@ -1165,6 +1187,17 @@ class _ApprePlaceWidgetState extends State<ApprePlaceWidget> {
                                                         final result = _model
                                                             .simpleSearchResults
                                                             .toList();
+                                                        if (result.isEmpty) {
+                                                          return Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            child:
+                                                                IsEmptyCardWidget(),
+                                                          );
+                                                        }
 
                                                         return ListView.builder(
                                                           padding:

@@ -1,3 +1,5 @@
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/modals/side_nav/side_nav_widget.dart';
@@ -21,6 +23,15 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   // State field(s) for violationChartMonthFilter widget.
   String? violationChartMonthFilterValue;
   FormFieldController<String>? violationChartMonthFilterValueController;
+  // State field(s) for violationFilter widget.
+  String? violationFilterValue;
+  FormFieldController<String>? violationFilterValueController;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController1 =
+      FlutterFlowDataTableController<ViolationSummaryRecord>();
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
+      FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
 
   @override
   void initState(BuildContext context) {
@@ -32,5 +43,7 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   void dispose() {
     sideNavModel.dispose();
     columnController?.dispose();
+    paginatedDataTableController1.dispose();
+    paginatedDataTableController2.dispose();
   }
 }

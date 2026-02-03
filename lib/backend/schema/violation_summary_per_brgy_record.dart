@@ -65,6 +65,11 @@ class ViolationSummaryPerBrgyRecord extends FirestoreRecord {
   int get monthNum => _monthNum ?? 0;
   bool hasMonthNum() => _monthNum != null;
 
+  // "variance" field.
+  int? _variance;
+  int get variance => _variance ?? 0;
+  bool hasVariance() => _variance != null;
+
   void _initializeFields() {
     _actualViolations = castToType<int>(snapshotData['actual_violations']);
     _barangay = snapshotData['barangay'] as String?;
@@ -77,6 +82,7 @@ class ViolationSummaryPerBrgyRecord extends FirestoreRecord {
     _modelUsed = snapshotData['model_used'] as String?;
     _updatedAt = snapshotData['updated_at'] as DateTime?;
     _monthNum = castToType<int>(snapshotData['month_num']);
+    _variance = castToType<int>(snapshotData['variance']);
   }
 
   static CollectionReference get collection =>
@@ -127,6 +133,7 @@ Map<String, dynamic> createViolationSummaryPerBrgyRecordData({
   String? modelUsed,
   DateTime? updatedAt,
   int? monthNum,
+  int? variance,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -140,6 +147,7 @@ Map<String, dynamic> createViolationSummaryPerBrgyRecordData({
       'model_used': modelUsed,
       'updated_at': updatedAt,
       'month_num': monthNum,
+      'variance': variance,
     }.withoutNulls,
   );
 
@@ -162,7 +170,8 @@ class ViolationSummaryPerBrgyRecordDocumentEquality
         e1?.forecastedViolations == e2?.forecastedViolations &&
         e1?.modelUsed == e2?.modelUsed &&
         e1?.updatedAt == e2?.updatedAt &&
-        e1?.monthNum == e2?.monthNum;
+        e1?.monthNum == e2?.monthNum &&
+        e1?.variance == e2?.variance;
   }
 
   @override
@@ -176,7 +185,8 @@ class ViolationSummaryPerBrgyRecordDocumentEquality
         e?.forecastedViolations,
         e?.modelUsed,
         e?.updatedAt,
-        e?.monthNum
+        e?.monthNum,
+        e?.variance
       ]);
 
   @override

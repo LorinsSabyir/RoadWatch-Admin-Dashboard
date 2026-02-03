@@ -6,7 +6,12 @@ import 'is_empty_card_model.dart';
 export 'is_empty_card_model.dart';
 
 class IsEmptyCardWidget extends StatefulWidget {
-  const IsEmptyCardWidget({super.key});
+  const IsEmptyCardWidget({
+    super.key,
+    this.height,
+  });
+
+  final int? height;
 
   @override
   State<IsEmptyCardWidget> createState() => _IsEmptyCardWidgetState();
@@ -40,7 +45,10 @@ class _IsEmptyCardWidgetState extends State<IsEmptyCardWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
-      height: 500.0,
+      height: valueOrDefault<double>(
+        widget.height?.toDouble(),
+        500.0,
+      ),
       decoration: BoxDecoration(),
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Column(

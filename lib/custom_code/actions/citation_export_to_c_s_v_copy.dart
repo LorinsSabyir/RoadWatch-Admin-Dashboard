@@ -14,8 +14,15 @@ import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csv/csv.dart';
 
+String listOrString(dynamic value) {
+  if (value == null) return '';
+  if (value is List) return value.join(', ');
+  if (value is String) return value;
+  return value.toString();
+}
+
 /// Downloads citation data from Firebase Firestore into a CSV file (Web-compatible)
-Future<void> citationExportToCSV(BuildContext context) async {
+Future<void> citationExportToCSVCopy(BuildContext context) async {
   try {
     // Get data from Firebase Firestore
     QuerySnapshot querySnapshot =
@@ -81,9 +88,10 @@ Future<void> citationExportToCSV(BuildContext context) async {
             ? DateFormat('yyyy/MM/dd HH:mm')
                 .format(data['created_time'].toDate())
             : '',
-        (data['violation_name'] as List<dynamic>?)?.join(', ') ?? '',
-        (data['violation_section'] as List<dynamic>?)?.join(', ') ?? '',
-        (data['violation_fine'] as List<dynamic>?)?.join(', ') ?? '',
+        listOrString(data['violation_name']),
+        listOrString(data['violation_section']),
+        listOrString(data['violation_fine']),
+
         data['violation_total_fine']?.toString() ?? '',
         data['edited_time'] != null
             ? DateFormat('yyyy/MM/dd HH:mm')
@@ -97,18 +105,14 @@ Future<void> citationExportToCSV(BuildContext context) async {
 
     // Create and download file (Web)
     final bytes = utf8.encode(csvString);
-    final blob = html.Blob([bytes]);
+    final blob = html.Blob([bytes], 'text/csv');
     final url = html.Url.createObjectUrlFromBlob(blob);
 
-    final anchor = html.document.createElement('a') as html.AnchorElement
-      ..href = url
-      ..style.display = 'none'
-      ..download =
-          'citation_export_${DateTime.now().millisecondsSinceEpoch}.csv';
+    html.AnchorElement(href: url)
+      ..setAttribute('download',
+          'citation_export_${DateTime.now().millisecondsSinceEpoch}.csv')
+      ..click();
 
-    html.document.body?.children.add(anchor);
-    anchor.click();
-    html.document.body?.children.remove(anchor);
     html.Url.revokeObjectUrl(url);
 
     // ✅ Success message (themed)

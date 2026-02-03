@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/modals/create_user/create_user_widget.dart';
 import '/modals/edit_admin/edit_admin_widget.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -311,7 +312,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'Settings',
+                                        'Edit Admin Account',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -349,6 +350,106 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                       }),
                       onExit: ((event) async {
                         safeSetState(() => _model.mouseRegionHovered1 = false);
+                      }),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
+                    child: MouseRegion(
+                      opaque: false,
+                      cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
+                      child: Builder(
+                        builder: (context) => InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: CreateUserWidget(),
+                                );
+                              },
+                            );
+                          },
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 150),
+                            curve: Curves.easeInOut,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: _model.mouseRegionHovered2
+                                  ? FlutterFlowTheme.of(context).accent4
+                                  : FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 0.0, 0.0),
+                                    child: Icon(
+                                      Icons.mode_edit_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Create a User',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      onEnter: ((event) async {
+                        safeSetState(() => _model.mouseRegionHovered2 = true);
+                      }),
+                      onExit: ((event) async {
+                        safeSetState(() => _model.mouseRegionHovered2 = false);
                       }),
                     ),
                   ),
@@ -400,7 +501,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                           curve: Curves.easeInOut,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: _model.mouseRegionHovered2
+                            color: _model.mouseRegionHovered3
                                 ? FlutterFlowTheme.of(context).accent4
                                 : FlutterFlowTheme.of(context)
                                     .primaryBackground,
@@ -465,10 +566,10 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                         ),
                       ),
                       onEnter: ((event) async {
-                        safeSetState(() => _model.mouseRegionHovered2 = true);
+                        safeSetState(() => _model.mouseRegionHovered3 = true);
                       }),
                       onExit: ((event) async {
-                        safeSetState(() => _model.mouseRegionHovered2 = false);
+                        safeSetState(() => _model.mouseRegionHovered3 = false);
                       }),
                     ),
                   ),

@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/confirm_modal/confirm_modal_widget.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -657,6 +658,17 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                     final noSearch =
                                                         finesViolationRecordList
                                                             .toList();
+                                                    if (noSearch.isEmpty) {
+                                                      return Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      );
+                                                    }
 
                                                     return FlutterFlowDataTable<
                                                         ViolationRecord>(
@@ -1160,6 +1172,16 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                                 DataCell(c))
                                                             .toList(),
                                                       ),
+                                                      emptyBuilder: () =>
+                                                          Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        child:
+                                                            IsEmptyCardWidget(),
+                                                      ),
                                                       paginated: true,
                                                       selectable: false,
                                                       hidePaginator: false,
@@ -1443,6 +1465,17 @@ class _FinesWidgetState extends State<FinesWidget> {
                                                         final results = _model
                                                             .simpleSearchResults
                                                             .toList();
+                                                        if (results.isEmpty) {
+                                                          return Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            child:
+                                                                IsEmptyCardWidget(),
+                                                          );
+                                                        }
 
                                                         return ListView.builder(
                                                           padding:
