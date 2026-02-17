@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -352,6 +353,13 @@ class _EnforcerAssignmentModalWidgetState
                                 final noSearch =
                                     assignmentModalApprePlacesRecordList
                                         .toList();
+                                if (noSearch.isEmpty) {
+                                  return Container(
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 0.5,
+                                    child: IsEmptyCardWidget(),
+                                  );
+                                }
 
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
@@ -583,6 +591,13 @@ class _EnforcerAssignmentModalWidgetState
                               builder: (context) {
                                 final result =
                                     _model.simpleSearchResults.toList();
+                                if (result.isEmpty) {
+                                  return Container(
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 0.5,
+                                    child: IsEmptyCardWidget(),
+                                  );
+                                }
 
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,

@@ -229,7 +229,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                               FFButtonWidget(
                                                 onPressed: () async {
                                                   await actions
-                                                      .citationExportToCSVCopy(
+                                                      .citationUnpaidExportToCSV(
                                                     context,
                                                   );
                                                 },
@@ -285,9 +285,11 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                               ),
                                             if (_model.tabBarCurrentIndex == 1)
                                               FFButtonWidget(
-                                                onPressed: () {
-                                                  print(
-                                                      'DownloadUnpaidCSVButton pressed ...');
+                                                onPressed: () async {
+                                                  await actions
+                                                      .citationUnpaidExportToCSV(
+                                                    context,
+                                                  );
                                                 },
                                                 text: 'Download CSV Unpaid',
                                                 options: FFButtonOptions(
@@ -341,9 +343,11 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                               ),
                                             if (_model.tabBarCurrentIndex == 2)
                                               FFButtonWidget(
-                                                onPressed: () {
-                                                  print(
-                                                      'DownloadPaidCSVButton pressed ...');
+                                                onPressed: () async {
+                                                  await actions
+                                                      .citationPaidExportToCSV(
+                                                    context,
+                                                  );
                                                 },
                                                 text: 'Download CSV Paid',
                                                 options: FFButtonOptions(

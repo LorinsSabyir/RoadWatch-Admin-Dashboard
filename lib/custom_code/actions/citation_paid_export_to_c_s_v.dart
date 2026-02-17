@@ -22,11 +22,13 @@ String listOrString(dynamic value) {
 }
 
 /// Downloads citation data from Firebase Firestore into a CSV file (Web-compatible)
-Future<void> citationExportToCSVCopy(BuildContext context) async {
+Future<void> citationPaidExportToCSV(BuildContext context) async {
   try {
     // Get data from Firebase Firestore
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('citation').get();
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('citation')
+        .where('receipt_status', isEqualTo: true)
+        .get();
 
     if (querySnapshot.docs.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -62,6 +64,7 @@ Future<void> citationExportToCSVCopy(BuildContext context) async {
       'Violation Section',
       'Violation Fine',
       'Total Violation Fine',
+      'receipt_status',
       'Edited Time',
     ]);
 
@@ -93,6 +96,7 @@ Future<void> citationExportToCSVCopy(BuildContext context) async {
         listOrString(data['violation_fine']),
 
         data['violation_total_fine']?.toString() ?? '',
+        data['receipt_status'] == true ? 'Paid' : 'Unpaid',
         data['edited_time'] != null
             ? DateFormat('yyyy/MM/dd HH:mm')
                 .format(data['edited_time'].toDate())
@@ -110,7 +114,7 @@ Future<void> citationExportToCSVCopy(BuildContext context) async {
 
     html.AnchorElement(href: url)
       ..setAttribute('download',
-          'citation_export_${DateTime.now().millisecondsSinceEpoch}.csv')
+          'Paidcitation_export_${DateTime.now().millisecondsSinceEpoch}.csv')
       ..click();
 
     html.Url.revokeObjectUrl(url);

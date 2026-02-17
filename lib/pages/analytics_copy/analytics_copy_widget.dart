@@ -10,32 +10,33 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/modals/side_nav/side_nav_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'analytics_model.dart';
-export 'analytics_model.dart';
+import 'analytics_copy_model.dart';
+export 'analytics_copy_model.dart';
 
-class AnalyticsWidget extends StatefulWidget {
-  const AnalyticsWidget({super.key});
+class AnalyticsCopyWidget extends StatefulWidget {
+  const AnalyticsCopyWidget({super.key});
 
-  static String routeName = 'Analytics';
-  static String routePath = '/Analytics';
+  static String routeName = 'AnalyticsCopy';
+  static String routePath = '/AnalyticsCopy';
 
   @override
-  State<AnalyticsWidget> createState() => _AnalyticsWidgetState();
+  State<AnalyticsCopyWidget> createState() => _AnalyticsCopyWidgetState();
 }
 
-class _AnalyticsWidgetState extends State<AnalyticsWidget> {
-  late AnalyticsModel _model;
+class _AnalyticsCopyWidgetState extends State<AnalyticsCopyWidget> {
+  late AnalyticsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AnalyticsModel());
+    _model = createModel(context, () => AnalyticsCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -58,7 +59,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
     context.watch<FFAppState>();
 
     return Title(
-        title: 'Analytics',
+        title: 'AnalyticsCopy',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
           onTap: () {
@@ -689,10 +690,17 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                     ViolationSummaryRecord>>(
                                                               stream:
                                                                   queryViolationSummaryRecord(
-                                                                queryBuilder: (violationSummaryRecord) =>
-                                                                    violationSummaryRecord
-                                                                        .orderBy(
-                                                                            'month_num'),
+                                                                queryBuilder:
+                                                                    (violationSummaryRecord) =>
+                                                                        violationSummaryRecord
+                                                                            .where(
+                                                                  'year',
+                                                                  isEqualTo: _model
+                                                                      .violationChartYearFilterValue,
+                                                                  isNull: (_model
+                                                                          .violationChartYearFilterValue) ==
+                                                                      null,
+                                                                ),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
@@ -733,133 +741,41 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                         CrossAxisAlignment
                                                                             .start,
                                                                     children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            56.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Container(
+                                                                      Container(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height:
+                                                                            350.0,
+                                                                        child: custom_widgets
+                                                                            .ForecastingChart(
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 1.0,
                                                                           height:
                                                                               350.0,
-                                                                          child:
-                                                                              Stack(
-                                                                            children: [
-                                                                              FlutterFlowLineChart(
-                                                                                data: [
-                                                                                  FFLineChartData(
-                                                                                    xData: wholePanaboGraphViolationSummaryRecordList.where((e) => e.year == _model.violationChartYearFilterValue).toList().map((d) => d.monthNum).toList(),
-                                                                                    yData: wholePanaboGraphViolationSummaryRecordList.where((e) => e.year == _model.violationChartYearFilterValue).toList().map((d) => d.actualViolations).toList(),
-                                                                                    settings: LineChartBarData(
-                                                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                                                      barWidth: 3.0,
-                                                                                      isCurved: true,
-                                                                                      preventCurveOverShooting: true,
-                                                                                    ),
-                                                                                  ),
-                                                                                  FFLineChartData(
-                                                                                    xData: wholePanaboGraphViolationSummaryRecordList.where((e) => e.year == _model.violationChartYearFilterValue).toList().map((d) => d.monthNum).toList(),
-                                                                                    yData: wholePanaboGraphViolationSummaryRecordList.where((e) => e.year == _model.violationChartYearFilterValue).toList().map((d) => d.forecastedViolations).toList(),
-                                                                                    settings: LineChartBarData(
-                                                                                      color: FlutterFlowTheme.of(context).success,
-                                                                                      barWidth: 2.0,
-                                                                                      isCurved: true,
-                                                                                      preventCurveOverShooting: true,
-                                                                                    ),
-                                                                                  )
-                                                                                ],
-                                                                                chartStylingInfo: ChartStylingInfo(
-                                                                                  enableTooltip: true,
-                                                                                  backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                  showGrid: true,
-                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                  borderWidth: 1.0,
-                                                                                ),
-                                                                                axisBounds: AxisBounds(
-                                                                                  minX: 1.0,
-                                                                                  maxX: 12.0,
-                                                                                ),
-                                                                                xAxisLabelInfo: AxisLabelInfo(
-                                                                                  title: 'Month',
-                                                                                  titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                  showLabels: true,
-                                                                                  labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                        ),
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                      ),
-                                                                                  labelInterval: 1.0,
-                                                                                  reservedSize: 12.0,
-                                                                                ),
-                                                                                yAxisLabelInfo: AxisLabelInfo(
-                                                                                  title: 'Total Number of Violations',
-                                                                                  titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                  showLabels: true,
-                                                                                  labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                        ),
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                      ),
-                                                                                  labelInterval: 100.0,
-                                                                                  reservedSize: 100.0,
-                                                                                ),
-                                                                              ),
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(-1.0, 1.1),
-                                                                                child: FlutterFlowChartLegendWidget(
-                                                                                  entries: [
-                                                                                    LegendEntry(FlutterFlowTheme.of(context).tertiary, 'Number of violations per month'),
-                                                                                    LegendEntry(FlutterFlowTheme.of(context).success, 'Forecasted violations per month'),
-                                                                                  ],
-                                                                                  width: 200.0,
-                                                                                  height: 43.0,
-                                                                                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                  textPadding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                                                                  borderWidth: 0.0,
-                                                                                  borderColor: Colors.transparent,
-                                                                                  indicatorSize: 10.0,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                          actualColor:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          historicalX: wholePanaboGraphViolationSummaryRecordList
+                                                                              .map((e) => e.monthNum)
+                                                                              .toList(),
+                                                                          historicalY: wholePanaboGraphViolationSummaryRecordList
+                                                                              .map((e) => e.actualViolations)
+                                                                              .toList(),
+                                                                          forecastX: wholePanaboGraphViolationSummaryRecordList
+                                                                              .map((e) => e.monthNum)
+                                                                              .toList(),
+                                                                          forecastY: wholePanaboGraphViolationSummaryRecordList
+                                                                              .map((e) => e.forecastedViolations)
+                                                                              .toList(),
+                                                                          forecastColor:
+                                                                              FlutterFlowTheme.of(context).success,
+                                                                          minX:
+                                                                              1.0,
+                                                                          maxX:
+                                                                              12.0,
+                                                                          minY:
+                                                                              0.0,
+                                                                          maxY:
+                                                                              1000.0,
                                                                         ),
                                                                       ),
                                                                     ],
@@ -939,7 +855,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 56.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                 height: 350.0,
@@ -1137,7 +1053,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 56.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                 height: 350.0,

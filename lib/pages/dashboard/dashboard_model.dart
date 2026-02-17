@@ -17,7 +17,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // Model for SideNav component.
   late SideNavModel sideNavModel;
   // State field(s) for Column widget.
-  ScrollController? columnController1;
+  ScrollController? columnController;
   // Model for CitationsToday.
   late DashboardCardModel citationsTodayModel;
   // Model for CItationsThisMonth.
@@ -31,28 +31,36 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // State field(s) for violationFilter widget.
   String? violationFilterValue;
   FormFieldController<String>? violationFilterValueController;
-  // State field(s) for Column widget.
-  ScrollController? columnController2;
+  // State field(s) for Row widget.
+  ScrollController? rowController1;
+  // State field(s) for Row widget.
+  ScrollController? rowController2;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
+  final paginatedDataTableController1 =
+      FlutterFlowDataTableController<ViolationSummaryPerViolationRecord>();
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
       FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
 
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
-    columnController1 = ScrollController();
+    columnController = ScrollController();
     citationsTodayModel = createModel(context, () => DashboardCardModel());
     cItationsThisMonthModel = createModel(context, () => DashboardCardModel());
-    columnController2 = ScrollController();
+    rowController1 = ScrollController();
+    rowController2 = ScrollController();
   }
 
   @override
   void dispose() {
     sideNavModel.dispose();
-    columnController1?.dispose();
+    columnController?.dispose();
     citationsTodayModel.dispose();
     cItationsThisMonthModel.dispose();
-    columnController2?.dispose();
-    paginatedDataTableController.dispose();
+    rowController1?.dispose();
+    rowController2?.dispose();
+    paginatedDataTableController1.dispose();
+    paginatedDataTableController2.dispose();
   }
 }

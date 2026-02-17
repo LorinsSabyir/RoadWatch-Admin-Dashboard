@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/confirm_modal/confirm_modal_widget.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -641,71 +640,66 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                     ),
                   ),
                   Expanded(
-                    child: Builder(
-                      builder: (context) => FFButtonWidget(
-                        onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: ConfirmModalWidget(
-                                  icon: Icon(
-                                    Icons.create_rounded,
-                                    color: FlutterFlowTheme.of(context).success,
-                                    size: 40.0,
-                                  ),
-                                  title: 'Create User',
-                                  subtitle: 'Are you sure to create this user?',
-                                  button: 'Create',
-                                  buttonColor:
-                                      FlutterFlowTheme.of(context).success,
-                                  primaryButtonAction: () async {
-                                    await CreateUserByAdminCall.call(
-                                      email: _model.emailTextController.text,
-                                      displayName:
-                                          _model.firstNameTextController.text,
-                                      lastName:
-                                          _model.lastNameTextController.text,
-                                      gender: _model.genderValue,
-                                      phoneNumber:
-                                          _model.phoneNumTextController.text,
-                                      badgeNumber:
-                                          _model.badgeNumTextController.text,
-                                      role: 'user',
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          );
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        _model.createUserByAdmin =
+                            await CreateUserByAdminCall.call(
+                          email: _model.emailTextController.text,
+                          displayName: _model.firstNameTextController.text,
+                          lastName: _model.lastNameTextController.text,
+                          gender: _model.genderValue,
+                          phoneNumber: _model.phoneNumTextController.text,
+                          badgeNumber: _model.badgeNumTextController.text,
+                          role: 'user',
+                        );
 
-                          Navigator.pop(context);
-                        },
-                        text: 'Create User',
-                        options: FFButtonOptions(
-                          height: 44.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).success,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
+                        if ((_model.createUserByAdmin?.succeeded ?? true)) {
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'User Account Created Successfully!',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 3000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).success,
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'User Account Creation Failed: Connection Error!!',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 3000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
+                        }
+
+                        safeSetState(() {});
+                      },
+                      text: 'Create User',
+                      options: FFButtonOptions(
+                        height: 44.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).success,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  font: GoogleFonts.plusJakartaSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontWeight,
@@ -713,9 +707,17 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ),

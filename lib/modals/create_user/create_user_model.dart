@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_user_widget.dart' show CreateUserWidget;
@@ -28,6 +29,8 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   String? Function(BuildContext, String?)? badgeNumTextControllerValidator;
   // State field(s) for gender widget.
   FormFieldController<String>? genderValueController;
+  // Stores action output result for [Backend Call - API (createUserByAdmin)] action in confirm widget.
+  ApiCallResponse? createUserByAdmin;
 
   @override
   void initState(BuildContext context) {}

@@ -3,10 +3,10 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/modals/side_nav/side_nav_widget.dart';
-import 'analytics_widget.dart' show AnalyticsWidget;
+import 'analytics_copy_widget.dart' show AnalyticsCopyWidget;
 import 'package:flutter/material.dart';
 
-class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
+class AnalyticsCopyModel extends FlutterFlowModel<AnalyticsCopyWidget> {
   ///  Local state fields for this page.
 
   int selectedPage = 2;

@@ -124,22 +124,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EnforcersWidget(),
         ),
         FFRoute(
-          name: AnalyticsCopy2Widget.routeName,
-          path: AnalyticsCopy2Widget.routePath,
-          requireAuth: true,
-          builder: (context, params) => AnalyticsCopy2Widget(),
-        ),
-        FFRoute(
           name: DashboardWidget.routeName,
           path: DashboardWidget.routePath,
           requireAuth: true,
           builder: (context, params) => DashboardWidget(),
         ),
         FFRoute(
-          name: ViolatorsCopyWidget.routeName,
-          path: ViolatorsCopyWidget.routePath,
+          name: AnalyticsCopyWidget.routeName,
+          path: AnalyticsCopyWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => ViolatorsCopyWidget(),
+          builder: (context, params) => AnalyticsCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -56,48 +55,40 @@ class ViolationSummaryPerViolationRecord extends FirestoreRecord {
   String get year => _year ?? '';
   bool hasYear() => _year != null;
 
-  // "violation_name" field.
-  List<String>? _violationName;
-  List<String> get violationName => _violationName ?? const [];
-  bool hasViolationName() => _violationName != null;
-
-  // "violation_section" field.
-  List<String>? _violationSection;
-  List<String> get violationSection => _violationSection ?? const [];
-  bool hasViolationSection() => _violationSection != null;
-
-  // "total_occurrences" field.
-  List<int>? _totalOccurrences;
-  List<int> get totalOccurrences => _totalOccurrences ?? const [];
-  bool hasTotalOccurrences() => _totalOccurrences != null;
-
   // "variance" field.
   int? _variance;
   int get variance => _variance ?? 0;
   bool hasVariance() => _variance != null;
 
-  // "forecasted_violation_name" field.
-  List<String>? _forecastedViolationName;
-  List<String> get forecastedViolationName =>
-      _forecastedViolationName ?? const [];
-  bool hasForecastedViolationName() => _forecastedViolationName != null;
+  // "violation_name" field.
+  String? _violationName;
+  String get violationName => _violationName ?? '';
+  bool hasViolationName() => _violationName != null;
 
-  // "forecasted_violation_section" field.
-  List<String>? _forecastedViolationSection;
-  List<String> get forecastedViolationSection =>
-      _forecastedViolationSection ?? const [];
-  bool hasForecastedViolationSection() => _forecastedViolationSection != null;
+  // "violation_section" field.
+  String? _violationSection;
+  String get violationSection => _violationSection ?? '';
+  bool hasViolationSection() => _violationSection != null;
+
+  // "city_wide_variance" field.
+  int? _cityWideVariance;
+  int get cityWideVariance => _cityWideVariance ?? 0;
+  bool hasCityWideVariance() => _cityWideVariance != null;
+
+  // "city_wide_forecast" field.
+  int? _cityWideForecast;
+  int get cityWideForecast => _cityWideForecast ?? 0;
+  bool hasCityWideForecast() => _cityWideForecast != null;
+
+  // "total_occurrences" field.
+  int? _totalOccurrences;
+  int get totalOccurrences => _totalOccurrences ?? 0;
+  bool hasTotalOccurrences() => _totalOccurrences != null;
 
   // "total_forecasted_occurrences" field.
-  List<int>? _totalForecastedOccurrences;
-  List<int> get totalForecastedOccurrences =>
-      _totalForecastedOccurrences ?? const [];
+  int? _totalForecastedOccurrences;
+  int get totalForecastedOccurrences => _totalForecastedOccurrences ?? 0;
   bool hasTotalForecastedOccurrences() => _totalForecastedOccurrences != null;
-
-  // "forecasted_for_this_month" field.
-  int? _forecastedForThisMonth;
-  int get forecastedForThisMonth => _forecastedForThisMonth ?? 0;
-  bool hasForecastedForThisMonth() => _forecastedForThisMonth != null;
 
   void _initializeFields() {
     _city = snapshotData['city'] as String?;
@@ -109,18 +100,14 @@ class ViolationSummaryPerViolationRecord extends FirestoreRecord {
     _createdAt = snapshotData['created_at'] as DateTime?;
     _updatedAt = snapshotData['updated_at'] as DateTime?;
     _year = snapshotData['year'] as String?;
-    _violationName = getDataList(snapshotData['violation_name']);
-    _violationSection = getDataList(snapshotData['violation_section']);
-    _totalOccurrences = getDataList(snapshotData['total_occurrences']);
     _variance = castToType<int>(snapshotData['variance']);
-    _forecastedViolationName =
-        getDataList(snapshotData['forecasted_violation_name']);
-    _forecastedViolationSection =
-        getDataList(snapshotData['forecasted_violation_section']);
+    _violationName = snapshotData['violation_name'] as String?;
+    _violationSection = snapshotData['violation_section'] as String?;
+    _cityWideVariance = castToType<int>(snapshotData['city_wide_variance']);
+    _cityWideForecast = castToType<int>(snapshotData['city_wide_forecast']);
+    _totalOccurrences = castToType<int>(snapshotData['total_occurrences']);
     _totalForecastedOccurrences =
-        getDataList(snapshotData['total_forecasted_occurrences']);
-    _forecastedForThisMonth =
-        castToType<int>(snapshotData['forecasted_for_this_month']);
+        castToType<int>(snapshotData['total_forecasted_occurrences']);
   }
 
   static CollectionReference get collection =>
@@ -172,7 +159,12 @@ Map<String, dynamic> createViolationSummaryPerViolationRecordData({
   DateTime? updatedAt,
   String? year,
   int? variance,
-  int? forecastedForThisMonth,
+  String? violationName,
+  String? violationSection,
+  int? cityWideVariance,
+  int? cityWideForecast,
+  int? totalOccurrences,
+  int? totalForecastedOccurrences,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -185,7 +177,12 @@ Map<String, dynamic> createViolationSummaryPerViolationRecordData({
       'updated_at': updatedAt,
       'year': year,
       'variance': variance,
-      'forecasted_for_this_month': forecastedForThisMonth,
+      'violation_name': violationName,
+      'violation_section': violationSection,
+      'city_wide_variance': cityWideVariance,
+      'city_wide_forecast': cityWideForecast,
+      'total_occurrences': totalOccurrences,
+      'total_forecasted_occurrences': totalForecastedOccurrences,
     }.withoutNulls,
   );
 
@@ -199,7 +196,6 @@ class ViolationSummaryPerViolationRecordDocumentEquality
   @override
   bool equals(ViolationSummaryPerViolationRecord? e1,
       ViolationSummaryPerViolationRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.city == e2?.city &&
         e1?.month == e2?.month &&
         e1?.monthNum == e2?.monthNum &&
@@ -208,17 +204,13 @@ class ViolationSummaryPerViolationRecordDocumentEquality
         e1?.createdAt == e2?.createdAt &&
         e1?.updatedAt == e2?.updatedAt &&
         e1?.year == e2?.year &&
-        listEquality.equals(e1?.violationName, e2?.violationName) &&
-        listEquality.equals(e1?.violationSection, e2?.violationSection) &&
-        listEquality.equals(e1?.totalOccurrences, e2?.totalOccurrences) &&
         e1?.variance == e2?.variance &&
-        listEquality.equals(
-            e1?.forecastedViolationName, e2?.forecastedViolationName) &&
-        listEquality.equals(
-            e1?.forecastedViolationSection, e2?.forecastedViolationSection) &&
-        listEquality.equals(
-            e1?.totalForecastedOccurrences, e2?.totalForecastedOccurrences) &&
-        e1?.forecastedForThisMonth == e2?.forecastedForThisMonth;
+        e1?.violationName == e2?.violationName &&
+        e1?.violationSection == e2?.violationSection &&
+        e1?.cityWideVariance == e2?.cityWideVariance &&
+        e1?.cityWideForecast == e2?.cityWideForecast &&
+        e1?.totalOccurrences == e2?.totalOccurrences &&
+        e1?.totalForecastedOccurrences == e2?.totalForecastedOccurrences;
   }
 
   @override
@@ -231,14 +223,13 @@ class ViolationSummaryPerViolationRecordDocumentEquality
         e?.createdAt,
         e?.updatedAt,
         e?.year,
+        e?.variance,
         e?.violationName,
         e?.violationSection,
+        e?.cityWideVariance,
+        e?.cityWideForecast,
         e?.totalOccurrences,
-        e?.variance,
-        e?.forecastedViolationName,
-        e?.forecastedViolationSection,
-        e?.totalForecastedOccurrences,
-        e?.forecastedForThisMonth
+        e?.totalForecastedOccurrences
       ]);
 
   @override
