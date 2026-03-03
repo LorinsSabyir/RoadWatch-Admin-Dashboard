@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/confirm_modal/confirm_modal_widget.dart';
+import '/components/is_empty_card/is_empty_card_widget.dart';
 import '/components/notification_card/notification_card_widget.dart';
 import '/components/view_enforcer/view_enforcer_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
@@ -243,74 +244,15 @@ class _NotificationDrawerWidgetState extends State<NotificationDrawerWidget>
                                       children: [
                                         if ((containerAdminNotifRecordList
                                                 .isNotEmpty) ==
-                                            false)
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 600.0,
-                                            decoration: BoxDecoration(),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.playlist_remove,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  size: 70.0,
-                                                ),
-                                                Text(
-                                                  'List Empty!',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineSmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.outfit(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 8.0)),
-                                            ),
-                                          ),
-                                        if ((containerAdminNotifRecordList
-                                                .isNotEmpty) ==
                                             true)
                                           Builder(
                                             builder: (context) {
                                               final newNotif =
                                                   containerAdminNotifRecordList
                                                       .toList();
+                                              if (newNotif.isEmpty) {
+                                                return IsEmptyCardWidget();
+                                              }
 
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
@@ -653,74 +595,15 @@ class _NotificationDrawerWidgetState extends State<NotificationDrawerWidget>
                                       children: [
                                         if ((containerAdminNotifRecordList
                                                 .isNotEmpty) ==
-                                            false)
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 600.0,
-                                            decoration: BoxDecoration(),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.playlist_remove,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  size: 70.0,
-                                                ),
-                                                Text(
-                                                  'List Empty!',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineSmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.outfit(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 8.0)),
-                                            ),
-                                          ),
-                                        if ((containerAdminNotifRecordList
-                                                .isNotEmpty) ==
                                             true)
                                           Builder(
                                             builder: (context) {
                                               final all =
                                                   containerAdminNotifRecordList
                                                       .toList();
+                                              if (all.isEmpty) {
+                                                return IsEmptyCardWidget();
+                                              }
 
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,

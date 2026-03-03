@@ -3,8 +3,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/modals/create_user/create_user_widget.dart';
 import '/modals/edit_admin/edit_admin_widget.dart';
+import '/modals/history_drawer/history_drawer_widget.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -373,9 +373,9 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(1.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: CreateUserWidget(),
+                                  child: HistoryDrawerWidget(),
                                 );
                               },
                             );
@@ -401,7 +401,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Icon(
-                                      Icons.mode_edit_rounded,
+                                      Icons.history_rounded,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       size: 24.0,
@@ -412,7 +412,7 @@ class _AccountUserDropdownWidgetState extends State<AccountUserDropdownWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'Create a User',
+                                        'History',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

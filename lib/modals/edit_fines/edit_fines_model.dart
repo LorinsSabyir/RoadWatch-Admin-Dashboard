@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'edit_fines_widget.dart' show EditFinesWidget;
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class EditFinesModel extends FlutterFlowModel<EditFinesWidget> {
   FocusNode? fineFocusNode;
   TextEditingController? fineTextController;
   String? Function(BuildContext, String?)? fineTextControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in create widget.
+  AdminNotifRecord? finesEditNotif;
 
   @override
   void initState(BuildContext context) {}

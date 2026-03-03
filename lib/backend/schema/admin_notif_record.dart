@@ -65,6 +65,26 @@ class AdminNotifRecord extends FirestoreRecord {
   DateTime? get assignmentTime => _assignmentTime;
   bool hasAssignmentTime() => _assignmentTime != null;
 
+  // "admin_id" field.
+  DocumentReference? _adminId;
+  DocumentReference? get adminId => _adminId;
+  bool hasAdminId() => _adminId != null;
+
+  // "citation_id" field.
+  DocumentReference? _citationId;
+  DocumentReference? get citationId => _citationId;
+  bool hasCitationId() => _citationId != null;
+
+  // "violation_id" field.
+  DocumentReference? _violationId;
+  DocumentReference? get violationId => _violationId;
+  bool hasViolationId() => _violationId != null;
+
+  // "apprePlace_id" field.
+  DocumentReference? _apprePlaceId;
+  DocumentReference? get apprePlaceId => _apprePlaceId;
+  bool hasApprePlaceId() => _apprePlaceId != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _subtitle = snapshotData['subtitle'] as String?;
@@ -76,6 +96,10 @@ class AdminNotifRecord extends FirestoreRecord {
     _notifType = snapshotData['notif_type'] as String?;
     _assignmentAddress = snapshotData['assignment_address'] as String?;
     _assignmentTime = snapshotData['assignment_time'] as DateTime?;
+    _adminId = snapshotData['admin_id'] as DocumentReference?;
+    _citationId = snapshotData['citation_id'] as DocumentReference?;
+    _violationId = snapshotData['violation_id'] as DocumentReference?;
+    _apprePlaceId = snapshotData['apprePlace_id'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +147,10 @@ Map<String, dynamic> createAdminNotifRecordData({
   String? notifType,
   String? assignmentAddress,
   DateTime? assignmentTime,
+  DocumentReference? adminId,
+  DocumentReference? citationId,
+  DocumentReference? violationId,
+  DocumentReference? apprePlaceId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +164,10 @@ Map<String, dynamic> createAdminNotifRecordData({
       'notif_type': notifType,
       'assignment_address': assignmentAddress,
       'assignment_time': assignmentTime,
+      'admin_id': adminId,
+      'citation_id': citationId,
+      'violation_id': violationId,
+      'apprePlace_id': apprePlaceId,
     }.withoutNulls,
   );
 
@@ -156,7 +188,11 @@ class AdminNotifRecordDocumentEquality implements Equality<AdminNotifRecord> {
         e1?.enforcerId == e2?.enforcerId &&
         e1?.notifType == e2?.notifType &&
         e1?.assignmentAddress == e2?.assignmentAddress &&
-        e1?.assignmentTime == e2?.assignmentTime;
+        e1?.assignmentTime == e2?.assignmentTime &&
+        e1?.adminId == e2?.adminId &&
+        e1?.citationId == e2?.citationId &&
+        e1?.violationId == e2?.violationId &&
+        e1?.apprePlaceId == e2?.apprePlaceId;
   }
 
   @override
@@ -170,7 +206,11 @@ class AdminNotifRecordDocumentEquality implements Equality<AdminNotifRecord> {
         e?.enforcerId,
         e?.notifType,
         e?.assignmentAddress,
-        e?.assignmentTime
+        e?.assignmentTime,
+        e?.adminId,
+        e?.citationId,
+        e?.violationId,
+        e?.apprePlaceId
       ]);
 
   @override

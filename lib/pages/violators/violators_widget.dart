@@ -1616,6 +1616,30 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                               );
                                                                                             },
                                                                                           );
+
+                                                                                          var adminNotifRecordReference = AdminNotifRecord.collection.doc();
+                                                                                          await adminNotifRecordReference.set(createAdminNotifRecordData(
+                                                                                            title: 'Violator Payment Confirmed',
+                                                                                            subtitle: 'Confirming citation payment.',
+                                                                                            type: 'history',
+                                                                                            status: 'static',
+                                                                                            createdTime: getCurrentTimestamp,
+                                                                                            notifType: 'ViolatorConfirmation',
+                                                                                            citationId: allNoSearchItem.reference,
+                                                                                          ));
+                                                                                          _model.confirmViolatorNotif = AdminNotifRecord.getDocumentFromData(
+                                                                                              createAdminNotifRecordData(
+                                                                                                title: 'Violator Payment Confirmed',
+                                                                                                subtitle: 'Confirming citation payment.',
+                                                                                                type: 'history',
+                                                                                                status: 'static',
+                                                                                                createdTime: getCurrentTimestamp,
+                                                                                                notifType: 'ViolatorConfirmation',
+                                                                                                citationId: allNoSearchItem.reference,
+                                                                                              ),
+                                                                                              adminNotifRecordReference);
+
+                                                                                          safeSetState(() {});
                                                                                         },
                                                                                       ),
                                                                                     ),
@@ -1677,667 +1701,655 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                         ),
                                                       if (FFAppState()
                                                           .searchIsActive)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      16.0,
-                                                                      8.0,
-                                                                      16.0),
-                                                          child: Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            decoration:
-                                                                BoxDecoration(),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 40.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              12.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              12.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      children:
-                                                                          [
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Text(
-                                                                              '#',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              3,
-                                                                          child:
-                                                                              Text(
-                                                                            'Violator Name',
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Violation Name',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Place of Apprehension',
-                                                                                textAlign: TextAlign.start,
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Apprehension Date',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Total Fine',
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Status',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Text(
-                                                                            'Actions',
-                                                                            textAlign:
-                                                                                TextAlign.end,
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ].divide(SizedBox(
-                                                                              width: 4.0)),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              0.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final allResult = _model
-                                                                          .simpleSearchResults
-                                                                          .where((e) =>
-                                                                              (e.appreDateMonth == _model.filterByMonthDropDownValue) &&
-                                                                              (e.appreDateYear == _model.filterByYearDropDownValue))
-                                                                          .toList();
-                                                                      if (allResult
-                                                                          .isEmpty) {
-                                                                        return IsEmptyCardWidget();
-                                                                      }
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        16.0,
+                                                                        8.0,
+                                                                        16.0),
+                                                            child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                                final allSearch = _model
+                                                                    .simpleSearchResults
+                                                                    .where((e) =>
+                                                                        (e.appreDateMonth ==
+                                                                            _model
+                                                                                .filterByMonthDropDownValue) &&
+                                                                        (e.appreDateYear ==
+                                                                            _model.filterByYearDropDownValue))
+                                                                    .toList();
+                                                                if (allSearch
+                                                                    .isEmpty) {
+                                                                  return Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  );
+                                                                }
 
-                                                                      return ListView
-                                                                          .builder(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        primary:
-                                                                            false,
-                                                                        scrollDirection:
-                                                                            Axis.vertical,
-                                                                        itemCount:
-                                                                            allResult.length,
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                allResultIndex) {
-                                                                          final allResultItem =
-                                                                              allResult[allResultIndex];
-                                                                          return Builder(
-                                                                            builder: (context) =>
-                                                                                InkWell(
-                                                                              splashColor: Colors.transparent,
-                                                                              focusColor: Colors.transparent,
-                                                                              hoverColor: Colors.transparent,
-                                                                              highlightColor: Colors.transparent,
-                                                                              onTap: () async {
-                                                                                await showDialog(
-                                                                                  context: context,
-                                                                                  builder: (dialogContext) {
-                                                                                    return Dialog(
-                                                                                      elevation: 0,
-                                                                                      insetPadding: EdgeInsets.zero,
-                                                                                      backgroundColor: Colors.transparent,
-                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: GestureDetector(
-                                                                                        onTap: () {
-                                                                                          FocusScope.of(dialogContext).unfocus();
-                                                                                          FocusManager.instance.primaryFocus?.unfocus();
-                                                                                        },
-                                                                                        child: ViewViolatorWidget(
-                                                                                          violatorRef: allResultItem.reference,
+                                                                return FlutterFlowDataTable<
+                                                                    CitationRecord>(
+                                                                  controller: _model
+                                                                      .paginatedDataTableController2,
+                                                                  data:
+                                                                      allSearch,
+                                                                  numRows:
+                                                                      allSearch
+                                                                          .length,
+                                                                  columnsBuilder:
+                                                                      (onSortChanged) =>
+                                                                          [
+                                                                    DataColumn2(
+                                                                      label: DefaultTextStyle
+                                                                          .merge(
+                                                                        softWrap:
+                                                                            true,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children:
+                                                                              [
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  '#',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                         ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                       ),
-                                                                                    );
-                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 3,
+                                                                              child: Text(
+                                                                                'Violator Name',
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Violation Name',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Place of Apprehension',
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Apprehension Date',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Total Fine',
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Align(
+                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Status',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Text(
+                                                                                'Actions',
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ].divide(SizedBox(width: 4.0)),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  dataRowBuilder: (allSearchItem,
+                                                                          allSearchIndex,
+                                                                          selected,
+                                                                          onSelectChanged) =>
+                                                                      DataRow(
+                                                                    color:
+                                                                        WidgetStateProperty
+                                                                            .all(
+                                                                      allSearchIndex %
+                                                                                  2 ==
+                                                                              0
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .primaryBackground
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .alternate,
+                                                                    ),
+                                                                    cells: [
+                                                                      Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  elevation: 0,
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                      FocusScope.of(dialogContext).unfocus();
+                                                                                      FocusManager.instance.primaryFocus?.unfocus();
+                                                                                    },
+                                                                                    child: ViewViolatorWidget(
+                                                                                      violatorRef: allSearchItem.reference,
+                                                                                    ),
+                                                                                  ),
                                                                                 );
                                                                               },
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  color: valueOrDefault<Color>(
-                                                                                    (allResultIndex % 2).toString() == '1' ? FlutterFlowTheme.of(context).alternate : FlutterFlowTheme.of(context).primaryBackground,
-                                                                                    FlutterFlowTheme.of(context).primaryBackground,
-                                                                                  ),
-                                                                                  border: Border.all(
-                                                                                    color: Color(0xFFE5E5E5),
-                                                                                  ),
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children:
+                                                                                [
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  allSearchIndex.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
                                                                                 ),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 8.0),
-                                                                                  child: Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          allResultIndex.toString(),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.normal,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 3,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              allResultItem.violatorName,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 3,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      allSearchItem.violatorName,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                                             ),
-                                                                                            Text(
-                                                                                              '${allResultItem.violatorAddressPrk}, ${allResultItem.violatorAddressBrgy}, ${allResultItem.violatorAddressCity}, ${allResultItem.violatorAddressProvince}'.maybeHandleOverflow(
-                                                                                                maxChars: 35,
-                                                                                                replacement: '…',
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '${allSearchItem.violatorAddressPrk},${allSearchItem.violatorAddressBrgy},${allSearchItem.violatorAddressCity},${allSearchItem.violatorAddressProvince}'.maybeHandleOverflow(
+                                                                                        maxChars: 35,
+                                                                                        replacement: '…',
                                                                                       ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Builder(
-                                                                                          builder: (context) {
-                                                                                            final violation = allResultItem.violationName.toList().take(2).toList();
+                                                                                      style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Builder(
+                                                                                  builder: (context) {
+                                                                                    final violation = allSearchItem.violationName.toList().take(2).toList();
 
-                                                                                            return ListView.builder(
-                                                                                              padding: EdgeInsets.zero,
-                                                                                              primary: false,
-                                                                                              scrollDirection: Axis.vertical,
-                                                                                              itemCount: violation.length,
-                                                                                              itemBuilder: (context, violationIndex) {
-                                                                                                final violationItem = violation[violationIndex];
-                                                                                                return Text(
-                                                                                                  violationItem.maybeHandleOverflow(
-                                                                                                    maxChars: 25,
-                                                                                                    replacement: '…',
-                                                                                                  ),
-                                                                                                  style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                                          fontWeight: FontWeight.w600,
-                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                        ),
-                                                                                                        letterSpacing: 0.0,
-                                                                                                        fontWeight: FontWeight.w600,
-                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                      ),
-                                                                                                );
-                                                                                              },
-                                                                                            );
-                                                                                          },
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Text(
-                                                                                          allResultItem.apprePlace.maybeHandleOverflow(
+                                                                                    return ListView.builder(
+                                                                                      padding: EdgeInsets.zero,
+                                                                                      primary: false,
+                                                                                      scrollDirection: Axis.vertical,
+                                                                                      itemCount: violation.length,
+                                                                                      itemBuilder: (context, violationIndex) {
+                                                                                        final violationItem = violation[violationIndex];
+                                                                                        return Text(
+                                                                                          violationItem.maybeHandleOverflow(
                                                                                             maxChars: 25,
                                                                                             replacement: '…',
                                                                                           ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                          style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                                 font: GoogleFonts.plusJakartaSans(
                                                                                                   fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                                 ),
                                                                                                 letterSpacing: 0.0,
                                                                                                 fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                               ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              allResultItem.appreDateMonth.maybeHandleOverflow(
-                                                                                                maxChars: 3,
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              allResultItem.appreDateDay,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              allResultItem.appreDateYear,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          valueOrDefault<String>(
-                                                                                            formatNumber(
-                                                                                              allResultItem.violationTotalFine,
-                                                                                              formatType: FormatType.decimal,
-                                                                                              decimalType: DecimalType.automatic,
-                                                                                            ),
-                                                                                            '₱',
-                                                                                          ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                                          children: [
-                                                                                            if (allResultItem.receiptStatus == false)
-                                                                                              Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                                                child: wrapWithModel(
-                                                                                                  model: _model.statusModels3.getModel(
-                                                                                                    allResultItem.receiptStatus.toString(),
-                                                                                                    allResultIndex,
-                                                                                                  ),
-                                                                                                  updateCallback: () => safeSetState(() {}),
-                                                                                                  child: StatusWidget(
-                                                                                                    key: Key(
-                                                                                                      'Keyefl_${allResultItem.receiptStatus.toString()}',
-                                                                                                    ),
-                                                                                                    text: 'Not Paid',
-                                                                                                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                    borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                    textColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                                    action: () async {},
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            if (allResultItem.receiptStatus == true)
-                                                                                              wrapWithModel(
-                                                                                                model: _model.statusModels4.getModel(
-                                                                                                  allResultItem.receiptStatus.toString(),
-                                                                                                  allResultIndex,
-                                                                                                ),
-                                                                                                updateCallback: () => safeSetState(() {}),
-                                                                                                child: StatusWidget(
-                                                                                                  key: Key(
-                                                                                                    'Keymvu_${allResultItem.receiptStatus.toString()}',
-                                                                                                  ),
-                                                                                                  text: 'Paid',
-                                                                                                  fillColor: FlutterFlowTheme.of(context).success,
-                                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                  action: () async {},
-                                                                                                ),
-                                                                                              ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                                                          children: [
-                                                                                            Builder(
-                                                                                              builder: (context) => FlutterFlowIconButton(
-                                                                                                borderColor: Colors.transparent,
-                                                                                                borderRadius: 30.0,
-                                                                                                borderWidth: 1.0,
-                                                                                                buttonSize: 44.0,
-                                                                                                icon: Icon(
-                                                                                                  Icons.check_rounded,
-                                                                                                  color: FlutterFlowTheme.of(context).success,
-                                                                                                  size: 20.0,
-                                                                                                ),
-                                                                                                onPressed: () async {
-                                                                                                  await showDialog(
-                                                                                                    context: context,
-                                                                                                    builder: (dialogContext) {
-                                                                                                      return Dialog(
-                                                                                                        elevation: 0,
-                                                                                                        insetPadding: EdgeInsets.zero,
-                                                                                                        backgroundColor: Colors.transparent,
-                                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                        child: GestureDetector(
-                                                                                                          onTap: () {
-                                                                                                            FocusScope.of(dialogContext).unfocus();
-                                                                                                            FocusManager.instance.primaryFocus?.unfocus();
-                                                                                                          },
-                                                                                                          child: ConfirmModalWidget(
-                                                                                                            icon: Icon(
-                                                                                                              Icons.task_alt,
-                                                                                                              color: FlutterFlowTheme.of(context).success,
-                                                                                                              size: 50.0,
-                                                                                                            ),
-                                                                                                            title: 'Confirm Payment?',
-                                                                                                            subtitle: 'Are you sure you want to proceed with this payment?',
-                                                                                                            button: 'Confirm',
-                                                                                                            buttonColor: FlutterFlowTheme.of(context).success,
-                                                                                                            primaryButtonAction: () async {
-                                                                                                              await allResultItem.reference.update(createCitationRecordData(
-                                                                                                                receiptStatus: true,
-                                                                                                              ));
-                                                                                                            },
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  );
-                                                                                                },
-                                                                                              ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ].divide(SizedBox(width: 4.0)),
-                                                                                  ),
+                                                                                        );
+                                                                                      },
+                                                                                    );
+                                                                                  },
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  allSearchItem.apprePlace.maybeHandleOverflow(
+                                                                                    maxChars: 25,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      allSearchItem.appreDateMonth.maybeHandleOverflow(
+                                                                                        maxChars: 3,
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      allSearchItem.appreDateDay,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      allSearchItem.appreDateYear,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  valueOrDefault<String>(
+                                                                                    formatNumber(
+                                                                                      allSearchItem.violationTotalFine,
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.automatic,
+                                                                                    ),
+                                                                                    '₱',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    if (allSearchItem.receiptStatus == false)
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                        child: wrapWithModel(
+                                                                                          model: _model.statusModels3.getModel(
+                                                                                            allSearchItem.receiptStatus.toString(),
+                                                                                            allSearchIndex,
+                                                                                          ),
+                                                                                          updateCallback: () => safeSetState(() {}),
+                                                                                          child: StatusWidget(
+                                                                                            key: Key(
+                                                                                              'Keykwk_${allSearchItem.receiptStatus.toString()}',
+                                                                                            ),
+                                                                                            text: 'Not Paid',
+                                                                                            fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                            borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                            textColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                            action: () async {},
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    if (allSearchItem.receiptStatus == true)
+                                                                                      wrapWithModel(
+                                                                                        model: _model.statusModels4.getModel(
+                                                                                          allSearchItem.receiptStatus.toString(),
+                                                                                          allSearchIndex,
+                                                                                        ),
+                                                                                        updateCallback: () => safeSetState(() {}),
+                                                                                        child: StatusWidget(
+                                                                                          key: Key(
+                                                                                            'Key1l3_${allSearchItem.receiptStatus.toString()}',
+                                                                                          ),
+                                                                                          text: 'Paid',
+                                                                                          fillColor: FlutterFlowTheme.of(context).success,
+                                                                                          borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                          textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                          action: () async {},
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Builder(
+                                                                                      builder: (context) => FlutterFlowIconButton(
+                                                                                        borderColor: Colors.transparent,
+                                                                                        borderRadius: 30.0,
+                                                                                        borderWidth: 1.0,
+                                                                                        buttonSize: 44.0,
+                                                                                        icon: Icon(
+                                                                                          Icons.check_rounded,
+                                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                                          size: 20.0,
+                                                                                        ),
+                                                                                        onPressed: () async {
+                                                                                          await showDialog(
+                                                                                            context: context,
+                                                                                            builder: (dialogContext) {
+                                                                                              return Dialog(
+                                                                                                elevation: 0,
+                                                                                                insetPadding: EdgeInsets.zero,
+                                                                                                backgroundColor: Colors.transparent,
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                child: GestureDetector(
+                                                                                                  onTap: () {
+                                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                                  },
+                                                                                                  child: ConfirmModalWidget(
+                                                                                                    icon: Icon(
+                                                                                                      Icons.task_alt,
+                                                                                                      color: FlutterFlowTheme.of(context).success,
+                                                                                                      size: 50.0,
+                                                                                                    ),
+                                                                                                    title: 'Confirm Payment?',
+                                                                                                    subtitle: 'Are you sure you want to proceed with this payment?',
+                                                                                                    button: 'Confirm',
+                                                                                                    buttonColor: FlutterFlowTheme.of(context).success,
+                                                                                                    primaryButtonAction: () async {
+                                                                                                      await allSearchItem.reference.update(createCitationRecordData(
+                                                                                                        receiptStatus: true,
+                                                                                                      ));
+                                                                                                    },
+                                                                                                  ),
+                                                                                                ),
+                                                                                              );
+                                                                                            },
+                                                                                          );
+
+                                                                                          var adminNotifRecordReference = AdminNotifRecord.collection.doc();
+                                                                                          await adminNotifRecordReference.set(createAdminNotifRecordData(
+                                                                                            title: 'Violator Payment Confirmed',
+                                                                                            subtitle: 'Confirming citation payment.',
+                                                                                            type: 'history',
+                                                                                            status: 'static',
+                                                                                            createdTime: getCurrentTimestamp,
+                                                                                            notifType: 'ViolatorConfirmation',
+                                                                                            citationId: allSearchItem.reference,
+                                                                                          ));
+                                                                                          _model.confirmSearchViolatorNotif = AdminNotifRecord.getDocumentFromData(
+                                                                                              createAdminNotifRecordData(
+                                                                                                title: 'Violator Payment Confirmed',
+                                                                                                subtitle: 'Confirming citation payment.',
+                                                                                                type: 'history',
+                                                                                                status: 'static',
+                                                                                                createdTime: getCurrentTimestamp,
+                                                                                                notifType: 'ViolatorConfirmation',
+                                                                                                citationId: allSearchItem.reference,
+                                                                                              ),
+                                                                                              adminNotifRecordReference);
+
+                                                                                          safeSetState(() {});
+                                                                                        },
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ].divide(SizedBox(width: 4.0)),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ]
+                                                                        .map((c) =>
+                                                                            DataCell(c))
+                                                                        .toList(),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  emptyBuilder:
+                                                                      () =>
+                                                                          Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  ),
+                                                                  paginated:
+                                                                      true,
+                                                                  selectable:
+                                                                      false,
+                                                                  hidePaginator:
+                                                                      false,
+                                                                  showFirstLastButtons:
+                                                                      false,
+                                                                  headingRowHeight:
+                                                                      40.0,
+                                                                  dataRowHeight:
+                                                                      60.0,
+                                                                  columnSpacing:
+                                                                      20.0,
+                                                                  headingRowColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent1,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  addHorizontalDivider:
+                                                                      false,
+                                                                  addTopAndBottomDivider:
+                                                                      false,
+                                                                  hideDefaultHorizontalDivider:
+                                                                      true,
+                                                                  addVerticalDivider:
+                                                                      false,
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ),
@@ -2391,7 +2403,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                 return FlutterFlowDataTable<
                                                                     CitationRecord>(
                                                                   controller: _model
-                                                                      .paginatedDataTableController2,
+                                                                      .paginatedDataTableController3,
                                                                   data:
                                                                       unpaidNoSearch,
                                                                   numRows:
@@ -2923,6 +2935,30 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                                               );
                                                                                             },
                                                                                           );
+
+                                                                                          var adminNotifRecordReference = AdminNotifRecord.collection.doc();
+                                                                                          await adminNotifRecordReference.set(createAdminNotifRecordData(
+                                                                                            title: 'Violator Payment Confirmed',
+                                                                                            subtitle: 'Confirming citation payment.',
+                                                                                            type: 'history',
+                                                                                            status: 'static',
+                                                                                            createdTime: getCurrentTimestamp,
+                                                                                            notifType: 'ViolatorConfirmation',
+                                                                                            citationId: unpaidNoSearchItem.reference,
+                                                                                          ));
+                                                                                          _model.confirmUnpaidViolatorNotif = AdminNotifRecord.getDocumentFromData(
+                                                                                              createAdminNotifRecordData(
+                                                                                                title: 'Violator Payment Confirmed',
+                                                                                                subtitle: 'Confirming citation payment.',
+                                                                                                type: 'history',
+                                                                                                status: 'static',
+                                                                                                createdTime: getCurrentTimestamp,
+                                                                                                notifType: 'ViolatorConfirmation',
+                                                                                                citationId: unpaidNoSearchItem.reference,
+                                                                                              ),
+                                                                                              adminNotifRecordReference);
+
+                                                                                          safeSetState(() {});
                                                                                         },
                                                                                       ),
                                                                                     ),
@@ -2984,673 +3020,657 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                         ),
                                                       if (FFAppState()
                                                           .searchIsActive)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      16.0,
-                                                                      8.0,
-                                                                      16.0),
-                                                          child: Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            decoration:
-                                                                BoxDecoration(),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 40.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              12.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              12.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      children:
-                                                                          [
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Text(
-                                                                              '#',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              3,
-                                                                          child:
-                                                                              Text(
-                                                                            'Violator Name',
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Violation Name',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Place of Apprehension',
-                                                                                textAlign: TextAlign.start,
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Apprehension Date',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Total Fine',
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Status',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Text(
-                                                                            'Actions',
-                                                                            textAlign:
-                                                                                TextAlign.end,
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ].divide(SizedBox(
-                                                                              width: 4.0)),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              0.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final unpaidResult = _model
-                                                                          .simpleSearchResults
-                                                                          .where((e) =>
-                                                                              (e.receiptStatus == false) &&
-                                                                              (e.appreDateMonth == _model.filterByMonthDropDownValue) &&
-                                                                              (e.appreDateYear == _model.filterByYearDropDownValue))
-                                                                          .toList();
-                                                                      if (unpaidResult
-                                                                          .isEmpty) {
-                                                                        return Container(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          child:
-                                                                              IsEmptyCardWidget(),
-                                                                        );
-                                                                      }
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        16.0,
+                                                                        8.0,
+                                                                        16.0),
+                                                            child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                                final unpaidSearch = _model
+                                                                    .simpleSearchResults
+                                                                    .where((e) =>
+                                                                        (e.receiptStatus ==
+                                                                            false) &&
+                                                                        (e.appreDateMonth ==
+                                                                            _model
+                                                                                .filterByMonthDropDownValue) &&
+                                                                        (e.appreDateYear ==
+                                                                            _model.filterByYearDropDownValue))
+                                                                    .toList();
+                                                                if (unpaidSearch
+                                                                    .isEmpty) {
+                                                                  return Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  );
+                                                                }
 
-                                                                      return ListView
-                                                                          .builder(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        primary:
-                                                                            false,
-                                                                        scrollDirection:
-                                                                            Axis.vertical,
-                                                                        itemCount:
-                                                                            unpaidResult.length,
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                unpaidResultIndex) {
-                                                                          final unpaidResultItem =
-                                                                              unpaidResult[unpaidResultIndex];
-                                                                          return Builder(
-                                                                            builder: (context) =>
-                                                                                InkWell(
-                                                                              splashColor: Colors.transparent,
-                                                                              focusColor: Colors.transparent,
-                                                                              hoverColor: Colors.transparent,
-                                                                              highlightColor: Colors.transparent,
-                                                                              onTap: () async {
-                                                                                await showDialog(
-                                                                                  context: context,
-                                                                                  builder: (dialogContext) {
-                                                                                    return Dialog(
-                                                                                      elevation: 0,
-                                                                                      insetPadding: EdgeInsets.zero,
-                                                                                      backgroundColor: Colors.transparent,
-                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: GestureDetector(
-                                                                                        onTap: () {
-                                                                                          FocusScope.of(dialogContext).unfocus();
-                                                                                          FocusManager.instance.primaryFocus?.unfocus();
-                                                                                        },
-                                                                                        child: ViewViolatorWidget(
-                                                                                          violatorRef: unpaidResultItem.reference,
+                                                                return FlutterFlowDataTable<
+                                                                    CitationRecord>(
+                                                                  controller: _model
+                                                                      .paginatedDataTableController4,
+                                                                  data:
+                                                                      unpaidSearch,
+                                                                  numRows:
+                                                                      unpaidSearch
+                                                                          .length,
+                                                                  columnsBuilder:
+                                                                      (onSortChanged) =>
+                                                                          [
+                                                                    DataColumn2(
+                                                                      label: DefaultTextStyle
+                                                                          .merge(
+                                                                        softWrap:
+                                                                            true,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children:
+                                                                              [
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  '#',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                         ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                       ),
-                                                                                    );
-                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 3,
+                                                                              child: Text(
+                                                                                'Violator Name',
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Violation Name',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Place of Apprehension',
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Apprehension Date',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Total Fine',
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Align(
+                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Status',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Text(
+                                                                                'Actions',
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ].divide(SizedBox(width: 4.0)),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  dataRowBuilder: (unpaidSearchItem,
+                                                                          unpaidSearchIndex,
+                                                                          selected,
+                                                                          onSelectChanged) =>
+                                                                      DataRow(
+                                                                    color:
+                                                                        WidgetStateProperty
+                                                                            .all(
+                                                                      unpaidSearchIndex %
+                                                                                  2 ==
+                                                                              0
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .primaryBackground
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .alternate,
+                                                                    ),
+                                                                    cells: [
+                                                                      Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  elevation: 0,
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                      FocusScope.of(dialogContext).unfocus();
+                                                                                      FocusManager.instance.primaryFocus?.unfocus();
+                                                                                    },
+                                                                                    child: ViewViolatorWidget(
+                                                                                      violatorRef: unpaidSearchItem.reference,
+                                                                                    ),
+                                                                                  ),
                                                                                 );
                                                                               },
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  color: valueOrDefault<Color>(
-                                                                                    (unpaidResultIndex % 2).toString() == '1' ? FlutterFlowTheme.of(context).alternate : FlutterFlowTheme.of(context).primaryBackground,
-                                                                                    FlutterFlowTheme.of(context).primaryBackground,
-                                                                                  ),
-                                                                                  border: Border.all(
-                                                                                    color: Color(0xFFE5E5E5),
-                                                                                  ),
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children:
+                                                                                [
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  unpaidSearchIndex.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
                                                                                 ),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 8.0),
-                                                                                  child: Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          unpaidResultIndex.toString(),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.normal,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 3,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              unpaidResultItem.violatorName,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 3,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      unpaidSearchItem.violatorName,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                                             ),
-                                                                                            Text(
-                                                                                              '${unpaidResultItem.violatorAddressPrk}, ${unpaidResultItem.violatorAddressBrgy}, ${unpaidResultItem.violatorAddressCity}, ${unpaidResultItem.violatorAddressProvince}'.maybeHandleOverflow(
-                                                                                                maxChars: 35,
-                                                                                                replacement: '…',
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '${unpaidSearchItem.violatorAddressPrk},${unpaidSearchItem.violatorAddressBrgy},${unpaidSearchItem.violatorAddressCity},${unpaidSearchItem.violatorAddressProvince}'.maybeHandleOverflow(
+                                                                                        maxChars: 35,
+                                                                                        replacement: '…',
                                                                                       ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Builder(
-                                                                                          builder: (context) {
-                                                                                            final violation = unpaidResultItem.violationName.toList().take(2).toList();
+                                                                                      style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Builder(
+                                                                                  builder: (context) {
+                                                                                    final violation = unpaidSearchItem.violationName.toList().take(2).toList();
 
-                                                                                            return ListView.builder(
-                                                                                              padding: EdgeInsets.zero,
-                                                                                              primary: false,
-                                                                                              scrollDirection: Axis.vertical,
-                                                                                              itemCount: violation.length,
-                                                                                              itemBuilder: (context, violationIndex) {
-                                                                                                final violationItem = violation[violationIndex];
-                                                                                                return Text(
-                                                                                                  violationItem.maybeHandleOverflow(
-                                                                                                    maxChars: 25,
-                                                                                                    replacement: '…',
-                                                                                                  ),
-                                                                                                  style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                                          fontWeight: FontWeight.w600,
-                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                        ),
-                                                                                                        letterSpacing: 0.0,
-                                                                                                        fontWeight: FontWeight.w600,
-                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                      ),
-                                                                                                );
-                                                                                              },
-                                                                                            );
-                                                                                          },
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Text(
-                                                                                          unpaidResultItem.apprePlace.maybeHandleOverflow(
+                                                                                    return ListView.builder(
+                                                                                      padding: EdgeInsets.zero,
+                                                                                      primary: false,
+                                                                                      scrollDirection: Axis.vertical,
+                                                                                      itemCount: violation.length,
+                                                                                      itemBuilder: (context, violationIndex) {
+                                                                                        final violationItem = violation[violationIndex];
+                                                                                        return Text(
+                                                                                          violationItem.maybeHandleOverflow(
                                                                                             maxChars: 25,
                                                                                             replacement: '…',
                                                                                           ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                          style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                                 font: GoogleFonts.plusJakartaSans(
                                                                                                   fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                                 ),
                                                                                                 letterSpacing: 0.0,
                                                                                                 fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                               ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              unpaidResultItem.appreDateMonth.maybeHandleOverflow(
-                                                                                                maxChars: 3,
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              unpaidResultItem.appreDateDay,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              unpaidResultItem.appreDateYear,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          valueOrDefault<String>(
-                                                                                            formatNumber(
-                                                                                              unpaidResultItem.violationTotalFine,
-                                                                                              formatType: FormatType.decimal,
-                                                                                              decimalType: DecimalType.automatic,
-                                                                                            ),
-                                                                                            '₱',
-                                                                                          ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                                          children: [
-                                                                                            if (unpaidResultItem.receiptStatus == false)
-                                                                                              Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                                                child: wrapWithModel(
-                                                                                                  model: _model.statusModels7.getModel(
-                                                                                                    unpaidResultItem.receiptStatus.toString(),
-                                                                                                    unpaidResultIndex,
-                                                                                                  ),
-                                                                                                  updateCallback: () => safeSetState(() {}),
-                                                                                                  child: StatusWidget(
-                                                                                                    key: Key(
-                                                                                                      'Keymvk_${unpaidResultItem.receiptStatus.toString()}',
-                                                                                                    ),
-                                                                                                    text: 'Not Paid',
-                                                                                                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                    borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                    textColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                                    action: () async {},
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            if (unpaidResultItem.receiptStatus == true)
-                                                                                              wrapWithModel(
-                                                                                                model: _model.statusModels8.getModel(
-                                                                                                  unpaidResultItem.receiptStatus.toString(),
-                                                                                                  unpaidResultIndex,
-                                                                                                ),
-                                                                                                updateCallback: () => safeSetState(() {}),
-                                                                                                child: StatusWidget(
-                                                                                                  key: Key(
-                                                                                                    'Keym2p_${unpaidResultItem.receiptStatus.toString()}',
-                                                                                                  ),
-                                                                                                  text: 'Paid',
-                                                                                                  fillColor: FlutterFlowTheme.of(context).success,
-                                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                  action: () async {},
-                                                                                                ),
-                                                                                              ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                                                          children: [
-                                                                                            Builder(
-                                                                                              builder: (context) => FlutterFlowIconButton(
-                                                                                                borderColor: Colors.transparent,
-                                                                                                borderRadius: 30.0,
-                                                                                                borderWidth: 1.0,
-                                                                                                buttonSize: 44.0,
-                                                                                                icon: Icon(
-                                                                                                  Icons.check_rounded,
-                                                                                                  color: FlutterFlowTheme.of(context).success,
-                                                                                                  size: 20.0,
-                                                                                                ),
-                                                                                                onPressed: () async {
-                                                                                                  await showDialog(
-                                                                                                    context: context,
-                                                                                                    builder: (dialogContext) {
-                                                                                                      return Dialog(
-                                                                                                        elevation: 0,
-                                                                                                        insetPadding: EdgeInsets.zero,
-                                                                                                        backgroundColor: Colors.transparent,
-                                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                        child: GestureDetector(
-                                                                                                          onTap: () {
-                                                                                                            FocusScope.of(dialogContext).unfocus();
-                                                                                                            FocusManager.instance.primaryFocus?.unfocus();
-                                                                                                          },
-                                                                                                          child: ConfirmModalWidget(
-                                                                                                            icon: Icon(
-                                                                                                              Icons.task_alt,
-                                                                                                              color: FlutterFlowTheme.of(context).success,
-                                                                                                              size: 50.0,
-                                                                                                            ),
-                                                                                                            title: 'Confirm Payment?',
-                                                                                                            subtitle: 'Are you sure you want to proceed with this payment?',
-                                                                                                            button: 'Confirm',
-                                                                                                            buttonColor: FlutterFlowTheme.of(context).success,
-                                                                                                            primaryButtonAction: () async {
-                                                                                                              await unpaidResultItem.reference.update(createCitationRecordData(
-                                                                                                                receiptStatus: true,
-                                                                                                              ));
-                                                                                                            },
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  );
-                                                                                                },
-                                                                                              ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ].divide(SizedBox(width: 4.0)),
-                                                                                  ),
+                                                                                        );
+                                                                                      },
+                                                                                    );
+                                                                                  },
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  unpaidSearchItem.apprePlace.maybeHandleOverflow(
+                                                                                    maxChars: 25,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      unpaidSearchItem.appreDateMonth.maybeHandleOverflow(
+                                                                                        maxChars: 3,
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      unpaidSearchItem.appreDateDay,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      unpaidSearchItem.appreDateYear,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  valueOrDefault<String>(
+                                                                                    formatNumber(
+                                                                                      unpaidSearchItem.violationTotalFine,
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.automatic,
+                                                                                    ),
+                                                                                    '₱',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    if (unpaidSearchItem.receiptStatus == false)
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                        child: wrapWithModel(
+                                                                                          model: _model.statusModels7.getModel(
+                                                                                            unpaidSearchItem.receiptStatus.toString(),
+                                                                                            unpaidSearchIndex,
+                                                                                          ),
+                                                                                          updateCallback: () => safeSetState(() {}),
+                                                                                          child: StatusWidget(
+                                                                                            key: Key(
+                                                                                              'Keyr9g_${unpaidSearchItem.receiptStatus.toString()}',
+                                                                                            ),
+                                                                                            text: 'Not Paid',
+                                                                                            fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                            borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                            textColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                            action: () async {},
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    if (unpaidSearchItem.receiptStatus == true)
+                                                                                      wrapWithModel(
+                                                                                        model: _model.statusModels8.getModel(
+                                                                                          unpaidSearchItem.receiptStatus.toString(),
+                                                                                          unpaidSearchIndex,
+                                                                                        ),
+                                                                                        updateCallback: () => safeSetState(() {}),
+                                                                                        child: StatusWidget(
+                                                                                          key: Key(
+                                                                                            'Keyu56_${unpaidSearchItem.receiptStatus.toString()}',
+                                                                                          ),
+                                                                                          text: 'Paid',
+                                                                                          fillColor: FlutterFlowTheme.of(context).success,
+                                                                                          borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                          textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                          action: () async {},
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Builder(
+                                                                                      builder: (context) => FlutterFlowIconButton(
+                                                                                        borderColor: Colors.transparent,
+                                                                                        borderRadius: 30.0,
+                                                                                        borderWidth: 1.0,
+                                                                                        buttonSize: 44.0,
+                                                                                        icon: Icon(
+                                                                                          Icons.check_rounded,
+                                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                                          size: 20.0,
+                                                                                        ),
+                                                                                        onPressed: () async {
+                                                                                          await showDialog(
+                                                                                            context: context,
+                                                                                            builder: (dialogContext) {
+                                                                                              return Dialog(
+                                                                                                elevation: 0,
+                                                                                                insetPadding: EdgeInsets.zero,
+                                                                                                backgroundColor: Colors.transparent,
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                child: GestureDetector(
+                                                                                                  onTap: () {
+                                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                                  },
+                                                                                                  child: ConfirmModalWidget(
+                                                                                                    icon: Icon(
+                                                                                                      Icons.task_alt,
+                                                                                                      color: FlutterFlowTheme.of(context).success,
+                                                                                                      size: 50.0,
+                                                                                                    ),
+                                                                                                    title: 'Confirm Payment?',
+                                                                                                    subtitle: 'Are you sure you want to proceed with this payment?',
+                                                                                                    button: 'Confirm',
+                                                                                                    buttonColor: FlutterFlowTheme.of(context).success,
+                                                                                                    primaryButtonAction: () async {
+                                                                                                      await unpaidSearchItem.reference.update(createCitationRecordData(
+                                                                                                        receiptStatus: true,
+                                                                                                      ));
+                                                                                                    },
+                                                                                                  ),
+                                                                                                ),
+                                                                                              );
+                                                                                            },
+                                                                                          );
+
+                                                                                          var adminNotifRecordReference = AdminNotifRecord.collection.doc();
+                                                                                          await adminNotifRecordReference.set(createAdminNotifRecordData(
+                                                                                            title: 'Violator Payment Confirmed',
+                                                                                            subtitle: 'Confirming citation payment.',
+                                                                                            type: 'history',
+                                                                                            status: 'static',
+                                                                                            createdTime: getCurrentTimestamp,
+                                                                                            notifType: 'ViolatorConfirmation',
+                                                                                            citationId: unpaidSearchItem.reference,
+                                                                                          ));
+                                                                                          _model.confirmSearchUnpaidViolatorNotif = AdminNotifRecord.getDocumentFromData(
+                                                                                              createAdminNotifRecordData(
+                                                                                                title: 'Violator Payment Confirmed',
+                                                                                                subtitle: 'Confirming citation payment.',
+                                                                                                type: 'history',
+                                                                                                status: 'static',
+                                                                                                createdTime: getCurrentTimestamp,
+                                                                                                notifType: 'ViolatorConfirmation',
+                                                                                                citationId: unpaidSearchItem.reference,
+                                                                                              ),
+                                                                                              adminNotifRecordReference);
+
+                                                                                          safeSetState(() {});
+                                                                                        },
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ].divide(SizedBox(width: 4.0)),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ]
+                                                                        .map((c) =>
+                                                                            DataCell(c))
+                                                                        .toList(),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  emptyBuilder:
+                                                                      () =>
+                                                                          Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  ),
+                                                                  paginated:
+                                                                      true,
+                                                                  selectable:
+                                                                      false,
+                                                                  hidePaginator:
+                                                                      false,
+                                                                  showFirstLastButtons:
+                                                                      false,
+                                                                  headingRowHeight:
+                                                                      40.0,
+                                                                  dataRowHeight:
+                                                                      60.0,
+                                                                  columnSpacing:
+                                                                      20.0,
+                                                                  headingRowColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent1,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  addHorizontalDivider:
+                                                                      false,
+                                                                  addTopAndBottomDivider:
+                                                                      false,
+                                                                  hideDefaultHorizontalDivider:
+                                                                      true,
+                                                                  addVerticalDivider:
+                                                                      false,
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ),
@@ -3704,7 +3724,7 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                                 return FlutterFlowDataTable<
                                                                     CitationRecord>(
                                                                   controller: _model
-                                                                      .paginatedDataTableController3,
+                                                                      .paginatedDataTableController5,
                                                                   data:
                                                                       paidNoSearch,
                                                                   numRows:
@@ -4297,673 +4317,633 @@ class _ViolatorsWidgetState extends State<ViolatorsWidget>
                                                         ),
                                                       if (FFAppState()
                                                           .searchIsActive)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      16.0,
-                                                                      8.0,
-                                                                      16.0),
-                                                          child: Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            decoration:
-                                                                BoxDecoration(),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 40.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              12.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              12.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      children:
-                                                                          [
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Text(
-                                                                              '#',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              3,
-                                                                          child:
-                                                                              Text(
-                                                                            'Violator Name',
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                          tablet:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Violation Name',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Place of Apprehension',
-                                                                                textAlign: TextAlign.start,
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                2,
-                                                                            child:
-                                                                                Text(
-                                                                              'Apprehension Date',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        if (responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          phone:
-                                                                              false,
-                                                                        ))
-                                                                          Expanded(
-                                                                            flex:
-                                                                                1,
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                              child: Text(
-                                                                                'Total Fine',
-                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                      font: GoogleFonts.plusJakartaSans(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Status',
-                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              1,
-                                                                          child:
-                                                                              Text(
-                                                                            'Actions',
-                                                                            textAlign:
-                                                                                TextAlign.end,
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ].divide(SizedBox(
-                                                                              width: 4.0)),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              8.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              0.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              0.0),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final paidResult = _model
-                                                                          .simpleSearchResults
-                                                                          .where((e) =>
-                                                                              (e.receiptStatus == true) &&
-                                                                              (e.appreDateMonth == _model.filterByMonthDropDownValue) &&
-                                                                              (e.appreDateYear == _model.filterByYearDropDownValue))
-                                                                          .toList();
-                                                                      if (paidResult
-                                                                          .isEmpty) {
-                                                                        return Container(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          child:
-                                                                              IsEmptyCardWidget(),
-                                                                        );
-                                                                      }
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        16.0,
+                                                                        8.0,
+                                                                        16.0),
+                                                            child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                                final paidSearch = _model
+                                                                    .simpleSearchResults
+                                                                    .where((e) =>
+                                                                        (e.receiptStatus ==
+                                                                            true) &&
+                                                                        (e.appreDateMonth ==
+                                                                            _model
+                                                                                .filterByMonthDropDownValue) &&
+                                                                        (e.appreDateYear ==
+                                                                            _model.filterByYearDropDownValue))
+                                                                    .toList();
+                                                                if (paidSearch
+                                                                    .isEmpty) {
+                                                                  return Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  );
+                                                                }
 
-                                                                      return ListView
-                                                                          .builder(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        primary:
-                                                                            false,
-                                                                        scrollDirection:
-                                                                            Axis.vertical,
-                                                                        itemCount:
-                                                                            paidResult.length,
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                paidResultIndex) {
-                                                                          final paidResultItem =
-                                                                              paidResult[paidResultIndex];
-                                                                          return Builder(
-                                                                            builder: (context) =>
-                                                                                InkWell(
-                                                                              splashColor: Colors.transparent,
-                                                                              focusColor: Colors.transparent,
-                                                                              hoverColor: Colors.transparent,
-                                                                              highlightColor: Colors.transparent,
-                                                                              onTap: () async {
-                                                                                await showDialog(
-                                                                                  context: context,
-                                                                                  builder: (dialogContext) {
-                                                                                    return Dialog(
-                                                                                      elevation: 0,
-                                                                                      insetPadding: EdgeInsets.zero,
-                                                                                      backgroundColor: Colors.transparent,
-                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: GestureDetector(
-                                                                                        onTap: () {
-                                                                                          FocusScope.of(dialogContext).unfocus();
-                                                                                          FocusManager.instance.primaryFocus?.unfocus();
-                                                                                        },
-                                                                                        child: ViewViolatorWidget(
-                                                                                          violatorRef: paidResultItem.reference,
+                                                                return FlutterFlowDataTable<
+                                                                    CitationRecord>(
+                                                                  controller: _model
+                                                                      .paginatedDataTableController6,
+                                                                  data:
+                                                                      paidSearch,
+                                                                  numRows:
+                                                                      paidSearch
+                                                                          .length,
+                                                                  columnsBuilder:
+                                                                      (onSortChanged) =>
+                                                                          [
+                                                                    DataColumn2(
+                                                                      label: DefaultTextStyle
+                                                                          .merge(
+                                                                        softWrap:
+                                                                            true,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children:
+                                                                              [
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  '#',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                         ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                       ),
-                                                                                    );
-                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 3,
+                                                                              child: Text(
+                                                                                'Violator Name',
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Violation Name',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Place of Apprehension',
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  'Apprehension Date',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            if (responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                            ))
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Align(
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Total Fine',
+                                                                                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                          font: GoogleFonts.plusJakartaSans(
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Align(
+                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Status',
+                                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              flex: 1,
+                                                                              child: Text(
+                                                                                'Actions',
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      font: GoogleFonts.plusJakartaSans(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ].divide(SizedBox(width: 4.0)),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  dataRowBuilder: (paidSearchItem,
+                                                                          paidSearchIndex,
+                                                                          selected,
+                                                                          onSelectChanged) =>
+                                                                      DataRow(
+                                                                    color:
+                                                                        WidgetStateProperty
+                                                                            .all(
+                                                                      paidSearchIndex %
+                                                                                  2 ==
+                                                                              0
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .primaryBackground
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .alternate,
+                                                                    ),
+                                                                    cells: [
+                                                                      Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  elevation: 0,
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                      FocusScope.of(dialogContext).unfocus();
+                                                                                      FocusManager.instance.primaryFocus?.unfocus();
+                                                                                    },
+                                                                                    child: ViewViolatorWidget(
+                                                                                      violatorRef: paidSearchItem.reference,
+                                                                                    ),
+                                                                                  ),
                                                                                 );
                                                                               },
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  color: valueOrDefault<Color>(
-                                                                                    (paidResultIndex % 2).toString() == '1' ? FlutterFlowTheme.of(context).alternate : FlutterFlowTheme.of(context).primaryBackground,
-                                                                                    FlutterFlowTheme.of(context).primaryBackground,
-                                                                                  ),
-                                                                                  border: Border.all(
-                                                                                    color: Color(0xFFE5E5E5),
-                                                                                  ),
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children:
+                                                                                [
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  paidSearchIndex.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
                                                                                 ),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 8.0),
-                                                                                  child: Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          paidResultIndex.toString(),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.normal,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 3,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              paidResultItem.violatorName,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 3,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      paidSearchItem.violatorName,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                                             ),
-                                                                                            Text(
-                                                                                              '${paidResultItem.violatorAddressPrk}, ${paidResultItem.violatorAddressBrgy}, ${paidResultItem.violatorAddressCity}, ${paidResultItem.violatorAddressProvince}'.maybeHandleOverflow(
-                                                                                                maxChars: 35,
-                                                                                                replacement: '…',
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '${paidSearchItem.violatorAddressPrk},${paidSearchItem.violatorAddressBrgy},${paidSearchItem.violatorAddressCity},${paidSearchItem.violatorAddressProvince}'.maybeHandleOverflow(
+                                                                                        maxChars: 35,
+                                                                                        replacement: '…',
                                                                                       ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Builder(
-                                                                                          builder: (context) {
-                                                                                            final violation = paidResultItem.violationName.toList().take(2).toList();
+                                                                                      style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Builder(
+                                                                                  builder: (context) {
+                                                                                    final violation = paidSearchItem.violationName.toList().take(2).toList();
 
-                                                                                            return ListView.builder(
-                                                                                              padding: EdgeInsets.zero,
-                                                                                              primary: false,
-                                                                                              scrollDirection: Axis.vertical,
-                                                                                              itemCount: violation.length,
-                                                                                              itemBuilder: (context, violationIndex) {
-                                                                                                final violationItem = violation[violationIndex];
-                                                                                                return Text(
-                                                                                                  violationItem.maybeHandleOverflow(
-                                                                                                    maxChars: 25,
-                                                                                                    replacement: '…',
-                                                                                                  ),
-                                                                                                  style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                                                          fontWeight: FontWeight.w600,
-                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                        ),
-                                                                                                        letterSpacing: 0.0,
-                                                                                                        fontWeight: FontWeight.w600,
-                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                                      ),
-                                                                                                );
-                                                                                              },
-                                                                                            );
-                                                                                          },
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Text(
-                                                                                          paidResultItem.apprePlace.maybeHandleOverflow(
+                                                                                    return ListView.builder(
+                                                                                      padding: EdgeInsets.zero,
+                                                                                      primary: false,
+                                                                                      scrollDirection: Axis.vertical,
+                                                                                      itemCount: violation.length,
+                                                                                      itemBuilder: (context, violationIndex) {
+                                                                                        final violationItem = violation[violationIndex];
+                                                                                        return Text(
+                                                                                          violationItem.maybeHandleOverflow(
                                                                                             maxChars: 25,
                                                                                             replacement: '…',
                                                                                           ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                          style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                                 font: GoogleFonts.plusJakartaSans(
                                                                                                   fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                                 ),
                                                                                                 letterSpacing: 0.0,
                                                                                                 fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                               ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 2,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              paidResultItem.appreDateMonth.maybeHandleOverflow(
-                                                                                                maxChars: 3,
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              paidResultItem.appreDateDay,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              '/',
-                                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              paidResultItem.appreDateYear,
-                                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                    ),
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Text(
-                                                                                          valueOrDefault<String>(
-                                                                                            formatNumber(
-                                                                                              paidResultItem.violationTotalFine,
-                                                                                              formatType: FormatType.decimal,
-                                                                                              decimalType: DecimalType.automatic,
-                                                                                            ),
-                                                                                            '₱',
-                                                                                          ),
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                font: GoogleFonts.plusJakartaSans(
-                                                                                                  fontWeight: FontWeight.w600,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.w600,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                                          children: [
-                                                                                            if (paidResultItem.receiptStatus == false)
-                                                                                              Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                                                child: wrapWithModel(
-                                                                                                  model: _model.statusModels11.getModel(
-                                                                                                    paidResultItem.receiptStatus.toString(),
-                                                                                                    paidResultIndex,
-                                                                                                  ),
-                                                                                                  updateCallback: () => safeSetState(() {}),
-                                                                                                  child: StatusWidget(
-                                                                                                    key: Key(
-                                                                                                      'Keyu36_${paidResultItem.receiptStatus.toString()}',
-                                                                                                    ),
-                                                                                                    text: 'Not Paid',
-                                                                                                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                    borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                    textColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                                    action: () async {},
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            if (paidResultItem.receiptStatus == true)
-                                                                                              wrapWithModel(
-                                                                                                model: _model.statusModels12.getModel(
-                                                                                                  paidResultItem.receiptStatus.toString(),
-                                                                                                  paidResultIndex,
-                                                                                                ),
-                                                                                                updateCallback: () => safeSetState(() {}),
-                                                                                                child: StatusWidget(
-                                                                                                  key: Key(
-                                                                                                    'Keyi28_${paidResultItem.receiptStatus.toString()}',
-                                                                                                  ),
-                                                                                                  text: 'Paid',
-                                                                                                  fillColor: FlutterFlowTheme.of(context).success,
-                                                                                                  borderColor: FlutterFlowTheme.of(context).alternate,
-                                                                                                  textColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                  action: () async {},
-                                                                                                ),
-                                                                                              ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        flex: 1,
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                                                          children: [
-                                                                                            Builder(
-                                                                                              builder: (context) => FlutterFlowIconButton(
-                                                                                                borderColor: Colors.transparent,
-                                                                                                borderRadius: 30.0,
-                                                                                                borderWidth: 1.0,
-                                                                                                buttonSize: 44.0,
-                                                                                                icon: Icon(
-                                                                                                  Icons.check_rounded,
-                                                                                                  color: FlutterFlowTheme.of(context).success,
-                                                                                                  size: 20.0,
-                                                                                                ),
-                                                                                                onPressed: () async {
-                                                                                                  await showDialog(
-                                                                                                    context: context,
-                                                                                                    builder: (dialogContext) {
-                                                                                                      return Dialog(
-                                                                                                        elevation: 0,
-                                                                                                        insetPadding: EdgeInsets.zero,
-                                                                                                        backgroundColor: Colors.transparent,
-                                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                        child: GestureDetector(
-                                                                                                          onTap: () {
-                                                                                                            FocusScope.of(dialogContext).unfocus();
-                                                                                                            FocusManager.instance.primaryFocus?.unfocus();
-                                                                                                          },
-                                                                                                          child: ConfirmModalWidget(
-                                                                                                            icon: Icon(
-                                                                                                              Icons.task_alt,
-                                                                                                              color: FlutterFlowTheme.of(context).success,
-                                                                                                              size: 50.0,
-                                                                                                            ),
-                                                                                                            title: 'Confirm Payment?',
-                                                                                                            subtitle: 'Are you sure you want to proceed with this payment?',
-                                                                                                            button: 'Confirm',
-                                                                                                            buttonColor: FlutterFlowTheme.of(context).success,
-                                                                                                            primaryButtonAction: () async {
-                                                                                                              await paidResultItem.reference.update(createCitationRecordData(
-                                                                                                                receiptStatus: true,
-                                                                                                              ));
-                                                                                                            },
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  );
-                                                                                                },
-                                                                                              ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ].divide(SizedBox(width: 4.0)),
-                                                                                  ),
+                                                                                        );
+                                                                                      },
+                                                                                    );
+                                                                                  },
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Text(
+                                                                                  paidSearchItem.apprePlace.maybeHandleOverflow(
+                                                                                    maxChars: 25,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 2,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      paidSearchItem.appreDateMonth.maybeHandleOverflow(
+                                                                                        maxChars: 3,
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      paidSearchItem.appreDateDay,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      '/',
+                                                                                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      paidSearchItem.appreDateYear,
+                                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                            font: GoogleFonts.plusJakartaSans(
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                            ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Text(
+                                                                                  valueOrDefault<String>(
+                                                                                    formatNumber(
+                                                                                      paidSearchItem.violationTotalFine,
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.automatic,
+                                                                                    ),
+                                                                                    '₱',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        font: GoogleFonts.plusJakartaSans(
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                        ),
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    if (paidSearchItem.receiptStatus == false)
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                        child: wrapWithModel(
+                                                                                          model: _model.statusModels11.getModel(
+                                                                                            paidSearchItem.receiptStatus.toString(),
+                                                                                            paidSearchIndex,
+                                                                                          ),
+                                                                                          updateCallback: () => safeSetState(() {}),
+                                                                                          child: StatusWidget(
+                                                                                            key: Key(
+                                                                                              'Keymca_${paidSearchItem.receiptStatus.toString()}',
+                                                                                            ),
+                                                                                            text: 'Not Paid',
+                                                                                            fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                            borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                            textColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                            action: () async {},
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    if (paidSearchItem.receiptStatus == true)
+                                                                                      wrapWithModel(
+                                                                                        model: _model.statusModels12.getModel(
+                                                                                          paidSearchItem.receiptStatus.toString(),
+                                                                                          paidSearchIndex,
+                                                                                        ),
+                                                                                        updateCallback: () => safeSetState(() {}),
+                                                                                        child: StatusWidget(
+                                                                                          key: Key(
+                                                                                            'Keyccm_${paidSearchItem.receiptStatus.toString()}',
+                                                                                          ),
+                                                                                          text: 'Paid',
+                                                                                          fillColor: FlutterFlowTheme.of(context).success,
+                                                                                          borderColor: FlutterFlowTheme.of(context).alternate,
+                                                                                          textColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                          action: () async {},
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 1,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Builder(
+                                                                                      builder: (context) => FlutterFlowIconButton(
+                                                                                        borderColor: Colors.transparent,
+                                                                                        borderRadius: 30.0,
+                                                                                        borderWidth: 1.0,
+                                                                                        buttonSize: 44.0,
+                                                                                        icon: Icon(
+                                                                                          Icons.check_rounded,
+                                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                                          size: 20.0,
+                                                                                        ),
+                                                                                        onPressed: () async {
+                                                                                          await showDialog(
+                                                                                            context: context,
+                                                                                            builder: (dialogContext) {
+                                                                                              return Dialog(
+                                                                                                elevation: 0,
+                                                                                                insetPadding: EdgeInsets.zero,
+                                                                                                backgroundColor: Colors.transparent,
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                child: GestureDetector(
+                                                                                                  onTap: () {
+                                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                                  },
+                                                                                                  child: ConfirmModalWidget(
+                                                                                                    icon: Icon(
+                                                                                                      Icons.task_alt,
+                                                                                                      color: FlutterFlowTheme.of(context).success,
+                                                                                                      size: 50.0,
+                                                                                                    ),
+                                                                                                    title: 'Confirm Payment?',
+                                                                                                    subtitle: 'Are you sure you want to proceed with this payment?',
+                                                                                                    button: 'Confirm',
+                                                                                                    buttonColor: FlutterFlowTheme.of(context).success,
+                                                                                                    primaryButtonAction: () async {
+                                                                                                      await paidSearchItem.reference.update(createCitationRecordData(
+                                                                                                        receiptStatus: true,
+                                                                                                      ));
+                                                                                                    },
+                                                                                                  ),
+                                                                                                ),
+                                                                                              );
+                                                                                            },
+                                                                                          );
+                                                                                        },
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ].divide(SizedBox(width: 4.0)),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ]
+                                                                        .map((c) =>
+                                                                            DataCell(c))
+                                                                        .toList(),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  emptyBuilder:
+                                                                      () =>
+                                                                          Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        IsEmptyCardWidget(),
+                                                                  ),
+                                                                  paginated:
+                                                                      true,
+                                                                  selectable:
+                                                                      false,
+                                                                  hidePaginator:
+                                                                      false,
+                                                                  showFirstLastButtons:
+                                                                      false,
+                                                                  headingRowHeight:
+                                                                      40.0,
+                                                                  dataRowHeight:
+                                                                      60.0,
+                                                                  columnSpacing:
+                                                                      20.0,
+                                                                  headingRowColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent1,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  addHorizontalDivider:
+                                                                      false,
+                                                                  addTopAndBottomDivider:
+                                                                      false,
+                                                                  hideDefaultHorizontalDivider:
+                                                                      true,
+                                                                  addVerticalDivider:
+                                                                      false,
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ),

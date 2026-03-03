@@ -20,8 +20,15 @@ class FinesModel extends FlutterFlowModel<FinesWidget> {
   String? Function(BuildContext, String?)? searchBoxTextControllerValidator;
   List<ViolationRecord> simpleSearchResults = [];
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
+  final paginatedDataTableController1 =
       FlutterFlowDataTableController<ViolationRecord>();
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? finesNotif;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
+      FlutterFlowDataTableController<ViolationRecord>();
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? finesSearchNotif;
 
   @override
   void initState(BuildContext context) {
@@ -34,6 +41,7 @@ class FinesModel extends FlutterFlowModel<FinesWidget> {
     searchBoxFocusNode?.dispose();
     searchBoxTextController?.dispose();
 
-    paginatedDataTableController.dispose();
+    paginatedDataTableController1.dispose();
+    paginatedDataTableController2.dispose();
   }
 }

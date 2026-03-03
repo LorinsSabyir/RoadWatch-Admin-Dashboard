@@ -23,16 +23,23 @@ class EnforcersModel extends FlutterFlowModel<EnforcersWidget> {
   // State field(s) for Column widget.
   ScrollController? columnController;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
+  final paginatedDataTableController1 =
       FlutterFlowDataTableController<UsersRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels1;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels2;
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? enforcerDeleteNotif;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
+      FlutterFlowDataTableController<UsersRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels3;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels4;
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? enforcerSearchDeleteNotif;
 
   @override
   void initState(BuildContext context) {
@@ -51,9 +58,10 @@ class EnforcersModel extends FlutterFlowModel<EnforcersWidget> {
     searchBoxTextController?.dispose();
 
     columnController?.dispose();
-    paginatedDataTableController.dispose();
+    paginatedDataTableController1.dispose();
     statusModels1.dispose();
     statusModels2.dispose();
+    paginatedDataTableController2.dispose();
     statusModels3.dispose();
     statusModels4.dispose();
   }

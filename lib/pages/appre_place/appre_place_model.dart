@@ -23,8 +23,15 @@ class ApprePlaceModel extends FlutterFlowModel<ApprePlaceWidget> {
   // Model for IsEmptyCard component.
   late IsEmptyCardModel isEmptyCardModel;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
+  final paginatedDataTableController1 =
       FlutterFlowDataTableController<ApprePlacesRecord>();
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? apprePlaceDeleteNotif;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
+      FlutterFlowDataTableController<ApprePlacesRecord>();
+  // Stores action output result for [Backend Call - Create Document] action in deleteButton widget.
+  AdminNotifRecord? apprePlaceDeleteSearchNotif;
 
   @override
   void initState(BuildContext context) {
@@ -39,6 +46,7 @@ class ApprePlaceModel extends FlutterFlowModel<ApprePlaceWidget> {
     searchBoxTextController?.dispose();
 
     isEmptyCardModel.dispose();
-    paginatedDataTableController.dispose();
+    paginatedDataTableController1.dispose();
+    paginatedDataTableController2.dispose();
   }
 }

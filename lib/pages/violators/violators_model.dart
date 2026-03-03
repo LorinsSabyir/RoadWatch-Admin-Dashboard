@@ -43,32 +43,49 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   late FlutterFlowDynamicModels<StatusModel> statusModels1;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels2;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  AdminNotifRecord? confirmViolatorNotif;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController2 =
+      FlutterFlowDataTableController<CitationRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels3;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels4;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  AdminNotifRecord? confirmSearchViolatorNotif;
   // State field(s) for Column widget.
   ScrollController? columnController2;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController2 =
+  final paginatedDataTableController3 =
       FlutterFlowDataTableController<CitationRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels5;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels6;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  AdminNotifRecord? confirmUnpaidViolatorNotif;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController4 =
+      FlutterFlowDataTableController<CitationRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels7;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels8;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  AdminNotifRecord? confirmSearchUnpaidViolatorNotif;
   // State field(s) for Column widget.
   ScrollController? columnController3;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController3 =
+  final paginatedDataTableController5 =
       FlutterFlowDataTableController<CitationRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels9;
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels10;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController6 =
+      FlutterFlowDataTableController<CitationRecord>();
   // Models for Status dynamic component.
   late FlutterFlowDynamicModels<StatusModel> statusModels11;
   // Models for Status dynamic component.
@@ -105,18 +122,21 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
     paginatedDataTableController1.dispose();
     statusModels1.dispose();
     statusModels2.dispose();
+    paginatedDataTableController2.dispose();
     statusModels3.dispose();
     statusModels4.dispose();
     columnController2?.dispose();
-    paginatedDataTableController2.dispose();
+    paginatedDataTableController3.dispose();
     statusModels5.dispose();
     statusModels6.dispose();
+    paginatedDataTableController4.dispose();
     statusModels7.dispose();
     statusModels8.dispose();
     columnController3?.dispose();
-    paginatedDataTableController3.dispose();
+    paginatedDataTableController5.dispose();
     statusModels9.dispose();
     statusModels10.dispose();
+    paginatedDataTableController6.dispose();
     statusModels11.dispose();
     statusModels12.dispose();
   }

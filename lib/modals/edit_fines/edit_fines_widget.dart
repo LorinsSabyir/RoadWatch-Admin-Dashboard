@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/confirm_modal/confirm_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -645,6 +646,37 @@ class _EditFinesWidgetState extends State<EditFinesWidget> {
                                   );
                                 },
                               );
+
+                              var adminNotifRecordReference =
+                                  AdminNotifRecord.collection.doc();
+                              await adminNotifRecordReference
+                                  .set(createAdminNotifRecordData(
+                                title: 'Violation & Fines Edited.',
+                                subtitle: 'Changes were saved to the record.',
+                                type: 'history',
+                                status: 'static',
+                                createdTime: getCurrentTimestamp,
+                                notifType: 'ViolationEdit',
+                                adminId: currentUserReference,
+                                violationId: editModalViolationRecord.reference,
+                              ));
+                              _model.finesEditNotif =
+                                  AdminNotifRecord.getDocumentFromData(
+                                      createAdminNotifRecordData(
+                                        title: 'Violation & Fines Edited.',
+                                        subtitle:
+                                            'Changes were saved to the record.',
+                                        type: 'history',
+                                        status: 'static',
+                                        createdTime: getCurrentTimestamp,
+                                        notifType: 'ViolationEdit',
+                                        adminId: currentUserReference,
+                                        violationId:
+                                            editModalViolationRecord.reference,
+                                      ),
+                                      adminNotifRecordReference);
+
+                              safeSetState(() {});
                             },
                             text: 'Edit',
                             options: FFButtonOptions(
