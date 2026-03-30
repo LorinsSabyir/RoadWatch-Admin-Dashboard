@@ -13,29 +13,21 @@ class HistoryDrawerModel extends FlutterFlowModel<HistoryDrawerWidget> {
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
-  // State field(s) for Column widget.
-  ScrollController? columnController1;
   // Models for HistoryCard dynamic component.
   late FlutterFlowDynamicModels<HistoryCardModel> historyCardModels1;
-  // State field(s) for Column widget.
-  ScrollController? columnController2;
   // Models for HistoryCard dynamic component.
   late FlutterFlowDynamicModels<HistoryCardModel> historyCardModels2;
 
   @override
   void initState(BuildContext context) {
-    columnController1 = ScrollController();
     historyCardModels1 = FlutterFlowDynamicModels(() => HistoryCardModel());
-    columnController2 = ScrollController();
     historyCardModels2 = FlutterFlowDynamicModels(() => HistoryCardModel());
   }
 
   @override
   void dispose() {
     tabBarController?.dispose();
-    columnController1?.dispose();
     historyCardModels1.dispose();
-    columnController2?.dispose();
     historyCardModels2.dispose();
   }
 }

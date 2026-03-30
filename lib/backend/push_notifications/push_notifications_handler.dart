@@ -112,10 +112,10 @@ final parametersBuilderMap =
   'Violators': ParameterData.none(),
   'Login': ParameterData.none(),
   'Fines': ParameterData.none(),
-  'Analytics': ParameterData.none(),
   'ApprePlace': ParameterData.none(),
   'Enforcers': ParameterData.none(),
   'Dashboard': ParameterData.none(),
+  'Analytics': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

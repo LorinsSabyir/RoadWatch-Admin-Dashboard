@@ -42,3 +42,24 @@ String? getNextMonth() {
   // Return the name (List is 0-indexed, so we subtract 1)
   return monthNames[nextMonth - 1];
 }
+
+int? getCurrentMonthIndex() {
+  return DateTime.now().month - 1;
+}
+
+int getNextMonthIndex() {
+  return (DateTime.now().month - 1 + 1) % 12;
+}
+
+int getNext2ndMonthIndex() {
+  return (DateTime.now().month - 1 + 2) % 12;
+}
+
+int getNext3rdMonthIndex() {
+  return (DateTime.now().month - 1 + 3) % 12;
+}
+
+bool isIndexEven(int index) {
+  // % 2 finds the remainder. If it's 0, the number is even.
+  return index % 2 == 0;
+}

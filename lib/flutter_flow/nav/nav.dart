@@ -106,12 +106,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => FinesWidget(),
         ),
         FFRoute(
-          name: AnalyticsWidget.routeName,
-          path: AnalyticsWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => AnalyticsWidget(),
-        ),
-        FFRoute(
           name: ApprePlaceWidget.routeName,
           path: ApprePlaceWidget.routePath,
           requireAuth: true,
@@ -128,6 +122,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: DashboardWidget.routePath,
           requireAuth: true,
           builder: (context, params) => DashboardWidget(),
+        ),
+        FFRoute(
+          name: AnalyticsWidget.routeName,
+          path: AnalyticsWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => AnalyticsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

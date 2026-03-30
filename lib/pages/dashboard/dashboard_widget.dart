@@ -290,152 +290,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         );
                                       },
                                     ),
-                                    FutureBuilder<List<ViolationSummaryRecord>>(
-                                      future: queryViolationSummaryRecordOnce(
-                                        queryBuilder:
-                                            (violationSummaryRecord) =>
-                                                violationSummaryRecord
-                                                    .where(
-                                                      'year',
-                                                      isEqualTo: dateTimeFormat(
-                                                          "yyyy",
-                                                          getCurrentTimestamp),
-                                                    )
-                                                    .where(
-                                                      'month',
-                                                      isEqualTo: functions
-                                                          .getNextMonth(),
-                                                    ),
-                                        singleRecord: true,
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<ViolationSummaryRecord>
-                                            forecastedViolationsViolationSummaryRecordList =
-                                            snapshot.data!;
-                                        final forecastedViolationsViolationSummaryRecord =
-                                            forecastedViolationsViolationSummaryRecordList
-                                                    .isNotEmpty
-                                                ? forecastedViolationsViolationSummaryRecordList
-                                                    .first
-                                                : null;
-
-                                        return Container(
-                                          width: 275.0,
-                                          height: 100.0,
-                                          constraints: BoxConstraints(
-                                            maxWidth: 350.0,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(16.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Forecasted Violation Next Month',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .plusJakartaSans(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    forecastedViolationsViolationSummaryRecord
-                                                        ?.forecastedViolations
-                                                        .toString(),
-                                                    '0',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineLarge
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.outfit(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineLarge
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineLarge
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineLarge
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineLarge
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 4.0)),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
                                     FutureBuilder<int>(
                                       future: queryCitationRecordCount(),
                                       builder: (context, snapshot) {
@@ -687,95 +541,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   isSearchable: false,
                                                   isMultiSelect: false,
                                                 ),
-                                                FlutterFlowDropDown<String>(
-                                                  controller: _model
-                                                          .violationChartMonthFilterValueController ??=
-                                                      FormFieldController<
-                                                          String>(
-                                                    _model.violationChartMonthFilterValue ??=
-                                                        dateTimeFormat("MMMM",
-                                                            getCurrentTimestamp),
-                                                  ),
-                                                  options: [
-                                                    'January',
-                                                    'February',
-                                                    'March',
-                                                    'April',
-                                                    'May',
-                                                    'June',
-                                                    'July',
-                                                    'August',
-                                                    'September',
-                                                    'October',
-                                                    'November',
-                                                    'December'
-                                                  ],
-                                                  onChanged: (val) async {
-                                                    safeSetState(() => _model
-                                                            .violationChartMonthFilterValue =
-                                                        val);
-                                                    safeSetState(() {});
-                                                  },
-                                                  width: 130.0,
-                                                  height: 35.0,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            font: GoogleFonts
-                                                                .plusJakartaSans(
-                                                              fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                            ),
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                  hintText: 'Month',
-                                                  icon: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  fillColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  elevation: 2.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  borderWidth: 0.0,
-                                                  borderRadius: 8.0,
-                                                  margin: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          12.0, 0.0, 12.0, 0.0),
-                                                  hidesUnderline: true,
-                                                  isOverButton: false,
-                                                  isSearchable: false,
-                                                  isMultiSelect: false,
-                                                ),
                                               ].divide(SizedBox(width: 8.0)),
                                             ),
                                             Padding(
@@ -861,722 +626,796 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           ],
                                         ),
                                         Expanded(
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              if (_model.violationFilterValue ==
-                                                  'Whole Panabo')
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: StreamBuilder<
-                                                        List<
-                                                            ViolationSummaryRecord>>(
-                                                      stream:
-                                                          queryViolationSummaryRecord(
-                                                        queryBuilder:
-                                                            (violationSummaryRecord) =>
-                                                                violationSummaryRecord
-                                                                    .orderBy(
-                                                                        'month_num'),
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        List<ViolationSummaryRecord>
-                                                            wholePanaboGraphViolationSummaryRecordList =
-                                                            snapshot.data!;
-
-                                                        return Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        56.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Container(
-                                                              width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width *
-                                                                  1.0,
-                                                              height: 350.0,
-                                                              child: Stack(
-                                                                children: [
-                                                                  FlutterFlowLineChart(
-                                                                    data: [
-                                                                      FFLineChartData(
-                                                                        xData: wholePanaboGraphViolationSummaryRecordList
-                                                                            .where((e) =>
-                                                                                e.year ==
-                                                                                _model.violationChartYearFilterValue)
-                                                                            .toList()
-                                                                            .map((d) => d.monthNum)
-                                                                            .toList(),
-                                                                        yData: wholePanaboGraphViolationSummaryRecordList
-                                                                            .where((e) =>
-                                                                                e.year ==
-                                                                                _model.violationChartYearFilterValue)
-                                                                            .toList()
-                                                                            .map((d) => d.actualViolations)
-                                                                            .toList(),
-                                                                        settings:
-                                                                            LineChartBarData(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).tertiary,
-                                                                          barWidth:
-                                                                              3.0,
-                                                                          isCurved:
-                                                                              true,
-                                                                          preventCurveOverShooting:
-                                                                              true,
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                    chartStylingInfo:
-                                                                        ChartStylingInfo(
-                                                                      enableTooltip:
-                                                                          true,
-                                                                      backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryBackground,
-                                                                      showGrid:
-                                                                          true,
-                                                                      borderColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .alternate,
-                                                                      borderWidth:
-                                                                          1.0,
-                                                                    ),
-                                                                    axisBounds:
-                                                                        AxisBounds(
-                                                                      minX: 1.0,
-                                                                      maxX:
-                                                                          12.0,
-                                                                    ),
-                                                                    xAxisLabelInfo:
-                                                                        AxisLabelInfo(
-                                                                      title:
-                                                                          'Month',
-                                                                      titleTextStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                      showLabels:
-                                                                          true,
-                                                                      labelTextStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                          ),
-                                                                      labelInterval:
-                                                                          1.0,
-                                                                      reservedSize:
-                                                                          12.0,
-                                                                    ),
-                                                                    yAxisLabelInfo:
-                                                                        AxisLabelInfo(
-                                                                      title:
-                                                                          'Total Number of Violations',
-                                                                      titleTextStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                      showLabels:
-                                                                          true,
-                                                                      labelTextStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                          ),
-                                                                      labelInterval:
-                                                                          100.0,
-                                                                      reservedSize:
-                                                                          100.0,
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            1.1),
-                                                                    child:
-                                                                        FlutterFlowChartLegendWidget(
-                                                                      entries: [
-                                                                        LegendEntry(
-                                                                            FlutterFlowTheme.of(context).tertiary,
-                                                                            'Number of violations'),
-                                                                      ],
-                                                                      width:
-                                                                          200.0,
-                                                                      height:
-                                                                          43.0,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                      textPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0),
-                                                                      borderWidth:
-                                                                          0.0,
-                                                                      borderColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      indicatorSize:
-                                                                          10.0,
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
+                                          child: Container(
+                                            decoration: BoxDecoration(),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                if (_model
+                                                        .violationFilterValue ==
+                                                    'Whole Panabo')
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              PanaboViolationSummaryTestRecord>>(
+                                                        stream:
+                                                            queryPanaboViolationSummaryTestRecord(
+                                                          queryBuilder:
+                                                              (panaboViolationSummaryTestRecord) =>
+                                                                  panaboViolationSummaryTestRecord
+                                                                      .where(
+                                                            'year',
+                                                            isEqualTo: _model
+                                                                .violationChartYearFilterValue,
                                                           ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                              if (_model.violationFilterValue ==
-                                                  'Per Barangay')
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: StreamBuilder<
-                                                        List<
-                                                            ViolationSummaryPerBrgyRecord>>(
-                                                      stream:
-                                                          queryViolationSummaryPerBrgyRecord(
-                                                        queryBuilder: (violationSummaryPerBrgyRecord) =>
-                                                            violationSummaryPerBrgyRecord
-                                                                .orderBy(
-                                                                    'actual_violations',
-                                                                    descending:
-                                                                        true),
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
+                                                          singleRecord: true,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets.all(
+                                                                        190.0),
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        List<ViolationSummaryPerBrgyRecord>
-                                                            perBarangayGraphViolationSummaryPerBrgyRecordList =
-                                                            snapshot.data!;
+                                                            );
+                                                          }
+                                                          List<PanaboViolationSummaryTestRecord>
+                                                              perCityGraphFinalPanaboViolationSummaryTestRecordList =
+                                                              snapshot.data!;
+                                                          // Return an empty Container when the item does not exist.
+                                                          if (snapshot
+                                                              .data!.isEmpty) {
+                                                            return Container();
+                                                          }
+                                                          final perCityGraphFinalPanaboViolationSummaryTestRecord =
+                                                              perCityGraphFinalPanaboViolationSummaryTestRecordList
+                                                                      .isNotEmpty
+                                                                  ? perCityGraphFinalPanaboViolationSummaryTestRecordList
+                                                                      .first
+                                                                  : null;
 
-                                                        return Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child:
-                                                              SingleChildScrollView(
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            controller: _model
-                                                                .rowController1,
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                          return Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: 430.0,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           56.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    height:
-                                                                        350.0,
-                                                                    child:
-                                                                        Stack(
-                                                                      children: [
-                                                                        FlutterFlowBarChart(
-                                                                          barData: [
-                                                                            FFBarChartData(
-                                                                              yData: perBarangayGraphViolationSummaryPerBrgyRecordList.where((e) => (e.year == _model.violationChartYearFilterValue) && (e.month == _model.violationChartMonthFilterValue)).toList().map((d) => d.actualViolations).toList(),
-                                                                              color: FlutterFlowTheme.of(context).tertiary,
-                                                                              borderWidth: 2.0,
-                                                                              borderColor: FlutterFlowTheme.of(context).primary,
-                                                                            )
-                                                                          ],
-                                                                          xLabels: perBarangayGraphViolationSummaryPerBrgyRecordList
-                                                                              .where((e) => (e.year == _model.violationChartYearFilterValue) && (e.month == _model.violationChartMonthFilterValue))
-                                                                              .toList()
-                                                                              .map((d) => d.barangay)
-                                                                              .toList(),
-                                                                          barWidth:
-                                                                              32.0,
-                                                                          barBorderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          groupSpace:
-                                                                              64.0,
-                                                                          alignment:
-                                                                              BarChartAlignment.start,
-                                                                          chartStylingInfo:
-                                                                              ChartStylingInfo(
-                                                                            enableTooltip:
-                                                                                true,
-                                                                            backgroundColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            showGrid:
-                                                                                true,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            borderWidth:
-                                                                                1.0,
+                                                              child: Container(
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    1.0,
+                                                                height: 350.0,
+                                                                child: Stack(
+                                                                  children: [
+                                                                    FlutterFlowLineChart(
+                                                                      data: [
+                                                                        FFLineChartData(
+                                                                          xData:
+                                                                              perCityGraphFinalPanaboViolationSummaryTestRecord!.monthNum,
+                                                                          yData:
+                                                                              perCityGraphFinalPanaboViolationSummaryTestRecord.actualValues,
+                                                                          settings:
+                                                                              LineChartBarData(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            barWidth:
+                                                                                3.0,
                                                                           ),
-                                                                          axisBounds:
-                                                                              AxisBounds(),
-                                                                          xAxisLabelInfo:
-                                                                              AxisLabelInfo(
-                                                                            title:
-                                                                                'Violations per Barangay',
-                                                                            titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            showLabels:
-                                                                                true,
-                                                                            labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                  ),
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                            labelInterval:
-                                                                                10.0,
-                                                                            reservedSize:
-                                                                                28.0,
-                                                                          ),
-                                                                          yAxisLabelInfo:
-                                                                              AxisLabelInfo(
-                                                                            title:
-                                                                                'Total Number of Violation',
-                                                                            titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            showLabels:
-                                                                                true,
-                                                                            labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                  ),
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                            labelInterval:
-                                                                                10.0,
-                                                                            reservedSize:
-                                                                                100.0,
-                                                                          ),
-                                                                        ),
-                                                                        Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              -1.0,
-                                                                              1.2),
-                                                                          child:
-                                                                              FlutterFlowChartLegendWidget(
-                                                                            entries: [
-                                                                              LegendEntry(FlutterFlowTheme.of(context).tertiary, 'Number of violations per Barangay'),
-                                                                            ],
-                                                                            width:
-                                                                                200.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            textPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5.0,
-                                                                                0.0,
-                                                                                5.0,
-                                                                                0.0),
-                                                                            borderWidth:
-                                                                                0.0,
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            indicatorSize:
-                                                                                10.0,
-                                                                          ),
-                                                                        ),
+                                                                        )
                                                                       ],
+                                                                      chartStylingInfo:
+                                                                          ChartStylingInfo(
+                                                                        enableTooltip:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
+                                                                        showGrid:
+                                                                            true,
+                                                                        borderColor:
+                                                                            FlutterFlowTheme.of(context).alternate,
+                                                                        borderWidth:
+                                                                            1.0,
+                                                                      ),
+                                                                      axisBounds:
+                                                                          AxisBounds(
+                                                                        minX:
+                                                                            0.0,
+                                                                        maxX:
+                                                                            11.0,
+                                                                      ),
+                                                                      xLabels:
+                                                                          perCityGraphFinalPanaboViolationSummaryTestRecord
+                                                                              .month,
+                                                                      xAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Month',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            1.0,
+                                                                        reservedSize:
+                                                                            20.0,
+                                                                      ),
+                                                                      yAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Total Number of Violations',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            100.0,
+                                                                        reservedSize:
+                                                                            40.0,
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                              if (_model.violationFilterValue ==
-                                                  'Per Violation')
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: StreamBuilder<
-                                                        List<
-                                                            ViolationSummaryPerViolationRecord>>(
-                                                      stream:
-                                                          queryViolationSummaryPerViolationRecord(),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        List<ViolationSummaryPerViolationRecord>
-                                                            perViolationGraphViolationSummaryPerViolationRecordList =
-                                                            snapshot.data!;
-
-                                                        return Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child:
-                                                              SingleChildScrollView(
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            controller: _model
-                                                                .rowController2,
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          56.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    height:
-                                                                        350.0,
-                                                                    child:
-                                                                        Stack(
-                                                                      children: [
-                                                                        FlutterFlowBarChart(
-                                                                          barData: [
-                                                                            FFBarChartData(
-                                                                              yData: perViolationGraphViolationSummaryPerViolationRecordList.where((e) => (e.year == _model.violationChartYearFilterValue) && (e.month == _model.violationChartMonthFilterValue)).toList().sortedList(keyOf: (e) => e.totalOccurrences, desc: true).map((d) => d.totalOccurrences).toList(),
-                                                                              color: FlutterFlowTheme.of(context).tertiary,
-                                                                              borderWidth: 2.0,
-                                                                              borderColor: FlutterFlowTheme.of(context).primary,
-                                                                            )
-                                                                          ],
-                                                                          xLabels: perViolationGraphViolationSummaryPerViolationRecordList
-                                                                              .where((e) => (e.year == _model.violationChartYearFilterValue) && (e.month == _model.violationChartMonthFilterValue))
-                                                                              .toList()
-                                                                              .sortedList(keyOf: (e) => e.totalOccurrences, desc: true)
-                                                                              .map((d) => d.violationName)
-                                                                              .toList(),
-                                                                          barWidth:
-                                                                              32.0,
-                                                                          barBorderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          groupSpace:
-                                                                              64.0,
-                                                                          alignment:
-                                                                              BarChartAlignment.start,
-                                                                          chartStylingInfo:
-                                                                              ChartStylingInfo(
-                                                                            enableTooltip:
-                                                                                true,
-                                                                            backgroundColor:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            showGrid:
-                                                                                true,
-                                                                            borderColor:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                          ),
-                                                                          axisBounds:
-                                                                              AxisBounds(),
-                                                                          xAxisLabelInfo:
-                                                                              AxisLabelInfo(
-                                                                            title:
-                                                                                'Violation Name',
-                                                                            titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            showLabels:
-                                                                                true,
-                                                                            labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                  ),
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                            labelInterval:
-                                                                                10.0,
-                                                                            reservedSize:
-                                                                                28.0,
-                                                                          ),
-                                                                          yAxisLabelInfo:
-                                                                              AxisLabelInfo(
-                                                                            title:
-                                                                                'Total Number of Violation',
-                                                                            titleTextStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            showLabels:
-                                                                                true,
-                                                                            labelTextStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                  ),
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                                ),
-                                                                            labelInterval:
-                                                                                100.0,
-                                                                            reservedSize:
-                                                                                100.0,
-                                                                          ),
-                                                                        ),
-                                                                        Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
                                                                               -1.0,
                                                                               1.1),
-                                                                          child:
-                                                                              FlutterFlowChartLegendWidget(
-                                                                            entries: [
-                                                                              LegendEntry(FlutterFlowTheme.of(context).tertiary, 'Number of violations'),
-                                                                            ],
-                                                                            width:
-                                                                                200.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                  ),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                ),
-                                                                            textPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5.0,
-                                                                                0.0,
-                                                                                5.0,
-                                                                                0.0),
-                                                                            borderWidth:
-                                                                                0.0,
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            indicatorSize:
-                                                                                10.0,
-                                                                          ),
-                                                                        ),
-                                                                      ],
+                                                                      child:
+                                                                          FlutterFlowChartLegendWidget(
+                                                                        entries: [
+                                                                          LegendEntry(
+                                                                              FlutterFlowTheme.of(context).tertiary,
+                                                                              'Number of violations per Barangay'),
+                                                                        ],
+                                                                        width:
+                                                                            200.0,
+                                                                        height:
+                                                                            50.0,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        textPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                        borderWidth:
+                                                                            0.0,
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        indicatorSize:
+                                                                            10.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                if (_model
+                                                        .violationFilterValue ==
+                                                    'Per Barangay')
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              BarangaySummaryTestRecord>>(
+                                                        stream:
+                                                            queryBarangaySummaryTestRecord(
+                                                          queryBuilder:
+                                                              (barangaySummaryTestRecord) =>
+                                                                  barangaySummaryTestRecord
+                                                                      .where(
+                                                            'barangay',
+                                                            isEqualTo:
+                                                                _model.brgyName !=
+                                                                        ''
+                                                                    ? _model
+                                                                        .brgyName
+                                                                    : null,
+                                                            isNull: (_model.brgyName !=
+                                                                        ''
+                                                                    ? _model
+                                                                        .brgyName
+                                                                    : null) ==
+                                                                null,
+                                                          ),
+                                                          singleRecord: true,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets.all(
+                                                                        190.0),
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ],
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<BarangaySummaryTestRecord>
+                                                              perBrgyGraphFinalBarangaySummaryTestRecordList =
+                                                              snapshot.data!;
+                                                          // Return an empty Container when the item does not exist.
+                                                          if (snapshot
+                                                              .data!.isEmpty) {
+                                                            return Container();
+                                                          }
+                                                          final perBrgyGraphFinalBarangaySummaryTestRecord =
+                                                              perBrgyGraphFinalBarangaySummaryTestRecordList
+                                                                      .isNotEmpty
+                                                                  ? perBrgyGraphFinalBarangaySummaryTestRecordList
+                                                                      .first
+                                                                  : null;
+
+                                                          return Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: 430.0,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          56.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    1.0,
+                                                                height: 350.0,
+                                                                child: Stack(
+                                                                  children: [
+                                                                    FlutterFlowLineChart(
+                                                                      data: [
+                                                                        FFLineChartData(
+                                                                          xData:
+                                                                              perBrgyGraphFinalBarangaySummaryTestRecord!.monthNum,
+                                                                          yData:
+                                                                              perBrgyGraphFinalBarangaySummaryTestRecord.actualValues,
+                                                                          settings:
+                                                                              LineChartBarData(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            barWidth:
+                                                                                3.0,
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                      chartStylingInfo:
+                                                                          ChartStylingInfo(
+                                                                        enableTooltip:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
+                                                                        showGrid:
+                                                                            true,
+                                                                        borderColor:
+                                                                            FlutterFlowTheme.of(context).alternate,
+                                                                        borderWidth:
+                                                                            1.0,
+                                                                      ),
+                                                                      axisBounds:
+                                                                          AxisBounds(
+                                                                        minX:
+                                                                            0.0,
+                                                                        maxX:
+                                                                            11.0,
+                                                                      ),
+                                                                      xLabels:
+                                                                          perBrgyGraphFinalBarangaySummaryTestRecord
+                                                                              .month,
+                                                                      xAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Month',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            1.0,
+                                                                        reservedSize:
+                                                                            20.0,
+                                                                      ),
+                                                                      yAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Total Number of Violations',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            100.0,
+                                                                        reservedSize:
+                                                                            40.0,
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0,
+                                                                              1.1),
+                                                                      child:
+                                                                          FlutterFlowChartLegendWidget(
+                                                                        entries: [
+                                                                          LegendEntry(
+                                                                              FlutterFlowTheme.of(context).tertiary,
+                                                                              'Number of violations per Barangay'),
+                                                                        ],
+                                                                        width:
+                                                                            200.0,
+                                                                        height:
+                                                                            50.0,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        textPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                        borderWidth:
+                                                                            0.0,
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        indicatorSize:
+                                                                            10.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                            ],
+                                                if (_model
+                                                        .violationFilterValue ==
+                                                    'Per Violation')
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              ViolationSummaryByTypeTestRecord>>(
+                                                        stream:
+                                                            queryViolationSummaryByTypeTestRecord(
+                                                          queryBuilder:
+                                                              (violationSummaryByTypeTestRecord) =>
+                                                                  violationSummaryByTypeTestRecord
+                                                                      .where(
+                                                            'violation_name',
+                                                            isEqualTo: _model
+                                                                        .violationName !=
+                                                                    ''
+                                                                ? _model
+                                                                    .violationName
+                                                                : null,
+                                                            isNull: (_model.violationName !=
+                                                                        ''
+                                                                    ? _model
+                                                                        .violationName
+                                                                    : null) ==
+                                                                null,
+                                                          ),
+                                                          singleRecord: true,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets.all(
+                                                                        190.0),
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<ViolationSummaryByTypeTestRecord>
+                                                              perViolationGraphFinalViolationSummaryByTypeTestRecordList =
+                                                              snapshot.data!;
+                                                          // Return an empty Container when the item does not exist.
+                                                          if (snapshot
+                                                              .data!.isEmpty) {
+                                                            return Container();
+                                                          }
+                                                          final perViolationGraphFinalViolationSummaryByTypeTestRecord =
+                                                              perViolationGraphFinalViolationSummaryByTypeTestRecordList
+                                                                      .isNotEmpty
+                                                                  ? perViolationGraphFinalViolationSummaryByTypeTestRecordList
+                                                                      .first
+                                                                  : null;
+
+                                                          return Container(
+                                                            height: 430.0,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          56.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    1.0,
+                                                                height: 350.0,
+                                                                child: Stack(
+                                                                  children: [
+                                                                    FlutterFlowLineChart(
+                                                                      data: [
+                                                                        FFLineChartData(
+                                                                          xData:
+                                                                              perViolationGraphFinalViolationSummaryByTypeTestRecord!.monthNum,
+                                                                          yData:
+                                                                              perViolationGraphFinalViolationSummaryByTypeTestRecord.actualValues,
+                                                                          settings:
+                                                                              LineChartBarData(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            barWidth:
+                                                                                3.0,
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                      chartStylingInfo:
+                                                                          ChartStylingInfo(
+                                                                        enableTooltip:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
+                                                                        showGrid:
+                                                                            true,
+                                                                        borderColor:
+                                                                            FlutterFlowTheme.of(context).alternate,
+                                                                        borderWidth:
+                                                                            1.0,
+                                                                      ),
+                                                                      axisBounds:
+                                                                          AxisBounds(
+                                                                        minX:
+                                                                            0.0,
+                                                                        maxX:
+                                                                            11.0,
+                                                                      ),
+                                                                      xLabels:
+                                                                          perViolationGraphFinalViolationSummaryByTypeTestRecord
+                                                                              .month,
+                                                                      xAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Month',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            1.0,
+                                                                        reservedSize:
+                                                                            20.0,
+                                                                      ),
+                                                                      yAxisLabelInfo:
+                                                                          AxisLabelInfo(
+                                                                        title:
+                                                                            'Total Number of Violations',
+                                                                        titleTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        showLabels:
+                                                                            true,
+                                                                        labelTextStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                            ),
+                                                                        labelInterval:
+                                                                            100.0,
+                                                                        reservedSize:
+                                                                            40.0,
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0,
+                                                                              1.1),
+                                                                      child:
+                                                                          FlutterFlowChartLegendWidget(
+                                                                        entries: [
+                                                                          LegendEntry(
+                                                                              FlutterFlowTheme.of(context).tertiary,
+                                                                              'Number of violations per Barangay'),
+                                                                        ],
+                                                                        width:
+                                                                            200.0,
+                                                                        height:
+                                                                            50.0,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        textPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                        borderWidth:
+                                                                            0.0,
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        indicatorSize:
+                                                                            10.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ].divide(SizedBox(height: 16.0)),
@@ -1610,204 +1449,55 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 16.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Violations per month',
-                                                      style:
+                                              Text(
+                                                'Number of Violations this Month',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .headlineSmall
+                                                    .override(
+                                                      font: GoogleFonts.outfit(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .headlineSmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .outfit(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                              ),
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineSmall
+                                                              .fontStyle,
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent1,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
-                                                    bottomRight:
-                                                        Radius.circular(0.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0),
-                                                    topRight:
-                                                        Radius.circular(8.0),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 8.0, 0.0, 8.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Expanded(
-                                                        flex: 4,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      26.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Violation Name',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        flex: 4,
-                                                        child: Text(
-                                                          'Violation Section',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .plusJakartaSans(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        26.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '#',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .plusJakartaSans(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
                                               ),
                                               Expanded(
                                                 child: StreamBuilder<
                                                     List<
-                                                        ViolationSummaryPerViolationRecord>>(
+                                                        ViolationSummaryByTypeTestRecord>>(
                                                   stream:
-                                                      queryViolationSummaryPerViolationRecord(),
+                                                      queryViolationSummaryByTypeTestRecord(
+                                                    queryBuilder:
+                                                        (violationSummaryByTypeTestRecord) =>
+                                                            violationSummaryByTypeTestRecord
+                                                                .where(
+                                                      'year',
+                                                      isEqualTo: _model
+                                                          .violationChartYearFilterValue,
+                                                      isNull: (_model
+                                                              .violationChartYearFilterValue) ==
+                                                          null,
+                                                    ),
+                                                  ),
                                                   builder: (context, snapshot) {
                                                     // Customize what your widget looks like when it's loading.
                                                     if (!snapshot.hasData) {
@@ -1828,8 +1518,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         ),
                                                       );
                                                     }
-                                                    List<ViolationSummaryPerViolationRecord>
-                                                        containerViolationSummaryPerViolationRecordList =
+                                                    List<ViolationSummaryByTypeTestRecord>
+                                                        containerViolationSummaryByTypeTestRecordList =
                                                         snapshot.data!;
 
                                                     return Container(
@@ -1838,21 +1528,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       child: Builder(
                                                         builder: (context) {
                                                           final violationsSumm =
-                                                              containerViolationSummaryPerViolationRecordList
-                                                                  .where((e) =>
-                                                                      (e.year ==
-                                                                          _model
-                                                                              .violationChartYearFilterValue) &&
-                                                                      (e.month ==
-                                                                          _model
-                                                                              .violationChartMonthFilterValue))
-                                                                  .toList()
+                                                              containerViolationSummaryByTypeTestRecordList
                                                                   .sortedList(
-                                                                      keyOf: (e) =>
-                                                                          e.totalOccurrences,
+                                                                      keyOf: (e) => e
+                                                                          .actualValues
+                                                                          .elementAtOrNull(
+                                                                              functions.getCurrentMonthIndex()!)!,
                                                                       desc: true)
-                                                                  .toList()
-                                                                  .take(5)
                                                                   .toList();
                                                           if (violationsSumm
                                                               .isEmpty) {
@@ -1868,7 +1550,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           }
 
                                                           return FlutterFlowDataTable<
-                                                              ViolationSummaryPerViolationRecord>(
+                                                              ViolationSummaryByTypeTestRecord>(
                                                             controller: _model
                                                                 .paginatedDataTableController1,
                                                             data:
@@ -1882,8 +1564,62 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .merge(
                                                                   softWrap:
                                                                       true,
-                                                                  child:
-                                                                      Container(),
+                                                                  child: Text(
+                                                                    'Violation Name',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              DataColumn2(
+                                                                label:
+                                                                    DefaultTextStyle
+                                                                        .merge(
+                                                                  softWrap:
+                                                                      true,
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            1.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      '# of Violations',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ],
@@ -1907,16 +1643,41 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .alternate,
                                                               ),
                                                               cells: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      flex: 4,
+                                                                InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    _model.violationName =
+                                                                        violationsSummItem
+                                                                            .violationName;
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                    decoration:
+                                                                        BoxDecoration(),
+                                                                    child:
+                                                                        Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
                                                                       child:
                                                                           AutoSizeText(
                                                                         violationsSummItem
@@ -1938,43 +1699,59 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                             TextOverflow.ellipsis,
                                                                       ),
                                                                     ),
-                                                                    Expanded(
-                                                                      flex: 4,
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        violationsSummItem
-                                                                            .violationSection,
-                                                                        minFontSize:
-                                                                            16.0,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyLarge
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      flex: 1,
+                                                                  ),
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      _model.violationName =
+                                                                          violationsSummItem
+                                                                              .violationName;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
+                                                                      decoration:
+                                                                          BoxDecoration(),
                                                                       child:
                                                                           Align(
                                                                         alignment: AlignmentDirectional(
                                                                             1.0,
                                                                             0.0),
                                                                         child:
-                                                                            Text(
+                                                                            AutoSizeText(
                                                                           valueOrDefault<
                                                                               String>(
-                                                                            violationsSummItem.totalOccurrences.toString(),
+                                                                            violationsSummItem.actualValues.elementAtOrNull(functions.getCurrentMonthIndex()!)?.toString(),
                                                                             '0',
                                                                           ),
+                                                                          minFontSize:
+                                                                              16.0,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyLarge
                                                                               .override(
@@ -1986,10 +1763,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                               ),
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ],
+                                                                  ),
                                                                 ),
                                                               ]
                                                                   .map((c) =>
@@ -2007,33 +1786,24 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               child:
                                                                   IsEmptyCardWidget(),
                                                             ),
-                                                            paginated: false,
+                                                            paginated: true,
                                                             selectable: false,
+                                                            hidePaginator:
+                                                                false,
+                                                            showFirstLastButtons:
+                                                                true,
                                                             headingRowHeight:
-                                                                0.0,
+                                                                35.0,
                                                             dataRowHeight: 48.0,
                                                             columnSpacing: 20.0,
                                                             headingRowColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .accent1,
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          0.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                            ),
+                                                                    .circular(
+                                                                        12.0),
                                                             addHorizontalDivider:
                                                                 false,
                                                             addTopAndBottomDivider:
@@ -2049,7 +1819,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   },
                                                 ),
                                               ),
-                                            ],
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ),
@@ -2072,179 +1842,54 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 16.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Violations per Barangay',
-                                                      style:
+                                              Text(
+                                                'Most Barangay with Violations this Month',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .headlineSmall
+                                                    .override(
+                                                      font: GoogleFonts.outfit(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .headlineSmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .outfit(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                              ),
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineSmall
+                                                              .fontStyle,
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent1,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
-                                                    bottomRight:
-                                                        Radius.circular(0.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0),
-                                                    topRight:
-                                                        Radius.circular(8.0),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 8.0, 0.0, 8.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Expanded(
-                                                        flex: 4,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      26.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Barangay Name',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        flex: 2,
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        26.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '# of Violations',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .plusJakartaSans(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
                                               ),
                                               Expanded(
                                                 child: StreamBuilder<
                                                     List<
-                                                        ViolationSummaryPerBrgyRecord>>(
+                                                        BarangaySummaryTestRecord>>(
                                                   stream:
-                                                      queryViolationSummaryPerBrgyRecord(
+                                                      queryBarangaySummaryTestRecord(
                                                     queryBuilder:
-                                                        (violationSummaryPerBrgyRecord) =>
-                                                            violationSummaryPerBrgyRecord
-                                                                .orderBy(
-                                                                    'actual_violations',
-                                                                    descending:
-                                                                        true),
+                                                        (barangaySummaryTestRecord) =>
+                                                            barangaySummaryTestRecord
+                                                                .where(
+                                                      'year',
+                                                      isEqualTo: _model
+                                                          .violationChartYearFilterValue,
+                                                      isNull: (_model
+                                                              .violationChartYearFilterValue) ==
+                                                          null,
+                                                    ),
                                                   ),
                                                   builder: (context, snapshot) {
                                                     // Customize what your widget looks like when it's loading.
@@ -2266,8 +1911,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         ),
                                                       );
                                                     }
-                                                    List<ViolationSummaryPerBrgyRecord>
-                                                        containerViolationSummaryPerBrgyRecordList =
+                                                    List<BarangaySummaryTestRecord>
+                                                        containerBarangaySummaryTestRecordList =
                                                         snapshot.data!;
 
                                                     return Container(
@@ -2275,19 +1920,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           BoxDecoration(),
                                                       child: Builder(
                                                         builder: (context) {
-                                                          final violationsSummPerBrgy =
-                                                              containerViolationSummaryPerBrgyRecordList
-                                                                  .where((e) =>
-                                                                      (e.year ==
-                                                                          _model
-                                                                              .violationChartYearFilterValue) &&
-                                                                      (e.month ==
-                                                                          _model
-                                                                              .violationChartMonthFilterValue))
-                                                                  .toList()
-                                                                  .take(5)
+                                                          final violationsSumm =
+                                                              containerBarangaySummaryTestRecordList
+                                                                  .sortedList(
+                                                                      keyOf: (e) => e
+                                                                          .actualValues
+                                                                          .elementAtOrNull(
+                                                                              functions.getCurrentMonthIndex()!)!,
+                                                                      desc: true)
                                                                   .toList();
-                                                          if (violationsSummPerBrgy
+                                                          if (violationsSumm
                                                               .isEmpty) {
                                                             return Container(
                                                               width: MediaQuery
@@ -2301,11 +1943,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           }
 
                                                           return FlutterFlowDataTable<
-                                                              ViolationSummaryPerBrgyRecord>(
+                                                              BarangaySummaryTestRecord>(
                                                             controller: _model
                                                                 .paginatedDataTableController2,
                                                             data:
-                                                                violationsSummPerBrgy,
+                                                                violationsSumm,
                                                             columnsBuilder:
                                                                 (onSortChanged) =>
                                                                     [
@@ -2315,21 +1957,75 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .merge(
                                                                   softWrap:
                                                                       true,
-                                                                  child:
-                                                                      Container(),
+                                                                  child: Text(
+                                                                    'Barangay Name',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              DataColumn2(
+                                                                label:
+                                                                    DefaultTextStyle
+                                                                        .merge(
+                                                                  softWrap:
+                                                                      true,
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            1.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      '# of Violations',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ],
                                                             dataRowBuilder:
-                                                                (violationsSummPerBrgyItem,
-                                                                        violationsSummPerBrgyIndex,
+                                                                (violationsSummItem,
+                                                                        violationsSummIndex,
                                                                         selected,
                                                                         onSelectChanged) =>
                                                                     DataRow(
                                                               color:
                                                                   WidgetStateProperty
                                                                       .all(
-                                                                violationsSummPerBrgyIndex %
+                                                                violationsSummIndex %
                                                                             2 ==
                                                                         0
                                                                     ? FlutterFlowTheme.of(
@@ -2340,60 +2036,132 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .alternate,
                                                               ),
                                                               cells: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Text(
-                                                                      violationsSummPerBrgyItem
-                                                                          .barangay,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
+                                                                InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    _model.brgyName =
+                                                                        violationsSummItem
+                                                                            .barangay;
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                    decoration:
+                                                                        BoxDecoration(),
+                                                                    child:
+                                                                        Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          AutoSizeText(
+                                                                        violationsSummItem
+                                                                            .barangay,
+                                                                        minFontSize:
+                                                                            16.0,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyLarge
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
                                                                               fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                             ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                    Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        violationsSummPerBrgyItem
-                                                                            .actualViolations
-                                                                            .toString(),
-                                                                        '0',
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                          ),
                                                                     ),
-                                                                  ],
+                                                                  ),
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      _model.violationName =
+                                                                          violationsSummItem
+                                                                              .barangay;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
+                                                                      decoration:
+                                                                          BoxDecoration(),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            violationsSummItem.actualValues.elementAtOrNull(functions.getCurrentMonthIndex()!)?.toString(),
+                                                                            '0',
+                                                                          ),
+                                                                          minFontSize:
+                                                                              16.0,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyLarge
+                                                                              .override(
+                                                                                font: GoogleFonts.plusJakartaSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                              ),
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ]
                                                                   .map((c) =>
@@ -2411,33 +2179,24 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               child:
                                                                   IsEmptyCardWidget(),
                                                             ),
-                                                            paginated: false,
+                                                            paginated: true,
                                                             selectable: false,
+                                                            hidePaginator:
+                                                                false,
+                                                            showFirstLastButtons:
+                                                                true,
                                                             headingRowHeight:
-                                                                0.0,
+                                                                35.0,
                                                             dataRowHeight: 48.0,
                                                             columnSpacing: 20.0,
                                                             headingRowColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .accent1,
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          0.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      0.0),
-                                                            ),
+                                                                    .circular(
+                                                                        12.0),
                                                             addHorizontalDivider:
                                                                 false,
                                                             addTopAndBottomDivider:
@@ -2453,7 +2212,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   },
                                                 ),
                                               ),
-                                            ],
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ),

@@ -34,8 +34,6 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
-  // State field(s) for Column widget.
-  ScrollController? columnController1;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController1 =
       FlutterFlowDataTableController<CitationRecord>();
@@ -54,8 +52,6 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   late FlutterFlowDynamicModels<StatusModel> statusModels4;
   // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
   AdminNotifRecord? confirmSearchViolatorNotif;
-  // State field(s) for Column widget.
-  ScrollController? columnController2;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController3 =
       FlutterFlowDataTableController<CitationRecord>();
@@ -74,8 +70,6 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   late FlutterFlowDynamicModels<StatusModel> statusModels8;
   // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
   AdminNotifRecord? confirmSearchUnpaidViolatorNotif;
-  // State field(s) for Column widget.
-  ScrollController? columnController3;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController5 =
       FlutterFlowDataTableController<CitationRecord>();
@@ -94,17 +88,14 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
-    columnController1 = ScrollController();
     statusModels1 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels2 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels3 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels4 = FlutterFlowDynamicModels(() => StatusModel());
-    columnController2 = ScrollController();
     statusModels5 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels6 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels7 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels8 = FlutterFlowDynamicModels(() => StatusModel());
-    columnController3 = ScrollController();
     statusModels9 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels10 = FlutterFlowDynamicModels(() => StatusModel());
     statusModels11 = FlutterFlowDynamicModels(() => StatusModel());
@@ -118,21 +109,18 @@ class ViolatorsModel extends FlutterFlowModel<ViolatorsWidget> {
     searchBoxTextController?.dispose();
 
     tabBarController?.dispose();
-    columnController1?.dispose();
     paginatedDataTableController1.dispose();
     statusModels1.dispose();
     statusModels2.dispose();
     paginatedDataTableController2.dispose();
     statusModels3.dispose();
     statusModels4.dispose();
-    columnController2?.dispose();
     paginatedDataTableController3.dispose();
     statusModels5.dispose();
     statusModels6.dispose();
     paginatedDataTableController4.dispose();
     statusModels7.dispose();
     statusModels8.dispose();
-    columnController3?.dispose();
     paginatedDataTableController5.dispose();
     statusModels9.dispose();
     statusModels10.dispose();

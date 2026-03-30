@@ -1384,6 +1384,9 @@ class _EnforcersWidgetState extends State<EnforcersWidget> {
                                         if (FFAppState().searchIsActive)
                                           Expanded(
                                             child: Container(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.82,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)

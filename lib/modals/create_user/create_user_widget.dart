@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'create_user_model.dart';
 export 'create_user_model.dart';
@@ -199,6 +200,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                       controller: _model.firstNameTextController,
                       focusNode: _model.firstNameFocusNode,
                       autofocus: false,
+                      textCapitalization: TextCapitalization.words,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'First Name',
@@ -271,6 +273,16 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                           ),
                       validator: _model.firstNameTextControllerValidator
                           .asValidator(context),
+                      inputFormatters: [
+                        if (!isAndroid && !isiOS)
+                          TextInputFormatter.withFunction((oldValue, newValue) {
+                            return TextEditingValue(
+                              selection: newValue.selection,
+                              text: newValue.text
+                                  .toCapitalization(TextCapitalization.words),
+                            );
+                          }),
+                      ],
                     ),
                   ),
                   Container(
@@ -279,6 +291,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                       controller: _model.lastNameTextController,
                       focusNode: _model.lastNameFocusNode,
                       autofocus: false,
+                      textCapitalization: TextCapitalization.words,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'Last Name',
@@ -351,6 +364,16 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                           ),
                       validator: _model.lastNameTextControllerValidator
                           .asValidator(context),
+                      inputFormatters: [
+                        if (!isAndroid && !isiOS)
+                          TextInputFormatter.withFunction((oldValue, newValue) {
+                            return TextEditingValue(
+                              selection: newValue.selection,
+                              text: newValue.text
+                                  .toCapitalization(TextCapitalization.words),
+                            );
+                          }),
+                      ],
                     ),
                   ),
                   Container(

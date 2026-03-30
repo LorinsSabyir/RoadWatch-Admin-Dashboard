@@ -1241,6 +1241,9 @@ class _FinesWidgetState extends State<FinesWidget> {
                                         if (FFAppState().searchIsActive)
                                           Expanded(
                                             child: Container(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.82,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),

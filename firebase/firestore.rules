@@ -64,21 +64,21 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /violation_summary/{document} {
+    match /barangay_summary_test/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
 
-    match /violation_summary_per_brgy/{document} {
+    match /violation_summary_by_type_test/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
 
-    match /violation_summary_per_violation/{document} {
+    match /panabo_violation_summary_test/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;

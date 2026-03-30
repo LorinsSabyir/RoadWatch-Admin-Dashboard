@@ -23,24 +23,6 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "type",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "created_time",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "adminNotif",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
           "fieldPath": "type",
           "order": "ASCENDING"
         },

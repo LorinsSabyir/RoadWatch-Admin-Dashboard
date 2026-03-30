@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_fines_model.dart';
 export 'edit_fines_model.dart';
@@ -168,6 +169,7 @@ class _EditFinesWidgetState extends State<EditFinesWidget> {
                           ),
                           focusNode: _model.violationNameFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.none,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Violation Name',
@@ -243,6 +245,17 @@ class _EditFinesWidgetState extends State<EditFinesWidget> {
                           keyboardType: TextInputType.emailAddress,
                           validator: _model.violationNameTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.none),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                       Container(
@@ -254,6 +267,7 @@ class _EditFinesWidgetState extends State<EditFinesWidget> {
                           ),
                           focusNode: _model.violationTitleFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.none,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Violation Title',
@@ -330,6 +344,17 @@ class _EditFinesWidgetState extends State<EditFinesWidget> {
                           validator: _model
                               .violationTitleTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.none),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                       Container(

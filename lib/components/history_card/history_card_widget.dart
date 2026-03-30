@@ -12,12 +12,14 @@ class HistoryCardWidget extends StatefulWidget {
     this.title,
     this.subtitle,
     this.notifRef,
+    this.time,
   });
 
   final String? status;
   final String? title;
   final String? subtitle;
   final DocumentReference? notifRef;
+  final String? time;
 
   @override
   State<HistoryCardWidget> createState() => _HistoryCardWidgetState();
@@ -150,6 +152,36 @@ class _HistoryCardWidgetState extends State<HistoryCardWidget> {
                     ],
                   ),
                 ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    valueOrDefault<String>(
+                      widget.time,
+                      'Time',
+                    ),
+                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                          font: GoogleFonts.plusJakartaSans(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .fontStyle,
+                          ),
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .fontStyle,
+                        ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ],
           ),

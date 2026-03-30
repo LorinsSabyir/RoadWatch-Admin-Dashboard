@@ -8,6 +8,12 @@ import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
+  ///  Local state fields for this page.
+
+  String? brgyName = 'Brgy. A.O. Floirendo,';
+
+  String? violationName = 'Arrogant Driver';
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getCitationPercentPerMonth] action in Dashboard widget.
@@ -25,22 +31,15 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // State field(s) for violationChartYearFilter widget.
   String? violationChartYearFilterValue;
   FormFieldController<String>? violationChartYearFilterValueController;
-  // State field(s) for violationChartMonthFilter widget.
-  String? violationChartMonthFilterValue;
-  FormFieldController<String>? violationChartMonthFilterValueController;
   // State field(s) for violationFilter widget.
   String? violationFilterValue;
   FormFieldController<String>? violationFilterValueController;
-  // State field(s) for Row widget.
-  ScrollController? rowController1;
-  // State field(s) for Row widget.
-  ScrollController? rowController2;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController1 =
-      FlutterFlowDataTableController<ViolationSummaryPerViolationRecord>();
+      FlutterFlowDataTableController<ViolationSummaryByTypeTestRecord>();
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController2 =
-      FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
+      FlutterFlowDataTableController<BarangaySummaryTestRecord>();
 
   @override
   void initState(BuildContext context) {
@@ -48,8 +47,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     columnController = ScrollController();
     citationsTodayModel = createModel(context, () => DashboardCardModel());
     cItationsThisMonthModel = createModel(context, () => DashboardCardModel());
-    rowController1 = ScrollController();
-    rowController2 = ScrollController();
   }
 
   @override
@@ -58,8 +55,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     columnController?.dispose();
     citationsTodayModel.dispose();
     cItationsThisMonthModel.dispose();
-    rowController1?.dispose();
-    rowController2?.dispose();
     paginatedDataTableController1.dispose();
     paginatedDataTableController2.dispose();
   }

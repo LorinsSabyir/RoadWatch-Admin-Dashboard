@@ -11,6 +11,10 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
 
   int selectedPage = 2;
 
+  String? barangayName = 'Brgy. A.O. Floirendo,';
+
+  String? violationName = 'Arrogant Driver';
+
   ///  State fields for stateful widgets in this page.
 
   // Model for SideNav component.
@@ -20,42 +24,51 @@ class AnalyticsModel extends FlutterFlowModel<AnalyticsWidget> {
   // State field(s) for violationChartYearFilter widget.
   String? violationChartYearFilterValue;
   FormFieldController<String>? violationChartYearFilterValueController;
-  // State field(s) for violationChartMonthFilter widget.
-  String? violationChartMonthFilterValue;
-  FormFieldController<String>? violationChartMonthFilterValueController;
   // State field(s) for violationFilter widget.
   String? violationFilterValue;
   FormFieldController<String>? violationFilterValueController;
-  // State field(s) for Row widget.
-  ScrollController? rowController1;
-  // State field(s) for Row widget.
-  ScrollController? rowController2;
+  // State field(s) for searchBox widget.
+  FocusNode? searchBoxFocusNode1;
+  TextEditingController? searchBoxTextController1;
+  String? Function(BuildContext, String?)? searchBoxTextController1Validator;
+  List<BarangaySummaryTestRecord> simpleSearchResults1 = [];
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController1 =
-      FlutterFlowDataTableController<ViolationSummaryRecord>();
+      FlutterFlowDataTableController<BarangaySummaryTestRecord>();
+  // State field(s) for SearchDataTable widget.
+  final searchDataTableController1 =
+      FlutterFlowDataTableController<BarangaySummaryTestRecord>();
+  // State field(s) for searchBox widget.
+  FocusNode? searchBoxFocusNode2;
+  TextEditingController? searchBoxTextController2;
+  String? Function(BuildContext, String?)? searchBoxTextController2Validator;
+  List<ViolationSummaryByTypeTestRecord> simpleSearchResults2 = [];
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController2 =
-      FlutterFlowDataTableController<ViolationSummaryPerBrgyRecord>();
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController3 =
-      FlutterFlowDataTableController<ViolationSummaryPerViolationRecord>();
+      FlutterFlowDataTableController<ViolationSummaryByTypeTestRecord>();
+  // State field(s) for SearchDataTable widget.
+  final searchDataTableController2 =
+      FlutterFlowDataTableController<ViolationSummaryByTypeTestRecord>();
 
   @override
   void initState(BuildContext context) {
     sideNavModel = createModel(context, () => SideNavModel());
     columnController = ScrollController();
-    rowController1 = ScrollController();
-    rowController2 = ScrollController();
   }
 
   @override
   void dispose() {
     sideNavModel.dispose();
     columnController?.dispose();
-    rowController1?.dispose();
-    rowController2?.dispose();
+    searchBoxFocusNode1?.dispose();
+    searchBoxTextController1?.dispose();
+
     paginatedDataTableController1.dispose();
+    searchDataTableController1.dispose();
+    searchBoxFocusNode2?.dispose();
+    searchBoxTextController2?.dispose();
+
     paginatedDataTableController2.dispose();
-    paginatedDataTableController3.dispose();
+    searchDataTableController2.dispose();
   }
 }

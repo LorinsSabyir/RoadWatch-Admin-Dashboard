@@ -15,11 +15,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csv/csv.dart';
 import 'package:intl/intl.dart';
 
-Future<void> monthlySummaryExportToCSV(BuildContext context) async {
+Future<void> violationSummaryPerBrgyExportToCSV(BuildContext context) async {
   try {
-    // 🔹 Fetch data from Firestore from the 'monthlySummary' collection
-    final querySnapshot =
-        await FirebaseFirestore.instance.collection('monthlySummary').get();
+    // 🔹 Fetch data from Firestore from the 'violation_summary' collection
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('violation_summary_per_brgy')
+        .get();
 
     if (querySnapshot.docs.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -43,43 +44,23 @@ Future<void> monthlySummaryExportToCSV(BuildContext context) async {
         'Month Document ID',
         'Month Name',
         'Year',
-        'Month Number',
+        'City',
+        'Barangay',
         'Total Violations',
-        'Violation Details (Name: Count)',
       ]
     ];
 
-    // 🔹 Fill rows from Firestore
-    for (final doc in querySnapshot.docs) {
-      final data = doc.data() as Map<String, dynamic>;
-
-      // Cast lists, defaulting to an empty list if null or not the correct type
-      final List<dynamic> violationNames = (data['violation_name'] is List)
-          ? List<dynamic>.from(data['violation_name'] as List)
-          : [];
-      final List<dynamic> violationCounts = (data['violation_count'] is List)
-          ? List<dynamic>.from(data['violation_count'] as List)
-          : [];
-
-      // Combine names and counts into a single string for the CSV cell
-      final int length = violationNames.length < violationCounts.length
-          ? violationNames.length
-          : violationCounts.length;
-
-      final List<String> violationDetails = [];
-      for (int i = 0; i < length; i++) {
-        violationDetails
-            .add('${violationNames[i] ?? 'N/A'}: ${violationCounts[i] ?? '0'}');
-      }
-      final String violationDetailString = violationDetails.join(' | ');
+    // Fetch data from firebase
+    for (var doc in querySnapshot.docs) {
+      final data = doc.data(); // Get the document data map
 
       csvData.add([
-        doc.id,
-        data['month'] ?? '',
-        data['year'] ?? '',
-        data['month_num'] ?? '',
-        data['total_violations'] ?? '0',
-        violationDetailString,
+        doc.id, // Document ID
+        data['month'] ?? 'NOT FOUND',
+        data['year'] ?? 'NOT FOUND',
+        data['city'] ?? 'NOT FOUND',
+        data['barangay'] ?? 'NOT FOUND',
+        data['actual_violations'] ?? 0,
       ]);
     }
 
@@ -94,7 +75,7 @@ Future<void> monthlySummaryExportToCSV(BuildContext context) async {
     final anchor = html.AnchorElement(href: url)
       ..style.display = 'none'
       ..download =
-          'monthly_summary_export_${DateTime.now().millisecondsSinceEpoch}.csv';
+          'violation_summary_per_brgy_export_${DateTime.now().millisecondsSinceEpoch}.csv';
 
     html.document.body?.children.add(anchor);
     anchor.click();

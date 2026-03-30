@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_appre_place_model.dart';
 export 'edit_appre_place_model.dart';
@@ -165,6 +166,7 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           ),
                           focusNode: _model.landmarkFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.words,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Landmark',
@@ -240,6 +242,17 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           keyboardType: TextInputType.emailAddress,
                           validator: _model.landmarkTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.words),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                       Container(
@@ -251,6 +264,7 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           ),
                           focusNode: _model.barangayFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.words,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Barangay',
@@ -326,6 +340,17 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           keyboardType: TextInputType.emailAddress,
                           validator: _model.barangayTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.words),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                       Container(
@@ -337,6 +362,7 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           ),
                           focusNode: _model.purokFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.words,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Purok',
@@ -412,6 +438,17 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           keyboardType: TextInputType.emailAddress,
                           validator: _model.purokTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.words),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                       Container(
@@ -423,6 +460,7 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           ),
                           focusNode: _model.streetFocusNode,
                           autofocus: true,
+                          textCapitalization: TextCapitalization.words,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Street',
@@ -498,6 +536,17 @@ class _EditApprePlaceWidgetState extends State<EditApprePlaceWidget> {
                           keyboardType: TextInputType.emailAddress,
                           validator: _model.streetTextControllerValidator
                               .asValidator(context),
+                          inputFormatters: [
+                            if (!isAndroid && !isiOS)
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                return TextEditingValue(
+                                  selection: newValue.selection,
+                                  text: newValue.text.toCapitalization(
+                                      TextCapitalization.words),
+                                );
+                              }),
+                          ],
                         ),
                       ),
                     ].divide(SizedBox(height: 8.0)),
